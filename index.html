@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Allie's Cyber Space</title>
+  <title>Allie's Book</title>
   <style>
     * {
       box-sizing: border-box;
@@ -69,7 +69,7 @@
       pointer-events: all;
     }
 
-    /* CONTENEDOR PRINCIPAL (ESTILO LIBRO INICIAL) */
+    /* CONTENEDOR PRINCIPAL */
     .main-container {
       background: #fdfbf7;
       border: 3px solid #4a2e1d;
@@ -84,7 +84,6 @@
       transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* CUANDO REPRODUCE: CAMBIA A SPACE FUTURISTA PROFESIONAL EN LAS ESQUINAS */
     body.playing .main-container {
       background: rgba(12, 12, 18, 0.95);
       backdrop-filter: blur(30px);
@@ -96,7 +95,6 @@
       justify-content: space-between;
     }
 
-    /* LOMO CENTRAL (Solo visible en modo libro) */
     .book-binding {
       width: 26px;
       background: linear-gradient(90deg, #23140c 0%, #4a2e1d 50%, #23140c 100%);
@@ -115,10 +113,10 @@
       pointer-events: none;
     }
 
-    /* VISTA DE LIBRO (PÁGINAS) */
+    /* VISTA LIBRO */
     .book-view-left, .book-view-right {
       flex: 1;
-      padding: 45px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -126,17 +124,15 @@
       background-image: repeating-linear-gradient(180deg, transparent, transparent 31px, rgba(139, 107, 79, 0.04) 32px);
     }
 
-    .book-view-left {
-      border-right: 1px solid #e7dfd1;
-    }
+    .book-view-left { border-right: 1px solid #e7dfd1; }
 
     body.playing .book-view-left, 
     body.playing .book-view-right {
-      display: none; /* Oculto al reproducir para dar paso al Space Futurista */
+      display: none;
     }
 
-    /* VISTA SPACE FUTURISTA (PROFESIONAL EN LAS ESQUINAS) */
-    .cyber-space-view {
+    /* VISTA REPRODUCTOR ACTIVO */
+    .active-view {
       display: none;
       width: 100%;
       height: 100%;
@@ -146,12 +142,11 @@
       min-height: 520px;
     }
 
-    body.playing .cyber-space-view {
+    body.playing .active-view {
       display: flex;
     }
 
-    /* FILA SUPERIOR: ESQUINAS PROFESIONALES */
-    .cyber-header-row {
+    .header-row {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -171,19 +166,17 @@
       font-weight: 900;
       letter-spacing: 2px;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .corner-info {
       font-size: 12px;
       color: #94a3b8;
-      line-height: 1.5;
     }
 
-    /* NAVEGACIÓN DE PESTAÑAS EN LA ESQUINA SUPERIOR DERECHA */
-    .corner-nav-tabs {
+    .nav-tabs {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 6px;
@@ -194,7 +187,7 @@
       background: transparent;
       border: none;
       color: #94a3b8;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 10px;
       font-size: 12px;
       font-weight: 700;
@@ -208,67 +201,67 @@
       box-shadow: 0 0 12px var(--accent-glow);
     }
 
-    /* CENTRO DEL SPACE: REPRODUCTOR GRANDE O PIZARRA DE DIBUJO */
-    .cyber-center-content {
+    /* CENTRO DINÁMICO */
+    .center-content-area {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
-      margin: 20px 0;
+      margin: 15px 0;
+      flex: 1;
     }
 
-    /* REPRODUCTOR GRANDE PROFESIONAL */
+    /* REPRODUCTOR GRANDE */
     .massive-player {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
-      padding: 25px;
+      padding: 20px;
       width: 100%;
-      max-width: 550px;
+      max-width: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      transition: all 0.5s ease;
     }
 
     .massive-cover {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 16px;
       object-fit: cover;
       border: 2px solid var(--accent-color);
-      box-shadow: 0 0 25px var(--accent-glow);
-      margin-bottom: 15px;
+      box-shadow: 0 0 20px var(--accent-glow);
+      margin-bottom: 12px;
     }
 
     .massive-song-title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 900;
       color: #ffffff;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       text-align: center;
     }
 
     .massive-song-artist {
-      font-size: 13px;
+      font-size: 12px;
       color: #94a3b8;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
     .massive-controls {
       display: flex;
       align-items: center;
-      gap: 25px;
-      margin-bottom: 15px;
+      gap: 20px;
+      margin-bottom: 12px;
     }
 
     .m-ctrl-btn {
       background: transparent;
       border: none;
       color: #94a3b8;
-      font-size: 20px;
+      font-size: 18px;
       cursor: pointer;
       transition: color 0.3s;
     }
@@ -279,27 +272,24 @@
       background: var(--accent-color);
       color: #030305;
       border: none;
-      width: 48px;
-      height: 48px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 15px var(--accent-glow);
-      transition: transform 0.2s;
+      box-shadow: 0 0 12px var(--accent-glow);
     }
-
-    .m-play-btn:hover { transform: scale(1.1); }
 
     .massive-progress {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 11px;
+      gap: 10px;
+      font-size: 10px;
       color: #94a3b8;
     }
 
@@ -320,29 +310,28 @@
       box-shadow: 0 0 10px var(--accent-glow);
     }
 
-    /* PIZARRA DE DIBUJO INTERACTIVA CON LÁPIZ */
-    .drawing-board-container {
+    /* PIZARRA GRANDE CON FONDO BLANCO */
+    .drawing-panel {
       display: none;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 650px;
+      max-width: 700px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       padding: 15px;
     }
 
-    .drawing-board-container.active {
-      display: flex;
-    }
+    .drawing-panel.active { display: flex; }
 
     #draw-canvas {
-      background: #1a1a24;
-      border: 2px dashed rgba(255, 255, 255, 0.2);
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
       border-radius: 12px;
       cursor: crosshair;
       touch-action: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
     .drawing-tools {
@@ -362,11 +351,44 @@
       font-weight: 700;
       cursor: pointer;
     }
-
     .draw-btn:hover { background: var(--accent-color); color: #030305; }
 
-    /* FILA INFERIOR: PLAYLIST EN LAS ESQUINAS */
-    .cyber-footer-row {
+    /* SECCIÓN AMIGOS */
+    .friends-panel {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 20px;
+      gap: 12px;
+    }
+    .friends-panel.active { display: flex; }
+    .friend-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .friend-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #030305;
+    }
+
+    /* FOOTER PLAYLIST */
+    .footer-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -383,7 +405,6 @@
       border-radius: 14px;
       align-items: center;
       flex: 1;
-      max-width: 450px;
       overflow-x: auto;
     }
 
@@ -413,24 +434,24 @@
       object-fit: cover;
     }
 
-    /* ELEMENTOS ESTILO LIBRO (MODO INICIAL) */
+    /* ESTILOS LIBRO INICIAL */
     .page-title {
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #2b180d;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .cyber-card {
       background: rgba(92, 58, 33, 0.04);
       border: 1px solid rgba(92, 58, 33, 0.12);
       border-radius: 12px;
-      padding: 14px 18px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .chapter-tag {
@@ -441,33 +462,36 @@
       font-weight: 700;
     }
 
-    .nav-arrow-btn {
-      background: rgba(92, 58, 33, 0.08);
-      border: 1px solid rgba(92, 58, 33, 0.2);
-      color: #3b2416;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
+    .tracks-list-book {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      max-height: 180px;
+      overflow-y: auto;
     }
 
-    @media (max-width: 768px) {
-      .main-container { max-width: 450px; }
-      .book-binding { display: none; }
-      .cyber-header-row, .cyber-footer-row { flex-direction: column; gap: 10px; }
+    .track-item-book {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f7f3ed;
+      border: 1px solid #e2d7c5;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body class="theme-0">
 
-  <!-- OVERLAY GIF DE INTRO (Única vez) -->
+  <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
   <div class="main-container" id="main-container">
     <div class="book-binding"></div>
 
-    <!-- VISTA 1: LIBRO (CUANDO ESTÁ PAUSADO) -->
+    <!-- VISTA LIBRO INICIAL -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">CAPÍTULO I — IDENTIDAD</div>
@@ -478,49 +502,53 @@
           <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#7c5c40;">Username</span><strong>Addictedtoyouu</strong></div>
         </div>
       </div>
-      <div style="font-size: 11px; color: #8c6d53;">ALLIE'S SPACE — 2026</div>
+      <div></div>
     </div>
 
     <div class="book-view-right">
       <div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <div class="chapter-tag">CAPÍTULO II — SONIDOS</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+          <div class="chapter-tag">CAPÍTULO II — SONIDOS Y PLAYLIST</div>
         </div>
-        <!-- Reproductor clásico vista libro -->
-        <div style="background: #f7f3ed; border: 1px solid #e2d7c5; border-radius: 14px; padding: 15px; margin-bottom: 15px;">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:50px; height:50px; border-radius:8px; object-fit:cover;">
+        <!-- Reproductor y Playlist completa en el libro -->
+        <div style="background: #f7f3ed; border: 1px solid #e2d7c5; border-radius: 14px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:45px; height:45px; border-radius:8px; object-fit:cover;">
             <div>
               <div id="book-title" style="font-size:12px; font-weight:800; color:#2b180d;">SUPERESTRELLA</div>
               <div id="book-artist" style="font-size:10px; color:#7c5c40;">Aitana</div>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center; align-items: center; gap: 15px;">
-            <button onclick="togglePlay()" style="background:#3b2416; color:#fff; border:none; width:34px; height:34px; border-radius:50%; cursor:pointer; font-weight:bold;" id="book-play-btn">▶</button>
+            <button onclick="togglePlay()" style="margin-left:auto; background:#3b2416; color:#fff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-weight:bold;" id="book-play-btn">▶</button>
           </div>
         </div>
+
+        <div class="chapter-tag" style="margin-bottom: 6px;">CANCIONES</div>
+        <div class="tracks-list-book" id="book-playlist-container">
+          <!-- Generado por JS -->
+        </div>
       </div>
-      <div style="text-align: right;"><button class="nav-arrow-btn" onclick="togglePlay()">Reproducir para entrar al Cyber Space ➔</button></div>
+      <div style="text-align: right; margin-top: 10px;">
+        <button onclick="togglePlay()" style="background: rgba(92,58,33,0.08); border: 1px solid rgba(92,58,33,0.2); color: #3b2416; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; cursor: pointer;">Reproducir para abrir vista activa ➔</button>
+      </div>
     </div>
 
 
-    <!-- VISTA 2: SPACE FUTURISTA PROFESIONAL (CUANDO REPRODUCE) -->
-    <div class="cyber-space-view">
-      <!-- HEADER ESQUINAS -->
-      <div class="cyber-header-row">
+    <!-- VISTA ACTIVA -->
+    <div class="active-view">
+      <div class="header-row">
         <div class="corner-profile">
           <div class="corner-title">ALLIE</div>
-          <div class="corner-info">Peru • @Addictedtoyouu<br>Cyber Space Active ⚡</div>
+          <div class="corner-info">Perú • @Addictedtoyouu</div>
         </div>
-        <div class="corner-nav-tabs">
+        <div class="nav-tabs">
           <button class="tab-btn active" id="tab-player" onclick="switchTab('player')">🎵 Reproductor</button>
-          <button class="tab-btn" id="tab-canvas" onclick="switchTab('canvas')">✏️ Pizarra / Lápiz</button>
+          <button class="tab-btn" id="tab-canvas" onclick="switchTab('canvas')">✏️ Pizarra</button>
+          <button class="tab-btn" id="tab-friends" onclick="switchTab('friends')">💬 Amigos</button>
         </div>
       </div>
 
-      <!-- CENTRO: REPRODUCTOR GRANDE O PIZARRA -->
-      <div class="cyber-center-content">
-        <!-- REPRODUCTOR MASIVO -->
+      <div class="center-content-area">
+        <!-- Reproductor grande -->
         <div class="massive-player" id="view-massive-player">
           <img id="cyber-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="massive-cover" alt="Cover">
           <div class="massive-song-title" id="cyber-title">SUPERESTRELLA</div>
@@ -541,21 +569,37 @@
           </div>
         </div>
 
-        <!-- PIZARRA DE DIBUJO CON LÁPIZ -->
-        <div class="drawing-board-container" id="view-drawing-board">
-          <canvas id="draw-canvas" width="520" height="260"></canvas>
+        <!-- Pizarra grande con fondo blanco -->
+        <div class="drawing-panel" id="view-drawing-board">
+          <canvas id="draw-canvas" width="620" height="300"></canvas>
           <div class="drawing-tools">
             <button class="draw-btn" onclick="clearCanvas()">🧹 Limpiar Pizarra</button>
-            <span style="font-size: 11px; color: #94a3b8;">Usa tu mouse para dibujar o escribir libremente</span>
+            <span style="font-size: 11px; color: #94a3b8;">Dibuja o escribe libremente en la hoja blanca</span>
+          </div>
+        </div>
+
+        <!-- Sección Amigos -->
+        <div class="friends-panel" id="view-friends">
+          <div style="font-size:14px; font-weight:bold; color:#fff; margin-bottom:5px;">Comunidad & Amigos</div>
+          <div class="friend-card">
+            <div class="friend-avatar">R</div>
+            <div>
+              <div style="font-weight:bold; font-size:13px; color:#fff;">Rexor</div>
+              <div style="font-size:11px; color:#94a3b8;">Comunidad activa</div>
+            </div>
+          </div>
+          <div class="friend-card">
+            <div class="friend-avatar" style="background:#38bdf8;">A</div>
+            <div>
+              <div style="font-weight:bold; font-size:13px; color:#fff;">Allie</div>
+              <div style="font-size:11px; color:#94a3b8;">Propietaria del espacio</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- FOOTER ESQUINAS: PLAYLIST Y VOLUMEN -->
-      <div class="cyber-footer-row">
-        <div class="corner-playlist" id="cyber-playlist">
-          <!-- Playlist generada por JS -->
-        </div>
+      <div class="footer-row">
+        <div class="corner-playlist" id="cyber-playlist"></div>
         <div style="background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#94a3b8;">
           <span>🔊</span>
           <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="accent-color: var(--accent-color); cursor:pointer;">
@@ -584,9 +628,22 @@
       document.body.classList.add(`theme-${index}`);
     }
 
-    function renderCyberPlaylist() {
-      const container = document.getElementById('cyber-playlist');
-      container.innerHTML = playlist.map((song, i) => `
+    function renderPlaylists() {
+      // Playlist en el libro
+      const bookContainer = document.getElementById('book-playlist-container');
+      bookContainer.innerHTML = playlist.map((song, i) => `
+        <div class="track-item-book" onclick="playSong(${i})">
+          <img src="${song.cover}" style="width:30px; height:30px; border-radius:6px; object-fit:cover;">
+          <div style="flex:1;">
+            <div style="font-size:11px; font-weight:700; color:#2b180d;">${song.title}</div>
+            <div style="font-size:9px; color:#7c5c40;">${song.artist}</div>
+          </div>
+        </div>
+      `).join('');
+
+      // Playlist en esquina inferior activa
+      const cyberContainer = document.getElementById('cyber-playlist');
+      cyberContainer.innerHTML = playlist.map((song, i) => `
         <div class="mini-track ${i === currentIdx ? 'active' : ''}" onclick="playSong(${i})">
           <img src="${song.cover}" class="mini-thumb">
           <div style="font-size:11px;">
@@ -606,7 +663,7 @@
       document.getElementById('cyber-cover').src = song.cover;
       document.getElementById('cyber-title').textContent = song.title;
       document.getElementById('cyber-artist').textContent = song.artist;
-      renderCyberPlaylist();
+      renderPlaylists();
     }
 
     function triggerStartSequence() {
@@ -666,42 +723,43 @@
     function switchTab(tab) {
       const playerView = document.getElementById('view-massive-player');
       const canvasView = document.getElementById('view-drawing-board');
+      const friendsView = document.getElementById('view-friends');
+
       const btnPlayer = document.getElementById('tab-player');
       const btnCanvas = document.getElementById('tab-canvas');
+      const btnFriends = document.getElementById('tab-friends');
+
+      playerView.style.display = 'none';
+      canvasView.classList.remove('active');
+      friendsView.classList.remove('active');
+      btnPlayer.classList.remove('active');
+      btnCanvas.classList.remove('active');
+      btnFriends.classList.remove('active');
 
       if (tab === 'player') {
         playerView.style.display = 'flex';
-        canvasView.classList.remove('active');
         btnPlayer.classList.add('active');
-        btnCanvas.classList.remove('active');
-      } else {
-        playerView.style.display = 'none';
+      } else if (tab === 'canvas') {
         canvasView.classList.add('active');
         btnCanvas.classList.add('active');
-        btnPlayer.classList.remove('active');
+      } else if (tab === 'friends') {
+        friendsView.classList.add('active');
+        btnFriends.classList.add('active');
       }
     }
 
-    // Configuración de la Pizarra de Dibujo (Lápiz)
+    // Pizarra de dibujo con fondo blanco
     const canvas = document.getElementById('draw-canvas');
     const ctx = canvas.getContext('2d');
     let painting = false;
 
-    function startPosition(e) {
-      painting = true;
-      draw(e);
-    }
-
-    function endedPosition() {
-      painting = false;
-      ctx.beginPath();
-    }
-
+    function startPosition(e) { painting = true; draw(e); }
+    function endedPosition() { painting = false; ctx.beginPath(); }
     function draw(e) {
       if (!painting) return;
       ctx.lineWidth = 3;
       ctx.lineCap = 'round';
-      ctx.strokeStyle = '#f472b6';
+      ctx.strokeStyle = '#0f172a';
 
       const rect = canvas.getBoundingClientRect();
       const x = (e.clientX || e.touches[0].clientX) - rect.left;
@@ -752,7 +810,7 @@
     }
 
     audio.addEventListener('ended', nextSong);
-    renderCyberPlaylist();
+    renderPlaylists();
   </script>
 
 </body>
