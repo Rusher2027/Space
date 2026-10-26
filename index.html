@@ -13,7 +13,7 @@
     }
 
     body {
-      background-color: #0a0a0d;
+      background-color: #050507;
       color: #f1f5f9;
       min-height: 100vh;
       display: flex;
@@ -21,315 +21,445 @@
       align-items: center;
       padding: 30px 20px;
       overflow-x: hidden;
+      transition: background 1s ease;
     }
 
-    /* Contenedor Principal: Estilo Libro Abierto (2 Paneles) */
-    .book-container {
-      background: rgba(16, 16, 22, 0.85);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 28px;
+    /* ESTADO DE REPRODUCCIÓN: Fondo rosa y efectos sutiles */
+    body.playing {
+      background-color: #12080f;
+    }
+
+    body.playing .ambient-glow {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Fondo ambiental con efecto lumínico rosa */
+    .ambient-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      max-width: 960px;
-      min-height: 520px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85), inset 0 0 2px rgba(255, 255, 255, 0.1);
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(244, 114, 182, 0.12) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Contenedor Principal: El Libro Abierto */
+    .open-book {
+      background: linear-gradient(135deg, rgba(18, 18, 25, 0.95), rgba(12, 12, 17, 0.98));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 980px;
+      min-height: 540px;
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.5);
       display: flex;
       position: relative;
       overflow: hidden;
+      z-index: 2;
     }
 
-    /* Lomo Central del Libro (Divisor) */
-    .book-spine {
-      width: 2px;
-      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    /* Lomo del Libro */
+    .book-binding {
+      width: 30px;
+      background: linear-gradient(90deg, 
+        rgba(0,0,0,0.6) 0%, 
+        rgba(255,255,255,0.03) 50%, 
+        rgba(0,0,0,0.6) 100%);
       position: absolute;
-      top: 5%;
-      bottom: 5%;
+      top: 0;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 5;
+      z-index: 10;
+      pointer-events: none;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
     }
 
-    /* Páginas del Libro (Izquierda y Derecha) */
+    /* Páginas del Libro */
     .book-page {
       flex: 1;
-      padding: 40px;
+      padding: 45px 50px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
     }
 
-    /* PÁGINA IZQUIERDA: PERFIL ALLIE */
-    .page-header {
-      margin-bottom: 20px;
+    .book-page:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .book-chapter-tag {
+    /* PÁGINA IZQUIERDA: PERFIL */
+    .page-header {
+      margin-bottom: 25px;
+    }
+
+    .chapter-tag {
       font-size: 11px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: #64748b;
       margin-bottom: 8px;
+      font-family: -apple-system, sans-serif;
     }
 
-    .main-name {
-      font-size: 32px;
+    .page-title {
+      font-size: 34px;
       font-weight: 800;
       letter-spacing: 2px;
       color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, sans-serif;
     }
 
-    .info-card {
-      background: rgba(255, 255, 255, 0.025);
+    .info-panel {
+      background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 18px;
-      padding: 20px;
+      border-radius: 16px;
+      padding: 22px;
       margin-bottom: 20px;
     }
 
-    .info-item {
+    .info-row {
       display: flex;
       justify-content: space-between;
       font-size: 14px;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
 
-    .info-item:last-child {
+    .info-row:last-child {
       border-bottom: none;
     }
 
-    .info-key {
+    .info-label {
       color: #64748b;
-      font-size: 13px;
     }
 
-    .info-val {
-      color: #e2e8f0;
+    .info-value {
+      color: #f1f5f9;
       font-weight: 600;
     }
 
-    .quote-section {
+    .book-quote {
       background: rgba(255, 255, 255, 0.015);
-      border-left: 3px solid rgba(255, 255, 255, 0.2);
+      border-left: 3px solid rgba(244, 114, 182, 0.4);
       padding: 14px 18px;
-      border-radius: 0 12px 12px 0;
+      border-radius: 0 10px 10px 0;
       font-style: italic;
       font-size: 13px;
       color: #94a3b8;
       line-height: 1.6;
     }
 
-    /* PÁGINA DERECHA: REPRODUCTOR & PLAYLIST */
-    .player-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .now-playing-box {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: rgba(255, 255, 255, 0.03);
+    /* PÁGINA DERECHA: REPRODUCTOR AVANZADO */
+    .now-playing-card {
+      background: rgba(255, 255, 255, 0.025);
       border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 20px;
-      padding: 16px;
+      border-radius: 18px;
+      padding: 18px;
       margin-bottom: 20px;
     }
 
-    .active-cover {
-      width: 75px;
-      height: 75px;
-      border-radius: 14px;
-      object-fit: cover;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .player-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
-    .active-meta {
+    .song-cover {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    }
+
+    .song-meta {
       flex: 1;
     }
 
-    .active-title {
-      font-size: 16px;
+    .song-title-main {
+      font-size: 14px;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
+      font-family: -apple-system, sans-serif;
     }
 
-    .active-artist {
-      font-size: 13px;
+    .song-artist-main {
+      font-size: 12px;
       color: #94a3b8;
-      margin-bottom: 10px;
+      font-family: -apple-system, sans-serif;
     }
 
-    .play-btn-main {
+    /* Controles de reproducción completos */
+    .player-controls-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 12px;
+    }
+
+    .ctrl-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .ctrl-btn:hover {
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    .main-play-btn {
       background: #ffffff;
       color: #000000;
       border: none;
-      width: 42px;
-      height: 42px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: bold;
       transition: transform 0.2s, background 0.2s;
     }
 
-    .play-btn-main:hover {
+    .main-play-btn:hover {
       transform: scale(1.08);
-      background: #e2e8f0;
+      background: #f472b6;
+      color: #ffffff;
     }
 
-    /* Lista de Canciones */
-    .playlist-title {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    /* Barra de progreso de la canción */
+    .progress-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
       color: #64748b;
       margin-bottom: 12px;
     }
 
-    .song-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
     }
 
-    .song-card {
+    .progress-filled {
+      width: 0%;
+      height: 100%;
+      background: #f472b6;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    /* Control de Volumen */
+    .volume-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .volume-slider {
+      flex: 1;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      outline: none;
+      accent-color: #f472b6;
+      cursor: pointer;
+    }
+
+    /* Playlist */
+    .playlist-section-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 10px;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .tracks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .track-item {
       display: flex;
       align-items: center;
       gap: 12px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 10px 14px;
-      border-radius: 14px;
+      padding: 8px 12px;
+      border-radius: 12px;
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s;
     }
 
-    .song-card:hover {
+    .track-item:hover {
       background: rgba(255, 255, 255, 0.06);
       border-color: rgba(255, 255, 255, 0.15);
     }
 
-    .song-card.active {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.25);
+    .track-item.active {
+      background: rgba(244, 114, 182, 0.08);
+      border-color: rgba(244, 114, 182, 0.3);
     }
 
-    .song-thumb-mini {
-      width: 38px;
-      height: 38px;
+    .track-thumb {
+      width: 32px;
+      height: 32px;
       border-radius: 8px;
       object-fit: cover;
     }
 
-    .song-info-mini {
+    .track-info {
       flex: 1;
     }
 
-    .song-name-mini {
-      font-size: 13px;
+    .track-name {
+      font-size: 12px;
       font-weight: 600;
       color: #ffffff;
+      font-family: -apple-system, sans-serif;
     }
 
-    .song-artist-mini {
-      font-size: 11px;
+    .track-artist {
+      font-size: 10px;
       color: #94a3b8;
+      font-family: -apple-system, sans-serif;
     }
 
-    /* Responsivo para celulares si lo abren en móvil */
+    /* Responsivo móvil */
     @media (max-width: 768px) {
-      .book-container {
+      .open-book {
         flex-direction: column;
         max-width: 450px;
       }
-      .book-spine {
+      .book-binding {
         display: none;
       }
       .book-page {
         padding: 25px;
+      }
+      .book-page:first-child {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="book-container">
-    <div class="book-spine"></div>
+  <div class="ambient-glow"></div>
 
-    <!-- PÁGINA IZQUIERDA: ALLIE -->
+  <div class="open-book">
+    <div class="book-binding"></div>
+
+    <!-- PÁGINA IZQUIERDA: PERFIL -->
     <div class="book-page">
       <div>
         <div class="page-header">
-          <div class="book-chapter-tag">CHAPTER I — PROFILE</div>
-          <div class="main-name">ALLIE</div>
+          <div class="chapter-tag">CAPÍTULO I — IDENTIDAD</div>
+          <div class="page-title">ALLIE</div>
         </div>
 
-        <div class="info-card">
-          <div class="info-item">
-            <span class="info-key">Name</span>
-            <span class="info-val">Allie</span>
+        <div class="info-panel">
+          <div class="info-row">
+            <span class="info-label">Name</span>
+            <span class="info-value">Allie</span>
           </div>
-          <div class="info-item">
-            <span class="info-key">País</span>
-            <span class="info-val">Perú</span>
+          <div class="info-row">
+            <span class="info-label">País</span>
+            <span class="info-value">Perú</span>
           </div>
-          <div class="info-item">
-            <span class="info-key">Username</span>
-            <span class="info-val">Addictedtoyouu</span>
+          <div class="info-row">
+            <span class="info-label">Username</span>
+            <span class="info-value">Addictedtoyouu</span>
           </div>
         </div>
       </div>
 
-      <div class="quote-section">
+      <div class="book-quote">
         "Echo de menos tú y yo aquí en mi cuarto, pero te lo..."
       </div>
     </div>
 
-    <!-- PÁGINA DERECHA: REPRODUCTOR -->
+    <!-- PÁGINA DERECHA: REPRODUCTOR COMPLETO -->
     <div class="book-page">
       <div>
-        <div class="player-header">
-          <div class="book-chapter-tag">CHAPTER II — MUSIC</div>
-        </div>
-
-        <!-- Tarjeta de reproducción actual -->
-        <div class="now-playing-box">
-          <img id="active-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="active-cover" alt="Cover">
-          <div class="active-meta">
-            <div class="active-title" id="active-title">SUPERESTRELLA</div>
-            <div class="active-artist" id="active-artist">Aitana</div>
-          </div>
-          <button class="play-btn-main" id="play-btn" onclick="togglePlay()">▶</button>
-        </div>
-
-        <!-- Lista de lectura / Playlist -->
-        <div class="playlist-title">PLAYLIST</div>
-        <div class="song-list">
-          <div class="song-card active" onclick="playSong(0)" id="song-card-0">
-            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="song-thumb-mini" alt="Superestrella">
-            <div class="song-info-mini">
-              <div class="song-name-mini">SUPERESTRELLA</div>
-              <div class="song-artist-mini">Aitana</div>
+        <div class="chapter-tag">CAPÍTULO II — SONIDOS</div>
+        
+        <div class="now-playing-card" style="margin-top: 12px;">
+          <div class="player-top">
+            <img id="active-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="song-cover" alt="Cover">
+            <div class="song-meta">
+              <div class="song-title-main" id="active-title">SUPERESTRELLA</div>
+              <div class="song-artist-main" id="active-artist">Aitana</div>
             </div>
           </div>
 
-          <div class="song-card" onclick="playSong(1)" id="song-card-1">
-            <img src="https://i.postimg.cc/50wYKF10/artworks-z-GXe-TIC6Z17nhvx-J-1v9QKQ-t500x500.jpg" class="song-thumb-mini" alt="Mon Amour">
-            <div class="song-info-mini">
-              <div class="song-name-mini">Mon Amour (Remix)</div>
-              <div class="song-artist-mini">Zzoilo x Aitana</div>
+          <!-- Controles: Anterior, Play/Pause, Siguiente -->
+          <div class="player-controls-row">
+            <button class="ctrl-btn" onclick="prevSong()" title="Anterior">⏮</button>
+            <button class="main-play-btn" id="play-btn" onclick="togglePlay()">▶</button>
+            <button class="ctrl-btn" onclick="nextSong()" title="Siguiente">⏭</button>
+          </div>
+
+          <!-- Barra de Progreso interactiva -->
+          <div class="progress-container">
+            <span id="current-time">0:00</span>
+            <div class="progress-bar" id="progress-bar" onclick="setProgress(event)">
+              <div class="progress-filled" id="progress-filled"></div>
+            </div>
+            <span id="total-duration">0:00</span>
+          </div>
+
+          <!-- Control de Volumen -->
+          <div class="volume-container">
+            <span>🔊</span>
+            <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" id="volume-slider" oninput="setVolume(this.value)">
+          </div>
+        </div>
+
+        <div class="playlist-section-title">PLAYLIST</div>
+        <div class="tracks-list">
+          <div class="track-item active" onclick="playSong(0)" id="track-0">
+            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="track-thumb" alt="Superestrella">
+            <div class="track-info">
+              <div class="track-name">SUPERESTRELLA</div>
+              <div class="track-artist">Aitana</div>
+            </div>
+          </div>
+
+          <div class="track-item" onclick="playSong(1)" id="track-1">
+            <img src="https://i.postimg.cc/50wYKF10/artworks-z-GXe-TIC6Z17nhvx-J-1v9QKQ-t500x500.jpg" class="track-thumb" alt="Mon Amour">
+            <div class="track-info">
+              <div class="track-name">Mon Amour (Remix)</div>
+              <div class="track-artist">Zzoilo x Aitana</div>
             </div>
           </div>
         </div>
@@ -361,6 +491,16 @@
     const activeTitle = document.getElementById('active-title');
     const activeArtist = document.getElementById('active-artist');
     const activeCover = document.getElementById('active-cover');
+    const progressFilled = document.getElementById('progress-filled');
+    const progressBar = document.getElementById('progress-bar');
+    const currentTimeEl = document.getElementById('current-time');
+    const totalDurationEl = document.getElementById('total-duration');
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
 
     function playSong(index) {
       currentIdx = index;
@@ -369,13 +509,14 @@
       audio.play();
       
       playBtn.textContent = '❚❚';
+      document.body.classList.add('playing');
       activeTitle.textContent = song.title;
       activeArtist.textContent = song.artist;
       activeCover.src = song.cover;
 
-      document.querySelectorAll('.song-card').forEach((card, i) => {
-        if (i === currentIdx) card.classList.add('active');
-        else card.classList.remove('active');
+      document.querySelectorAll('.track-item').forEach((item, i) => {
+        if (i === currentIdx) item.classList.add('active');
+        else item.classList.remove('active');
       });
     }
 
@@ -386,12 +527,58 @@
         } else {
           audio.play();
           playBtn.textContent = '❚❚';
+          document.body.classList.add('playing');
         }
       } else {
         audio.pause();
         playBtn.textContent = '▶';
+        document.body.classList.remove('playing');
       }
     }
+
+    function nextSong() {
+      currentIdx = (currentIdx + 1) % playlist.length;
+      playSong(currentIdx);
+    }
+
+    function prevSong() {
+      currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
+      playSong(currentIdx);
+    }
+
+    // Actualizar barra de progreso y tiempos
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progressFilled.style.width = `${percent}%`;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        totalDurationEl.textContent = formatTime(audio.duration);
+      }
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      totalDurationEl.textContent = formatTime(audio.duration);
+    });
+
+    // Permitir hacer clic en la barra para adelantar/atrasar
+    progressBar.addEventListener('click', (e) => {
+      const width = progressBar.clientWidth;
+      const clickX = e.offsetX;
+      const duration = audio.duration;
+      if (duration) {
+        audio.currentTime = (clickX / width) * duration;
+      }
+    });
+
+    // Control de volumen
+    function setVolume(val) {
+      audio.volume = val;
+    }
+
+    // Cuando termina una canción, pasa automáticamente a la siguiente
+    audio.addEventListener('ended', () => {
+      nextSong();
+    });
   </script>
 
 </body>
