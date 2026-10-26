@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Allie's Book Space</title>
   <style>
-    /* Cursor de Lápiz / Lapicera personalizado */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
-      cursor: url('https://cdn-icons-png.flaticon.com/32/588/588395.png'), auto !important;
     }
 
     :root {
@@ -20,7 +18,6 @@
       --accent-glow: rgba(244, 114, 182, 0.4);
     }
 
-    /* Temas de colores por canción (Cambiado el tercero a un estilo morado/índigo estético) */
     body.theme-0 {
       --theme-bg: linear-gradient(135deg, #1e0b17, #2c0b25, #0d030b);
       --accent-color: #f472b6;
@@ -131,7 +128,7 @@
       border-radius: 20px;
       width: 100%;
       max-width: 980px;
-      min-height: 540px;
+      min-height: 560px;
       box-shadow: 0 35px 70px rgba(0, 0, 0, 0.9);
       display: flex;
       position: relative;
@@ -140,7 +137,7 @@
       transition: all 1s ease;
     }
 
-    /* CUANDO REPRUECE: EL LIBRO SE HACE BLANCO Y CON AURA DE COLOR */
+    /* CUANDO REPRODUCE: EL LIBRO SE HACE BLANCO Y CON AURA */
     body.playing .open-book {
       background: #fdfbf7;
       border: 2px solid var(--accent-color);
@@ -169,7 +166,7 @@
     /* PÁGINAS DEL LIBRO */
     .book-page {
       flex: 1;
-      padding: 45px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -195,7 +192,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .chapter-tag {
@@ -207,9 +204,7 @@
       transition: color 1s ease;
     }
 
-    body.playing .chapter-tag {
-      color: #8c6d53;
-    }
+    body.playing .chapter-tag { color: #8c6d53; }
 
     .nav-arrow-btn {
       background: rgba(255, 255, 255, 0.05);
@@ -239,31 +234,30 @@
       transform: translateX(3px);
     }
 
-    /* PÁGINA IZQUIERDA: PERFIL */
+    /* PÁGINA IZQUIERDA: PERFIL Y MENSAJES */
     .page-title {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #ffffff;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       transition: color 1s ease;
     }
 
-    body.playing .page-title {
-      color: #2b180d;
-    }
+    body.playing .page-title { color: #2b180d; }
 
     .cyber-info-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      margin-bottom: 15px;
     }
 
     .cyber-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 12px;
-      padding: 14px 18px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -283,19 +277,106 @@
       transition: color 1s ease;
     }
 
-    body.playing .cyber-label {
-      color: #7c5c40;
-    }
+    body.playing .cyber-label { color: #7c5c40; }
 
     .cyber-value {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: #f1f5f9;
       transition: color 1s ease;
     }
 
-    body.playing .cyber-value {
-      color: #3b2416;
+    body.playing .cyber-value { color: #3b2416; }
+
+    /* SECCIÓN DE MENSAJES PARA ALLIE */
+    .guestbook-section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 12px;
+      transition: all 1s ease;
+    }
+
+    body.playing .guestbook-section {
+      background: rgba(92, 58, 33, 0.03);
+      border: 1px solid rgba(92, 58, 33, 0.1);
+    }
+
+    .guestbook-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      font-weight: 700;
+      transition: color 1s ease;
+    }
+
+    body.playing .guestbook-title { color: #7c5c40; }
+
+    .guestbook-form {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .guestbook-input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 11px;
+      color: #ffffff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    body.playing .guestbook-input {
+      background: #ffffff;
+      border: 1px solid #d5c5b0;
+      color: #2b1c14;
+    }
+
+    .guestbook-btn {
+      background: #ffffff;
+      color: #030305;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    body.playing .guestbook-btn {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .guestbook-messages {
+      max-height: 70px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+      color: #cbd5e1;
+      transition: color 1s ease;
+    }
+
+    body.playing .guestbook-messages { color: #5c4033; }
+
+    .msg-item {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border-left: 2px solid var(--accent-color);
+    }
+
+    body.playing .msg-item {
+      background: rgba(92, 58, 33, 0.06);
     }
 
     /* PÁGINA DERECHA: REPRODUCTOR */
@@ -304,7 +385,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 16px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       transition: all 0.5s ease;
     }
 
@@ -318,21 +399,19 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .song-cover {
-      width: 55px;
-      height: 55px;
+      width: 50px;
+      height: 50px;
       border-radius: 10px;
       object-fit: cover;
       border: 1px solid rgba(255, 255, 255, 0.15);
       transition: border-color 0.5s ease;
     }
 
-    body.playing .song-cover {
-      border-color: var(--accent-color);
-    }
+    body.playing .song-cover { border-color: var(--accent-color); }
 
     .eq-bar-container {
       display: flex;
@@ -368,9 +447,7 @@
       transition: color 1s ease;
     }
 
-    body.playing .song-title-main {
-      color: #2b180d;
-    }
+    body.playing .song-title-main { color: #2b180d; }
 
     .song-artist-main {
       font-size: 11px;
@@ -378,16 +455,14 @@
       transition: color 1s ease;
     }
 
-    body.playing .song-artist-main {
-      color: #7c5c40;
-    }
+    body.playing .song-artist-main { color: #7c5c40; }
 
     .player-controls-row {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 18px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .ctrl-btn {
@@ -395,23 +470,19 @@
       border: none;
       color: #94a3b8;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
       transition: color 0.2s, transform 0.2s;
     }
 
     body.playing .ctrl-btn { color: #7c5c40; }
-
-    .ctrl-btn:hover {
-      color: var(--accent-color);
-      transform: scale(1.15);
-    }
+    .ctrl-btn:hover { color: var(--accent-color); transform: scale(1.15); }
 
     .main-play-btn {
       background: #ffffff;
       color: #030305;
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
@@ -436,7 +507,7 @@
       gap: 10px;
       font-size: 10px;
       color: #64748b;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       transition: color 1s ease;
     }
 
@@ -492,8 +563,8 @@
     .tracks-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      max-height: 125px;
+      gap: 5px;
+      max-height: 110px;
       overflow-y: auto;
     }
 
@@ -503,7 +574,7 @@
       gap: 10px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 6px 10px;
+      padding: 5px 10px;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -536,8 +607,8 @@
     }
 
     .track-thumb {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
       object-fit: cover;
     }
@@ -567,7 +638,7 @@
         max-width: 450px;
       }
       .book-binding { display: none; }
-      .book-page { padding: 25px; }
+      .book-page { padding: 20px; }
     }
   </style>
 </head>
@@ -610,6 +681,18 @@
             <div class="cyber-card">
               <span class="cyber-label">Username</span>
               <span class="cyber-value">Addictedtoyouu</span>
+            </div>
+          </div>
+
+          <!-- SECCIÓN DE MENSAJES PARA ALLIE -->
+          <div class="guestbook-section">
+            <div class="guestbook-title">✍️ Déjanos un mensaje</div>
+            <div class="guestbook-form">
+              <input type="text" id="msg-input" class="guestbook-input" placeholder="Escribe algo para Allie..." maxlength="40">
+              <button class="guestbook-btn" onclick="addMessage()">Enviar</button>
+            </div>
+            <div class="guestbook-messages" id="msg-list">
+              <div class="msg-item">¡Hola Allie, hermoso space! ✨</div>
             </div>
           </div>
         </div>
@@ -663,7 +746,7 @@
             </div>
           </div>
 
-          <div class="chapter-tag" style="margin-bottom: 8px;">PLAYLIST / CANCIONES</div>
+          <div class="chapter-tag" style="margin-bottom: 6px;">PLAYLIST / CANCIONES</div>
           <div class="tracks-list" id="playlist-container">
             <div class="track-item active" onclick="playSong(0)" id="track-0">
               <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="track-thumb" alt="Superestrella">
@@ -732,6 +815,18 @@
       });
     }
 
+    function addMessage() {
+      const input = document.getElementById('msg-input');
+      const list = document.getElementById('msg-list');
+      if (input && input.value.trim() !== '') {
+        const newMsg = document.createElement('div');
+        newMsg.className = 'msg-item';
+        newMsg.textContent = input.value.trim();
+        list.prepend(newMsg);
+        input.value = '';
+      }
+    }
+
     function flipPageNext() {
       const leftPage = document.getElementById('left-page');
       const rightPage = document.getElementById('right-page');
@@ -787,6 +882,17 @@
                 <span class="cyber-value">Addictedtoyouu</span>
               </div>
             </div>
+
+            <div class="guestbook-section">
+              <div class="guestbook-title">✍️ Déjanos un mensaje</div>
+              <div class="guestbook-form">
+                <input type="text" id="msg-input" class="guestbook-input" placeholder="Escribe algo para Allie..." maxlength="40">
+                <button class="guestbook-btn" onclick="addMessage()">Enviar</button>
+              </div>
+              <div class="guestbook-messages" id="msg-list">
+                <div class="msg-item">¡Hola Allie, hermoso space! ✨</div>
+              </div>
+            </div>
           `;
 
           rightChapterTag.textContent = 'CAPÍTULO II — SONIDOS';
@@ -826,7 +932,7 @@
               </div>
             </div>
 
-            <div class="chapter-tag" style="margin-bottom: 8px;">PLAYLIST / CANCIONES</div>
+            <div class="chapter-tag" style="margin-bottom: 6px;">PLAYLIST / CANCIONES</div>
             <div class="tracks-list" id="playlist-container">
               ${playlist.map((song, i) => `
                 <div class="track-item ${i === currentIdx ? 'active' : ''}" onclick="playSong(${i})" id="track-${i}">
