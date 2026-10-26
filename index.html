@@ -3,36 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Allie's Book Space</title>
+  <title>Allie's Cyber Book Space</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
     }
 
-    /* Variables de color futurista por canción */
     :root {
       --theme-bg: #030305;
-      --accent-color: #f472b6;
-      --accent-glow: rgba(244, 114, 182, 0.4);
+      --accent-color: #ec4899;
+      --accent-glow: rgba(236, 72, 153, 0.4);
+      --player-bg: rgba(255, 255, 255, 0.03);
+      --player-border: rgba(255, 255, 255, 0.08);
     }
 
     body.theme-0 {
-      --theme-bg: linear-gradient(135deg, #1e0b17, #2c0b25, #0d030b);
+      --theme-bg: linear-gradient(135deg, #140510, #22081c, #0a0208);
       --accent-color: #f472b6;
       --accent-glow: rgba(244, 114, 182, 0.5);
+      --player-bg: rgba(244, 114, 182, 0.05);
+      --player-border: rgba(244, 114, 182, 0.3);
     }
     body.theme-1 {
       --theme-bg: linear-gradient(135deg, #061527, #0c203b, #030a14);
       --accent-color: #38bdf8;
       --accent-glow: rgba(56, 189, 248, 0.5);
+      --player-bg: rgba(56, 189, 248, 0.05);
+      --player-border: rgba(56, 189, 248, 0.3);
     }
     body.theme-2 {
       --theme-bg: linear-gradient(135deg, #231203, #331509, #0f0701);
       --accent-color: #fbbf24;
       --accent-glow: rgba(251, 191, 36, 0.5);
+      --player-bg: rgba(251, 191, 36, 0.05);
+      --player-border: rgba(251, 191, 36, 0.3);
     }
 
     body {
@@ -70,14 +77,13 @@
       pointer-events: all;
     }
 
-    /* Ocultar la interfaz durante la intro */
     .open-book.hide-for-intro {
       opacity: 0;
       transform: scale(0.95);
       pointer-events: none;
     }
 
-    /* CUANDO REPRODUCE: El fondo general de la página cambia a colores futuristas animados */
+    /* Fondo general animado al reproducir */
     body.playing {
       background: var(--theme-bg);
       background-size: 400% 400%;
@@ -90,37 +96,34 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* CONTENEDOR DEL LIBRO */
+    /* CONTENEDOR PRINCIPAL (Mantiene su diseño oscuro y formal de libro) */
     .open-book {
-      background: rgba(16, 16, 22, 0.95);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
+      background: rgba(15, 15, 22, 0.94);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
       width: 100%;
       max-width: 980px;
-      min-height: 540px;
+      min-height: 560px;
       box-shadow: 0 35px 70px rgba(0, 0, 0, 0.9);
       display: flex;
       position: relative;
       overflow: hidden;
+      z-index: 2;
       transition: all 1s ease;
     }
 
+    /* Aura exterior del libro al reproducir */
     body.playing .open-book {
       border: 2px solid var(--accent-color);
       box-shadow: 0 0 50px var(--accent-glow), 0 40px 80px rgba(0, 0, 0, 0.9);
-      animation: bookAura 3s ease-in-out infinite;
-    }
-
-    @keyframes bookAura {
-      0%, 100% { box-shadow: 0 0 40px var(--accent-glow), 0 40px 80px rgba(0, 0, 0, 0.9); }
-      50% { box-shadow: 0 0 70px var(--accent-glow), 0 40px 80px rgba(0, 0, 0, 0.9); }
     }
 
     /* Lomo Central */
     .book-binding {
-      width: 26px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.04) 50%, rgba(0,0,0,0.8) 100%);
+      width: 24px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.8) 100%);
       position: absolute;
       top: 0;
       bottom: 0;
@@ -130,7 +133,7 @@
       pointer-events: none;
     }
 
-    /* PÁGINAS DEL LIBRO */
+    /* PÁGINAS */
     .book-page {
       flex: 1;
       padding: 45px;
@@ -191,7 +194,7 @@
 
     /* PÁGINA IZQUIERDA: PERFIL */
     .page-title {
-      font-size: 36px;
+      font-size: 38px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #ffffff;
@@ -207,7 +210,7 @@
     .cyber-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 14px 18px;
       display: flex;
       justify-content: space-between;
@@ -227,19 +230,18 @@
       color: #f1f5f9;
     }
 
-    /* PÁGINA DERECHA: REPRODUCTOR FUTURISTA */
+    /* PÁGINA DERECHA: REPRODUCTOR FUTURISTA Y CIBERNÉTICO */
     .futuristic-player {
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 16px;
+      background: var(--player-bg);
+      border: 1px solid var(--player-border);
+      border-radius: 20px;
+      padding: 18px;
       margin-bottom: 15px;
       transition: all 0.5s ease;
     }
 
     body.playing .futuristic-player {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 15px var(--accent-glow);
+      box-shadow: 0 0 20px var(--accent-glow);
     }
 
     .player-top {
@@ -250,9 +252,9 @@
     }
 
     .song-cover {
-      width: 55px;
-      height: 55px;
-      border-radius: 10px;
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
       object-fit: cover;
       border: 1px solid rgba(255, 255, 255, 0.15);
       transition: border-color 0.5s ease;
@@ -260,13 +262,14 @@
 
     body.playing .song-cover {
       border-color: var(--accent-color);
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     .eq-bar-container {
       display: flex;
       gap: 3px;
       align-items: flex-end;
-      height: 12px;
+      height: 14px;
       margin-top: 4px;
     }
 
@@ -285,11 +288,11 @@
 
     @keyframes eqAnim {
       0% { height: 3px; }
-      100% { height: 12px; }
+      100% { height: 14px; }
     }
 
     .song-title-main {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 2px;
@@ -326,14 +329,14 @@
       background: #ffffff;
       color: #030305;
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
       transition: all 0.3s ease;
     }
@@ -341,7 +344,7 @@
     body.playing .main-play-btn {
       background: var(--accent-color);
       color: #030305;
-      box-shadow: 0 0 10px var(--accent-glow);
+      box-shadow: 0 0 12px var(--accent-glow);
     }
 
     .main-play-btn:hover { transform: scale(1.08); }
@@ -373,7 +376,10 @@
       transition: background 0.5s ease;
     }
 
-    body.playing .progress-filled { background: var(--accent-color); }
+    body.playing .progress-filled { 
+      background: var(--accent-color);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
 
     .volume-container {
       display: flex;
@@ -395,12 +401,12 @@
 
     body.playing .volume-slider { accent-color: var(--accent-color); }
 
-    /* PLAYLIST */
+    /* PLAYLIST CIBERNÉTICA */
     .tracks-list {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      max-height: 125px;
+      max-height: 130px;
       overflow-y: auto;
     }
 
@@ -411,30 +417,26 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.05);
       padding: 6px 10px;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .track-item:hover {
       background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--accent-color);
     }
 
     .track-item.active {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    body.playing .track-item.active {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 8px var(--accent-glow);
+      background: var(--player-bg);
+      border: 1px solid var(--accent-color);
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     .track-thumb {
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       object-fit: cover;
     }
 
@@ -496,9 +498,7 @@
         </div>
       </div>
 
-      <div style="font-size: 11px; color: #64748b; letter-spacing: 1px;">
-        ALLIE'S SPACE — 2026
-      </div>
+      <div></div>
     </div>
 
     <!-- PÁGINA DERECHA -->
@@ -588,7 +588,7 @@
 
     let currentIdx = 0;
     let pageState = 1;
-    let hasPlayedIntro = false; // Control de la animación inicial de única vez
+    let hasPlayedIntro = false;
 
     const audio = document.getElementById('audio-player');
     const introOverlay = document.getElementById('intro-overlay');
@@ -739,13 +739,11 @@
     }
 
     function triggerStartSequence() {
-      // Activa animación de GIF la primera vez que se reproduce
       if (!hasPlayedIntro) {
         hasPlayedIntro = true;
         introOverlay.classList.add('active');
         openBookMain.classList.add('hide-for-intro');
 
-        // Duración de la animación del GIF (3.5 segundos)
         setTimeout(() => {
           introOverlay.classList.remove('active');
           openBookMain.classList.remove('hide-for-intro');
