@@ -3,48 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Allie's Cyber Book Space</title>
+  <title>Allie's Book Space</title>
   <style>
+    /* Cursor de Lápiz / Lapicera personalizado */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
+      cursor: url('https://cdn-icons-png.flaticon.com/32/588/588395.png'), auto !important;
     }
 
     :root {
       --theme-bg: #030305;
-      --accent-color: #ec4899;
-      --accent-glow: rgba(236, 72, 153, 0.4);
-      --player-bg: rgba(255, 255, 255, 0.03);
-      --player-border: rgba(255, 255, 255, 0.08);
+      --accent-color: #f472b6;
+      --accent-glow: rgba(244, 114, 182, 0.4);
     }
 
+    /* Temas de colores por canción (Cambiado el tercero a un estilo morado/índigo estético) */
     body.theme-0 {
-      --theme-bg: linear-gradient(135deg, #140510, #22081c, #0a0208);
+      --theme-bg: linear-gradient(135deg, #1e0b17, #2c0b25, #0d030b);
       --accent-color: #f472b6;
       --accent-glow: rgba(244, 114, 182, 0.5);
-      --player-bg: rgba(244, 114, 182, 0.05);
-      --player-border: rgba(244, 114, 182, 0.3);
     }
     body.theme-1 {
       --theme-bg: linear-gradient(135deg, #061527, #0c203b, #030a14);
       --accent-color: #38bdf8;
       --accent-glow: rgba(56, 189, 248, 0.5);
-      --player-bg: rgba(56, 189, 248, 0.05);
-      --player-border: rgba(56, 189, 248, 0.3);
     }
     body.theme-2 {
-      --theme-bg: linear-gradient(135deg, #231203, #331509, #0f0701);
-      --accent-color: #fbbf24;
-      --accent-glow: rgba(251, 191, 36, 0.5);
-      --player-bg: rgba(251, 191, 36, 0.05);
-      --player-border: rgba(251, 191, 36, 0.3);
+      --theme-bg: linear-gradient(135deg, #180d2b, #2b164a, #0a0414);
+      --accent-color: #c084fc;
+      --accent-glow: rgba(192, 132, 252, 0.5);
     }
 
     body {
       background-color: #030305;
-      color: #f1f5f9;
+      color: #2b1c14;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -55,7 +50,7 @@
       transition: background 1.5s ease;
     }
 
-    /* OVERLAY DEL GIF INTRO (Sólo la 1ra vez) */
+    /* OVERLAY GIF DE INTRO (Única vez) */
     .intro-gif-overlay {
       position: fixed;
       top: 0;
@@ -96,16 +91,47 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* CONTENEDOR PRINCIPAL (Mantiene su diseño oscuro y formal de libro) */
+    /* FRASES Y DIBUJOS FLOTANTES DE FONDO */
+    .floating-quotes-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+      display: none;
+    }
+
+    body.playing .floating-quotes-container {
+      display: block;
+    }
+
+    .floating-item {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.15);
+      font-style: italic;
+      font-size: 14px;
+      white-space: nowrap;
+      animation: floatUp 12s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) rotate(5deg); opacity: 0; }
+    }
+
+    /* CONTENEDOR DEL LIBRO */
     .open-book {
-      background: rgba(15, 15, 22, 0.94);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
+      background: rgba(16, 16, 22, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
       width: 100%;
       max-width: 980px;
-      min-height: 560px;
+      min-height: 540px;
       box-shadow: 0 35px 70px rgba(0, 0, 0, 0.9);
       display: flex;
       position: relative;
@@ -114,16 +140,18 @@
       transition: all 1s ease;
     }
 
-    /* Aura exterior del libro al reproducir */
+    /* CUANDO REPRUECE: EL LIBRO SE HACE BLANCO Y CON AURA DE COLOR */
     body.playing .open-book {
+      background: #fdfbf7;
       border: 2px solid var(--accent-color);
       box-shadow: 0 0 50px var(--accent-glow), 0 40px 80px rgba(0, 0, 0, 0.9);
+      color: #2b1c14;
     }
 
-    /* Lomo Central */
+    /* Lomo Central del Libro */
     .book-binding {
-      width: 24px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.8) 100%);
+      width: 26px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.04) 50%, rgba(0,0,0,0.8) 100%);
       position: absolute;
       top: 0;
       bottom: 0;
@@ -131,9 +159,14 @@
       transform: translateX(-50%);
       z-index: 20;
       pointer-events: none;
+      transition: background 1s ease;
     }
 
-    /* PÁGINAS */
+    body.playing .book-binding {
+      background: linear-gradient(90deg, #d5c5b0 0%, #fdfbf7 50%, #d5c5b0 100%);
+    }
+
+    /* PÁGINAS DEL LIBRO */
     .book-page {
       flex: 1;
       padding: 45px;
@@ -142,7 +175,6 @@
       justify-content: space-between;
       position: relative;
       background: transparent;
-      color: #f1f5f9;
       transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
@@ -153,6 +185,10 @@
 
     .book-page:first-child {
       border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    body.playing .book-page:first-child {
+      border-right: 1px solid #e7dfd1;
     }
 
     .page-nav-bar {
@@ -168,6 +204,11 @@
       text-transform: uppercase;
       color: #64748b;
       font-weight: 700;
+      transition: color 1s ease;
+    }
+
+    body.playing .chapter-tag {
+      color: #8c6d53;
     }
 
     .nav-arrow-btn {
@@ -185,6 +226,12 @@
       transition: all 0.3s ease;
     }
 
+    body.playing .nav-arrow-btn {
+      background: rgba(92, 58, 33, 0.08);
+      border: 1px solid rgba(92, 58, 33, 0.2);
+      color: #3b2416;
+    }
+
     .nav-arrow-btn:hover {
       background: var(--accent-color);
       color: #030305;
@@ -194,11 +241,16 @@
 
     /* PÁGINA IZQUIERDA: PERFIL */
     .page-title {
-      font-size: 38px;
+      font-size: 36px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #ffffff;
       margin-bottom: 20px;
+      transition: color 1s ease;
+    }
+
+    body.playing .page-title {
+      color: #2b180d;
     }
 
     .cyber-info-grid {
@@ -210,11 +262,17 @@
     .cyber-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 14px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 1s ease;
+    }
+
+    body.playing .cyber-card {
+      background: rgba(92, 58, 33, 0.04);
+      border: 1px solid rgba(92, 58, 33, 0.12);
     }
 
     .cyber-label {
@@ -222,26 +280,38 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #64748b;
+      transition: color 1s ease;
+    }
+
+    body.playing .cyber-label {
+      color: #7c5c40;
     }
 
     .cyber-value {
       font-size: 14px;
       font-weight: 700;
       color: #f1f5f9;
+      transition: color 1s ease;
     }
 
-    /* PÁGINA DERECHA: REPRODUCTOR FUTURISTA Y CIBERNÉTICO */
+    body.playing .cyber-value {
+      color: #3b2416;
+    }
+
+    /* PÁGINA DERECHA: REPRODUCTOR */
     .futuristic-player {
-      background: var(--player-bg);
-      border: 1px solid var(--player-border);
-      border-radius: 20px;
-      padding: 18px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 16px;
       margin-bottom: 15px;
       transition: all 0.5s ease;
     }
 
     body.playing .futuristic-player {
-      box-shadow: 0 0 20px var(--accent-glow);
+      background: #f7f3ed;
+      border: 1px solid var(--accent-color);
+      box-shadow: 0 0 15px var(--accent-glow);
     }
 
     .player-top {
@@ -252,9 +322,9 @@
     }
 
     .song-cover {
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
+      width: 55px;
+      height: 55px;
+      border-radius: 10px;
       object-fit: cover;
       border: 1px solid rgba(255, 255, 255, 0.15);
       transition: border-color 0.5s ease;
@@ -262,14 +332,13 @@
 
     body.playing .song-cover {
       border-color: var(--accent-color);
-      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     .eq-bar-container {
       display: flex;
       gap: 3px;
       align-items: flex-end;
-      height: 14px;
+      height: 12px;
       margin-top: 4px;
     }
 
@@ -288,19 +357,29 @@
 
     @keyframes eqAnim {
       0% { height: 3px; }
-      100% { height: 14px; }
+      100% { height: 12px; }
     }
 
     .song-title-main {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 2px;
+      transition: color 1s ease;
+    }
+
+    body.playing .song-title-main {
+      color: #2b180d;
     }
 
     .song-artist-main {
       font-size: 11px;
       color: #94a3b8;
+      transition: color 1s ease;
+    }
+
+    body.playing .song-artist-main {
+      color: #7c5c40;
     }
 
     .player-controls-row {
@@ -320,6 +399,8 @@
       transition: color 0.2s, transform 0.2s;
     }
 
+    body.playing .ctrl-btn { color: #7c5c40; }
+
     .ctrl-btn:hover {
       color: var(--accent-color);
       transform: scale(1.15);
@@ -329,22 +410,22 @@
       background: #ffffff;
       color: #030305;
       border: none;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
       transition: all 0.3s ease;
     }
 
     body.playing .main-play-btn {
       background: var(--accent-color);
-      color: #030305;
-      box-shadow: 0 0 12px var(--accent-glow);
+      color: #ffffff;
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     .main-play-btn:hover { transform: scale(1.08); }
@@ -356,7 +437,10 @@
       font-size: 10px;
       color: #64748b;
       margin-bottom: 10px;
+      transition: color 1s ease;
     }
+
+    body.playing .progress-container { color: #7c5c40; }
 
     .progress-bar {
       flex: 1;
@@ -366,7 +450,10 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      transition: background 1s ease;
     }
+
+    body.playing .progress-bar { background: #e2d7c5; }
 
     .progress-filled {
       width: 0%;
@@ -376,10 +463,7 @@
       transition: background 0.5s ease;
     }
 
-    body.playing .progress-filled { 
-      background: var(--accent-color);
-      box-shadow: 0 0 8px var(--accent-glow);
-    }
+    body.playing .progress-filled { background: var(--accent-color); }
 
     .volume-container {
       display: flex;
@@ -387,7 +471,10 @@
       gap: 8px;
       font-size: 10px;
       color: #64748b;
+      transition: color 1s ease;
     }
+
+    body.playing .volume-container { color: #7c5c40; }
 
     .volume-slider {
       flex: 1;
@@ -401,12 +488,12 @@
 
     body.playing .volume-slider { accent-color: var(--accent-color); }
 
-    /* PLAYLIST CIBERNÉTICA */
+    /* PLAYLIST */
     .tracks-list {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      max-height: 130px;
+      max-height: 125px;
       overflow-y: auto;
     }
 
@@ -417,26 +504,41 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.05);
       padding: 6px 10px;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
+    body.playing .track-item {
+      background: #f7f3ed;
+      border: 1px solid #e2d7c5;
+    }
+
     .track-item:hover {
       background: rgba(255, 255, 255, 0.06);
-      border-color: var(--accent-color);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.playing .track-item:hover {
+      background: #eee5d8;
+      border-color: #b59f84;
     }
 
     .track-item.active {
-      background: var(--player-bg);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    body.playing .track-item.active {
+      background: #f1ebd9;
       border: 1px solid var(--accent-color);
-      box-shadow: 0 0 10px var(--accent-glow);
+      box-shadow: 0 0 8px var(--accent-glow);
     }
 
     .track-thumb {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
       object-fit: cover;
     }
 
@@ -446,12 +548,18 @@
       font-size: 11px;
       font-weight: 700;
       color: #ffffff;
+      transition: color 1s ease;
     }
+
+    body.playing .track-name { color: #2b180d; }
 
     .track-artist {
       font-size: 9px;
       color: #94a3b8;
+      transition: color 1s ease;
     }
+
+    body.playing .track-artist { color: #7c5c40; }
 
     @media (max-width: 768px) {
       .open-book {
@@ -465,8 +573,17 @@
 </head>
 <body class="theme-0">
 
-  <!-- OVERLAY GIF DE INTRO DURO PANTALLA COMPLETA -->
+  <!-- OVERLAY GIF DE INTRO (Única vez) -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
+
+  <!-- FRASES Y DIBUJOS FLOTANTES DE FONDO -->
+  <div class="floating-quotes-container" id="floating-container">
+    <div class="floating-item" style="left: 10%; animation-duration: 14s; animation-delay: 0s;">✨ Addicted to you</div>
+    <div class="floating-item" style="left: 75%; animation-duration: 10s; animation-delay: 2s;">🎶 Superestrella</div>
+    <div class="floating-item" style="left: 40%; animation-duration: 16s; animation-delay: 1s;">🌸 Allie's Space</div>
+    <div class="floating-item" style="left: 85%; animation-duration: 12s; animation-delay: 4s;">⭐ Mon Amour</div>
+    <div class="floating-item" style="left: 20%; animation-duration: 15s; animation-delay: 3s;">💫 Juno</div>
+  </div>
 
   <div class="open-book" id="open-book-main">
     <div class="book-binding"></div>
@@ -648,7 +765,7 @@
           rightContent.innerHTML = `
             <div style="text-align: center; padding: 50px 20px;">
               <div class="page-title" style="font-size: 22px; margin-bottom: 15px;">ALLIE'S SPACE</div>
-              <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">Gracias por visitar este rincón interactivo. Diseñado con estilo y música.</p>
+              <p style="font-size: 13px; color: #7c5c40; line-height: 1.6;">Gracias por visitar este rincón interactivo. Diseñado con estilo y música.</p>
             </div>
           `;
         } else {
