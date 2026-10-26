@@ -12,29 +12,34 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, sans-serif;
     }
 
-    /* Colores neón sutiles y elegantes que no cansan la vista */
     :root {
-      --theme-bg: #0d0f17;
+      --theme-bg: #151019;
       --accent-color: #f472b6;
-      --accent-glow: rgba(244, 114, 182, 0.25);
-      --panel-bg: rgba(255, 255, 255, 0.88);
-      --panel-text: #1e1b18;
+      --accent-glow: rgba(244, 114, 182, 0.3);
+      --panel-bg: rgba(254, 242, 246, 0.9);
+      --panel-text: #2b1721;
     }
 
     body.theme-0 {
-      --theme-bg: linear-gradient(135deg, #151019, #1c1424, #0b0a12);
-      --accent-color: #f472b6; /* Rosa Neón Suave */
-      --accent-glow: rgba(244, 114, 182, 0.25);
+      --theme-bg: linear-gradient(135deg, #18101a, #261429, #0d0912);
+      --accent-color: #f472b6;
+      --accent-glow: rgba(244, 114, 182, 0.35);
+      --panel-bg: rgba(254, 242, 246, 0.92);
+      --panel-text: #2b1721;
     }
     body.theme-1 {
-      --theme-bg: linear-gradient(135deg, #0d141f, #131f30, #080b12);
-      --accent-color: #38bdf8; /* Celeste Neón Suave */
-      --accent-glow: rgba(56, 189, 248, 0.25);
+      --theme-bg: linear-gradient(135deg, #0e1724, #14283d, #080d14);
+      --accent-color: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.35);
+      --panel-bg: rgba(240, 249, 255, 0.92);
+      --panel-text: #0f172a;
     }
     body.theme-2 {
-      --theme-bg: linear-gradient(135deg, #150f24, #1f1433, #0a0812);
-      --accent-color: #c084fc; /* Violeta Neón Suave */
-      --accent-glow: rgba(192, 132, 252, 0.25);
+      --theme-bg: linear-gradient(135deg, #181026, #281540, #0c0914);
+      --accent-color: #c084fc;
+      --accent-glow: rgba(192, 132, 252, 0.35);
+      --panel-bg: rgba(253, 244, 255, 0.92);
+      --panel-text: #2e1065;
     }
 
     body {
@@ -72,6 +77,38 @@
       pointer-events: all;
     }
 
+    /* FONDO DINÁMICO CON MÚSICA Y HUELLITAS DE PERRITO */
+    .floating-bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+      display: none;
+    }
+
+    body.playing .floating-bg-container {
+      display: block;
+    }
+
+    .float-elem {
+      position: absolute;
+      color: var(--accent-color);
+      opacity: 0.35;
+      font-size: 18px;
+      animation: floatUpElem 10s linear infinite;
+    }
+
+    @keyframes floatUpElem {
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.5; }
+      100% { transform: translateY(-10vh) rotate(20deg) scale(1.2); opacity: 0; }
+    }
+
     /* CONTENEDOR PRINCIPAL */
     .main-container {
       background: #fdfbf7;
@@ -84,15 +121,15 @@
       display: flex;
       position: relative;
       overflow: hidden;
+      z-index: 2;
       transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* CUANDO REPRODUCE: Transición al modo Radio Futurista con Aura Neón */
     body.playing .main-container {
       background: var(--panel-bg);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px);
       border: 2px solid var(--accent-color);
-      box-shadow: 0 0 45px var(--accent-glow), 0 30px 70px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 50px var(--accent-glow), 0 30px 70px rgba(0, 0, 0, 0.6);
       color: var(--panel-text);
       flex-direction: column;
       padding: 25px;
@@ -158,8 +195,8 @@
     }
 
     .corner-profile {
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       border-radius: 14px;
       padding: 12px 18px;
       min-width: 200px;
@@ -169,7 +206,7 @@
       font-size: 20px;
       font-weight: 900;
       letter-spacing: 2px;
-      color: #1e1b18;
+      color: var(--panel-text);
       margin-bottom: 2px;
     }
 
@@ -181,8 +218,8 @@
     .nav-tabs {
       display: flex;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       padding: 5px;
       border-radius: 14px;
     }
@@ -217,8 +254,8 @@
 
     /* REPRODUCTOR ESTILO RADIO FUTURISTA */
     .massive-player {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       border-radius: 24px;
       padding: 24px;
       width: 100%;
@@ -226,7 +263,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
     .massive-cover {
@@ -242,7 +279,7 @@
     .massive-song-title {
       font-size: 17px;
       font-weight: 900;
-      color: #1e1b18;
+      color: var(--panel-text);
       margin-bottom: 2px;
       text-align: center;
     }
@@ -321,8 +358,8 @@
       align-items: center;
       width: 100%;
       max-width: 680px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       border-radius: 20px;
       padding: 15px;
     }
@@ -348,7 +385,7 @@
     .draw-btn {
       background: rgba(0, 0, 0, 0.06);
       border: 1px solid rgba(0, 0, 0, 0.1);
-      color: #1e1b18;
+      color: var(--panel-text);
       padding: 6px 14px;
       border-radius: 8px;
       font-size: 11px;
@@ -363,8 +400,8 @@
       flex-direction: column;
       width: 100%;
       max-width: 550px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       border-radius: 20px;
       padding: 20px;
       gap: 12px;
@@ -374,10 +411,10 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
       padding: 10px 15px;
       border-radius: 12px;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.04);
     }
     .friend-avatar {
       width: 36px;
@@ -403,8 +440,8 @@
     .corner-playlist {
       display: flex;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.06);
       padding: 10px 15px;
       border-radius: 14px;
       align-items: center;
@@ -416,8 +453,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 0, 0, 0.05);
       padding: 6px 10px;
       border-radius: 10px;
       cursor: pointer;
@@ -428,7 +465,7 @@
     .mini-track:hover, .mini-track.active {
       border-color: var(--accent-color);
       box-shadow: 0 0 10px var(--accent-glow);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 1);
     }
 
     .mini-thumb {
@@ -492,6 +529,16 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
+  <!-- FONDO CON NOTAS MUSICALES Y HUELLITAS DE PERRITO -->
+  <div class="floating-bg-container" id="floating-bg">
+    <div class="float-elem" style="left: 8%; animation-duration: 12s; animation-delay: 0s;">🐾</div>
+    <div class="float-elem" style="left: 22%; animation-duration: 15s; animation-delay: 2s;">♫</div>
+    <div class="float-elem" style="left: 45%; animation-duration: 11s; animation-delay: 1s;">🐾</div>
+    <div class="float-elem" style="left: 65%; animation-duration: 14s; animation-delay: 3s;">♪</div>
+    <div class="float-elem" style="left: 85%; animation-duration: 13s; animation-delay: 1.5s;">🐾</div>
+    <div class="float-elem" style="left: 92%; animation-duration: 16s; animation-delay: 4s;">♫</div>
+  </div>
+
   <div class="main-container" id="main-container">
     <div class="book-binding"></div>
 
@@ -504,6 +551,7 @@
           <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#7c5c40;">Name</span><strong>Allie</strong></div>
           <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#7c5c40;">País</span><strong>Perú</strong></div>
           <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#7c5c40;">Username</span><strong>Addictedtoyouu</strong></div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#7c5c40;">Altura</span><strong>Mido menos que Bob Esponja</strong></div>
         </div>
       </div>
       <div></div>
@@ -528,9 +576,7 @@
         <div class="chapter-tag" style="margin-bottom: 6px;">CANCIONES</div>
         <div class="tracks-list-book" id="book-playlist-container"></div>
       </div>
-      <div style="text-align: right; margin-top: 10px;">
-        <button onclick="togglePlay()" style="background: rgba(92,58,33,0.08); border: 1px solid rgba(92,58,33,0.2); color: #3b2416; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; cursor: pointer;">Reproducir para abrir vista activa ➔</button>
-      </div>
+      <div></div>
     </div>
 
 
@@ -549,7 +595,7 @@
       </div>
 
       <div class="center-content-area">
-        <!-- Reproductor Radio Futurista con foto grande y sin fondo negro -->
+        <!-- Reproductor Radio Futurista con foto grande y temática dinámica -->
         <div class="massive-player" id="view-massive-player">
           <img id="cyber-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="massive-cover" alt="Cover">
           <div class="massive-song-title" id="cyber-title">SUPERESTRELLA</div>
@@ -581,18 +627,18 @@
 
         <!-- Sección Amigos -->
         <div class="friends-panel" id="view-friends">
-          <div style="font-size:14px; font-weight:bold; color:#1e1b18; margin-bottom:5px;">Comunidad & Amigos</div>
+          <div style="font-size:14px; font-weight:bold; color:var(--panel-text); margin-bottom:5px;">Comunidad & Amigos</div>
           <div class="friend-card">
             <div class="friend-avatar">R</div>
             <div>
-              <div style="font-weight:bold; font-size:13px; color:#1e1b18;">Rexor</div>
+              <div style="font-weight:bold; font-size:13px; color:var(--panel-text);">Rexor</div>
               <div style="font-size:11px; color:#64748b;">Comunidad activa</div>
             </div>
           </div>
           <div class="friend-card">
             <div class="friend-avatar" style="background:#38bdf8;">A</div>
             <div>
-              <div style="font-weight:bold; font-size:13px; color:#1e1b18;">Allie</div>
+              <div style="font-weight:bold; font-size:13px; color:var(--panel-text);">Allie</div>
               <div style="font-size:11px; color:#64748b;">Propietaria del espacio</div>
             </div>
           </div>
@@ -601,7 +647,7 @@
 
       <div class="footer-row">
         <div class="corner-playlist" id="cyber-playlist"></div>
-        <div style="background: rgba(255,255,255,0.6); border:1px solid rgba(0,0,0,0.08); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#64748b;">
+        <div style="background: rgba(255,255,255,0.7); border:1px solid rgba(0,0,0,0.06); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#64748b;">
           <span>🔊</span>
           <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="accent-color: var(--accent-color); cursor:pointer;">
         </div>
@@ -646,7 +692,7 @@
         <div class="mini-track ${i === currentIdx ? 'active' : ''}" onclick="playSong(${i})">
           <img src="${song.cover}" class="mini-thumb">
           <div style="font-size:11px;">
-            <div style="font-weight:700; color:#1e1b18;">${song.title}</div>
+            <div style="font-weight:700; color:var(--panel-text);">${song.title}</div>
             <div style="font-size:9px; color:#64748b;">${song.artist}</div>
           </div>
         </div>
