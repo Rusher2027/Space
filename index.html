@@ -13,45 +13,45 @@
     }
 
     :root {
-      --theme-bg: #151019;
+      --theme-bg: #1c1424;
       --accent-color: #f472b6;
       --accent-glow: rgba(244, 114, 182, 0.4);
-      --panel-bg: rgba(38, 18, 35, 0.88);
+      --panel-bg: rgba(45, 20, 38, 0.88);
       --panel-border: rgba(244, 114, 182, 0.4);
       --panel-text: #fdf2f8;
       --sub-text: #f7a8d8;
     }
 
     body.theme-0 {
-      --theme-bg: linear-gradient(135deg, #18101a, #261429, #0d0912);
+      --theme-bg: linear-gradient(135deg, #23122c, #31183c, #160c1d);
       --accent-color: #f472b6;
       --accent-glow: rgba(244, 114, 182, 0.5);
-      --panel-bg: rgba(38, 18, 35, 0.88);
+      --panel-bg: rgba(42, 18, 40, 0.9);
       --panel-border: rgba(244, 114, 182, 0.4);
       --panel-text: #fdf2f8;
       --sub-text: #f7a8d8;
     }
     body.theme-1 {
-      --theme-bg: linear-gradient(135deg, #0e1724, #14283d, #080d14);
+      --theme-bg: linear-gradient(135deg, #0f1d30, #172d4c, #0a121f);
       --accent-color: #38bdf8;
       --accent-glow: rgba(56, 189, 248, 0.5);
-      --panel-bg: rgba(14, 30, 48, 0.88);
+      --panel-bg: rgba(16, 35, 56, 0.9);
       --panel-border: rgba(56, 189, 248, 0.4);
       --panel-text: #f0f9ff;
       --sub-text: #7dd3fc;
     }
     body.theme-2 {
-      --theme-bg: linear-gradient(135deg, #181026, #281540, #0c0914);
+      --theme-bg: linear-gradient(135deg, #201336, #321c54, #120a1f);
       --accent-color: #c084fc;
       --accent-glow: rgba(192, 132, 252, 0.5);
-      --panel-bg: rgba(31, 18, 51, 0.88);
+      --panel-bg: rgba(35, 20, 61, 0.9);
       --panel-border: rgba(192, 132, 252, 0.4);
       --panel-text: #fdf4ff;
       --sub-text: #e879f9;
     }
 
     body {
-      background-color: #030305;
+      background: linear-gradient(135deg, #23122c, #1b1226, #140d1a);
       color: #f1f5f9;
       min-height: 100vh;
       display: flex;
@@ -85,7 +85,7 @@
       pointer-events: all;
     }
 
-    /* FONDO CON MÚLTIPLES HUELLITAS Y NOTAS FLOTANTES */
+    /* FONDO CON MÚLTIPLES HUELLITAS Y NOTAS MUSICALES */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -105,7 +105,7 @@
     .float-elem {
       position: absolute;
       color: var(--accent-color);
-      opacity: 0.7;
+      opacity: 0.65;
       font-size: 24px;
       animation: floatUpElem 7s linear infinite;
       text-shadow: 0 0 12px var(--accent-glow);
@@ -118,16 +118,16 @@
       100% { transform: translateY(-10vh) rotate(35deg) scale(1.3); opacity: 0; }
     }
 
-    /* CONTENEDOR PRINCIPAL - DISEÑO INICIAL FUTURISTA ARMADO */
+    /* CONTENEDOR PRINCIPAL - NUEVO ESTILO HOLOGRÁFICO / CRISTAL ESPACIAL */
     .main-container {
-      background: rgba(15, 15, 24, 0.92);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(255, 255, 255, 0.12);
+      background: rgba(35, 20, 48, 0.75);
+      backdrop-filter: blur(25px);
+      border: 2px solid rgba(244, 114, 182, 0.25);
       border-radius: 24px;
       width: 100%;
       max-width: 1000px;
       min-height: 580px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.03);
       display: flex;
       position: relative;
       overflow: hidden;
@@ -148,7 +148,7 @@
 
     .book-binding {
       width: 26px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(255,255,255,0.06) 50%, rgba(0,0,0,0.6) 100%);
+      background: linear-gradient(90deg, rgba(20,10,30,0.6) 0%, rgba(244,114,182,0.15) 50%, rgba(20,10,30,0.6) 100%);
       position: absolute;
       top: 0;
       bottom: 0;
@@ -164,7 +164,7 @@
       pointer-events: none;
     }
 
-    /* VISTA INICIAL: DISEÑO FUTURISTA ARMADO */
+    /* VISTA INICIAL: DISEÑO FUTURISTA ARMADO (ESTILO TARJETAS DE CRISTAL) */
     .book-view-left, .book-view-right {
       flex: 1;
       padding: 40px;
@@ -172,7 +172,7 @@
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.5s ease;
-      background: rgba(255, 255, 255, 0.015);
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .book-view-left { border-right: 1px solid rgba(255, 255, 255, 0.08); }
@@ -485,31 +485,33 @@
       object-fit: cover;
     }
 
-    /* ESTILOS INICIALES (FUTURISTAS ARMADOS) */
+    /* ESTILOS INICIALES (FUTURISTAS ARMADOS EN CRISTAL) */
     .page-title {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #ffffff;
       margin-bottom: 15px;
+      text-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
     }
 
     .cyber-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
+      backdrop-filter: blur(10px);
     }
 
     .chapter-tag {
       font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: #94a3b8;
+      color: #f472b6;
       font-weight: 700;
     }
 
@@ -518,7 +520,7 @@
       flex-direction: column;
       gap: 8px;
       margin-top: 10px;
-      max-height: 180px;
+      max-height: 190px;
       overflow-y: auto;
     }
 
@@ -527,7 +529,7 @@
       align-items: center;
       gap: 10px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 8px 12px;
       border-radius: 10px;
       cursor: pointer;
@@ -535,8 +537,9 @@
     }
 
     .track-item-book:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: #38bdf8;
+      background: rgba(255, 255, 255, 0.09);
+      border-color: #f472b6;
+      box-shadow: 0 0 10px rgba(244, 114, 182, 0.3);
     }
   </style>
 </head>
@@ -561,16 +564,16 @@
   <div class="main-container" id="main-container">
     <div class="book-binding"></div>
 
-    <!-- VISTA INICIAL: DISEÑO FUTURISTA ARMADO -->
+    <!-- VISTA INICIAL: DISEÑO FUTURISTA ARMADO (CRISTAL) -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">CAPÍTULO I — IDENTIDAD</div>
         <div style="margin-top: 20px;">
           <div class="page-title">ALLIE</div>
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Name</span><strong style="color:#f1f5f9;">Allie</strong></div>
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">País</span><strong style="color:#f1f5f9;">Perú</strong></div>
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Username</span><strong style="color:#f1f5f9;">Addictedtoyouu</strong></div>
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#f1f5f9;">Mido menos que Bob Esponja</strong></div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Name</span><strong style="color:#ffffff;">Allie</strong></div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">País</span><strong style="color:#ffffff;">Perú</strong></div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Username</span><strong style="color:#ffffff;">Addictedtoyouu</strong></div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Altura</span><strong style="color:#ffffff;">Mido menos que Bob Esponja</strong></div>
         </div>
       </div>
       <div></div>
@@ -581,14 +584,14 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
           <div class="chapter-tag">CAPÍTULO II — SONIDOS Y PLAYLIST</div>
         </div>
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; margin-bottom: 12px;">
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 14px; margin-bottom: 12px; backdrop-filter: blur(10px);">
           <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:45px; height:45px; border-radius:8px; object-fit:cover;">
+            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:45px; height:45px; border-radius:8px; object-fit:cover; border: 1px solid #f472b6;">
             <div>
               <div id="book-title" style="font-size:12px; font-weight:800; color:#ffffff;">SUPERESTRELLA</div>
-              <div id="book-artist" style="font-size:10px; color:#94a3b8;">Aitana</div>
+              <div id="book-artist" style="font-size:10px; color:#f7a8d8;">Aitana</div>
             </div>
-            <button onclick="togglePlay()" style="margin-left:auto; background:#38bdf8; color:#030305; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-weight:bold;" id="book-play-btn">▶</button>
+            <button onclick="togglePlay()" style="margin-left:auto; background:#f472b6; color:#ffffff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-weight:bold; box-shadow: 0 0 10px rgba(244,114,182,0.4);" id="book-play-btn">▶</button>
           </div>
         </div>
 
@@ -698,10 +701,10 @@
       const bookContainer = document.getElementById('book-playlist-container');
       bookContainer.innerHTML = playlist.map((song, i) => `
         <div class="track-item-book" onclick="playSong(${i})">
-          <img src="${song.cover}" style="width:30px; height:30px; border-radius:6px; object-fit:cover;">
+          <img src="${song.cover}" style="width:30px; height:30px; border-radius:6px; object-fit:cover; border:1px solid #f472b6;">
           <div style="flex:1;">
             <div style="font-size:11px; font-weight:700; color:#ffffff;">${song.title}</div>
-            <div style="font-size:9px; color:#94a3b8;">${song.artist}</div>
+            <div style="font-size:9px; color:#f7a8d8;">${song.artist}</div>
           </div>
         </div>
       `).join('');
