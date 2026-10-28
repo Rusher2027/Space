@@ -12,47 +12,17 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, sans-serif;
     }
 
-    /* Colores estéticos oscuros y auras dinámicas */
     :root {
-      --theme-bg: #0b0b0f;
-      --accent-color: #f472b6;
-      --accent-glow: rgba(244, 114, 182, 0.4);
-      --panel-bg: rgba(15, 15, 20, 0.92);
-      --panel-border: rgba(244, 114, 182, 0.3);
-      --panel-text: #fdf2f8;
-      --sub-text: #f7a8d8;
-    }
-
-    body.theme-0 {
-      --theme-bg: linear-gradient(135deg, #0d0d12, #14141c, #08080a);
-      --accent-color: #f472b6;
-      --accent-glow: rgba(244, 114, 182, 0.45);
-      --panel-bg: rgba(16, 16, 22, 0.94);
-      --panel-border: rgba(244, 114, 182, 0.35);
-      --panel-text: #fdf2f8;
-      --sub-text: #f7a8d8;
-    }
-    body.theme-1 {
-      --theme-bg: linear-gradient(135deg, #081018, #0f1824, #050a0f);
-      --accent-color: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.45);
-      --panel-bg: rgba(12, 20, 30, 0.94);
-      --panel-border: rgba(56, 189, 248, 0.35);
-      --panel-text: #f0f9ff;
-      --sub-text: #7dd3fc;
-    }
-    body.theme-2 {
-      --theme-bg: linear-gradient(135deg, #100b18, #181124, #08060d);
-      --accent-color: #c084fc;
-      --accent-glow: rgba(192, 132, 252, 0.45);
-      --panel-bg: rgba(18, 12, 28, 0.94);
-      --panel-border: rgba(192, 132, 252, 0.35);
-      --panel-text: #fdf4ff;
-      --sub-text: #e879f9;
+      --accent-color: #ffffff;
+      --accent-glow: rgba(255, 255, 255, 0.4);
+      --panel-bg: rgba(20, 20, 25, 0.92);
+      --panel-border: rgba(255, 255, 255, 0.15);
+      --panel-text: #ffffff;
+      --sub-text: #94a3b8;
     }
 
     body {
-      background: #0b0b0f;
+      background: #0f1117;
       color: #f1f5f9;
       min-height: 100vh;
       display: flex;
@@ -61,7 +31,6 @@
       padding: 20px;
       overflow-x: hidden;
       position: relative;
-      transition: background 1.5s ease;
     }
 
     /* OVERLAY GIF DE INTRO */
@@ -86,7 +55,7 @@
       pointer-events: all;
     }
 
-    /* FONDO CON HUELLITAS Y NOTAS FLOTANTES */
+    /* FONDO CON MUCHAS HUELLITAS Y NOTAS MUSICALES BLANCAS */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -105,30 +74,29 @@
 
     .float-elem {
       position: absolute;
-      color: var(--accent-color);
-      opacity: 0.65;
+      color: #ffffff;
+      opacity: 0.55;
       font-size: 24px;
       animation: floatUpElem 7s linear infinite;
-      text-shadow: 0 0 12px var(--accent-glow);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
     }
 
     @keyframes floatUpElem {
       0% { transform: translateY(105vh) rotate(0deg) scale(0.7); opacity: 0; }
-      15% { opacity: 0.8; }
-      85% { opacity: 0.8; }
+      15% { opacity: 0.7; }
+      85% { opacity: 0.7; }
       100% { transform: translateY(-10vh) rotate(35deg) scale(1.3); opacity: 0; }
     }
 
-    /* CONTENEDOR PRINCIPAL ESTÉTICO OSCURO */
+    /* CONTENEDOR PRINCIPAL - ESTILO SPOTIFY / ARCHIVE */
     .main-container {
-      background: rgba(14, 14, 18, 0.85);
-      backdrop-filter: blur(25px);
-      border: 2px solid rgba(255, 255, 255, 0.08);
+      background: #181b24;
+      border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
       width: 100%;
-      max-width: 1000px;
-      min-height: 580px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      max-width: 1020px;
+      min-height: 600px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
       display: flex;
       position: relative;
       overflow: hidden;
@@ -139,8 +107,8 @@
     body.playing .main-container {
       background: var(--panel-bg);
       backdrop-filter: blur(25px);
-      border: 2px solid var(--accent-color);
-      box-shadow: 0 0 55px var(--accent-glow), 0 30px 70px rgba(0, 0, 0, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.15), 0 30px 70px rgba(0, 0, 0, 0.8);
       color: var(--panel-text);
       flex-direction: column;
       padding: 25px;
@@ -149,7 +117,7 @@
 
     .book-binding {
       width: 26px;
-      background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.04) 50%, rgba(0,0,0,0.8) 100%);
+      background: linear-gradient(90deg, #0f1117 0%, rgba(255,255,255,0.05) 50%, #0f1117 100%);
       position: absolute;
       top: 0;
       bottom: 0;
@@ -165,7 +133,7 @@
       pointer-events: none;
     }
 
-    /* VISTA INICIAL */
+    /* VISTA PRINCIPAL (INICIAL) */
     .book-view-left, .book-view-right {
       flex: 1;
       padding: 35px;
@@ -173,10 +141,10 @@
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.5s ease;
-      background: rgba(0, 0, 0, 0.15);
+      background: #181b24;
     }
 
-    .book-view-left { border-right: 1px solid rgba(255, 255, 255, 0.06); }
+    .book-view-left { border-right: 1px solid rgba(255, 255, 255, 0.08); }
 
     body.playing .book-view-left, 
     body.playing .book-view-right {
@@ -207,7 +175,7 @@
 
     .corner-profile {
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 14px;
       padding: 12px 18px;
       min-width: 200px;
@@ -217,20 +185,20 @@
       font-size: 20px;
       font-weight: 900;
       letter-spacing: 2px;
-      color: var(--panel-text);
+      color: #ffffff;
       margin-bottom: 2px;
     }
 
     .corner-info {
       font-size: 11px;
-      color: var(--sub-text);
+      color: #94a3b8;
     }
 
     .nav-tabs {
       display: flex;
       gap: 6px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 5px;
       border-radius: 14px;
     }
@@ -238,7 +206,7 @@
     .tab-btn {
       background: transparent;
       border: none;
-      color: var(--sub-text);
+      color: #94a3b8;
       padding: 7px 12px;
       border-radius: 10px;
       font-size: 11px;
@@ -248,9 +216,9 @@
     }
 
     .tab-btn.active, .tab-btn:hover {
-      background: var(--accent-color);
-      color: #ffffff;
-      box-shadow: 0 0 12px var(--accent-glow);
+      background: #ffffff;
+      color: #0f1117;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
     }
 
     /* CENTRO DINÁMICO */
@@ -266,7 +234,7 @@
     /* REPRODUCTOR */
     .massive-player {
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
       padding: 24px;
       width: 100%;
@@ -274,7 +242,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     .massive-cover {
@@ -282,22 +250,22 @@
       height: 150px;
       border-radius: 20px;
       object-fit: cover;
-      border: 3px solid var(--accent-color);
-      box-shadow: 0 8px 25px var(--accent-glow);
+      border: 3px solid #ffffff;
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
       margin-bottom: 14px;
     }
 
     .massive-song-title {
       font-size: 17px;
       font-weight: 900;
-      color: var(--panel-text);
+      color: #ffffff;
       margin-bottom: 2px;
       text-align: center;
     }
 
     .massive-song-artist {
       font-size: 12px;
-      color: var(--sub-text);
+      color: #94a3b8;
       margin-bottom: 14px;
       text-align: center;
     }
@@ -312,7 +280,7 @@
     .m-ctrl-btn {
       background: transparent;
       border: none;
-      color: var(--sub-text);
+      color: #94a3b8;
       font-size: 18px;
       cursor: pointer;
       transition: color 0.3s;
@@ -321,8 +289,8 @@
     .m-ctrl-btn:hover { color: #ffffff; }
 
     .m-play-btn {
-      background: var(--accent-color);
-      color: #ffffff;
+      background: #ffffff;
+      color: #0f1117;
       border: none;
       width: 44px;
       height: 44px;
@@ -333,7 +301,7 @@
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 15px var(--accent-glow);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
     .massive-progress {
@@ -342,7 +310,7 @@
       align-items: center;
       gap: 10px;
       font-size: 10px;
-      color: var(--sub-text);
+      color: #94a3b8;
     }
 
     .progress-bar-bg {
@@ -358,8 +326,8 @@
     .progress-bar-fill {
       width: 0%;
       height: 100%;
-      background: var(--accent-color);
-      box-shadow: 0 0 10px var(--accent-glow);
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
     /* PIZARRA */
@@ -370,7 +338,7 @@
       width: 100%;
       max-width: 680px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 15px;
     }
@@ -394,16 +362,16 @@
     }
 
     .draw-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--panel-border);
-      color: var(--panel-text);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
       padding: 6px 14px;
       border-radius: 8px;
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
     }
-    .draw-btn:hover { background: var(--accent-color); color: #ffffff; }
+    .draw-btn:hover { background: #ffffff; color: #0f1117; }
 
     /* AMIGOS */
     .friends-panel {
@@ -412,7 +380,7 @@
       width: 100%;
       max-width: 550px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 20px;
       gap: 12px;
@@ -425,18 +393,18 @@
       background: rgba(255, 255, 255, 0.06);
       padding: 10px 15px;
       border-radius: 12px;
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .friend-avatar {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: var(--accent-color);
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      color: #ffffff;
+      color: #0f1117;
     }
 
     /* FOOTER */
@@ -452,7 +420,7 @@
       display: flex;
       gap: 10px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 10px 15px;
       border-radius: 14px;
       align-items: center;
@@ -465,7 +433,7 @@
       align-items: center;
       gap: 8px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--panel-border);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 6px 10px;
       border-radius: 10px;
       cursor: pointer;
@@ -474,9 +442,9 @@
     }
 
     .mini-track:hover, .mini-track.active {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 12px var(--accent-glow);
-      background: rgba(255, 255, 255, 0.1);
+      border-color: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .mini-thumb {
@@ -486,28 +454,13 @@
       object-fit: cover;
     }
 
-    /* ESTILOS INICIALES OSCUROS AESTHETIC */
-    .top-profile-area {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 15px;
-    }
-
-    .profile-avatar-main {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #f472b6;
-      box-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
-    }
-
+    /* ESTILOS INICIALES (ESTÉTICA ARCHIVE / SPOTIFY) */
     .page-title {
       font-size: 28px;
       font-weight: 900;
       letter-spacing: 2px;
       color: #ffffff;
+      margin-bottom: 12px;
     }
 
     .cyber-card {
@@ -521,43 +474,11 @@
       margin-bottom: 8px;
     }
 
-    /* Sección de los 3 amigos circulares abajo en identidad */
-    .friends-footer-section {
-      margin-top: 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .friends-circles-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .friend-circle-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 10px;
-      border-radius: 20px;
-    }
-
-    .friend-mini-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid #f472b6;
-    }
-
     .chapter-tag {
       font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: #f472b6;
+      color: #94a3b8;
       font-weight: 700;
     }
 
@@ -584,8 +505,7 @@
 
     .track-item-book:hover {
       background: rgba(255, 255, 255, 0.08);
-      border-color: #f472b6;
-      box-shadow: 0 0 10px rgba(244, 114, 182, 0.3);
+      border-color: #ffffff;
     }
   </style>
 </head>
@@ -594,72 +514,48 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- FONDO CON HUELLITAS Y NOTAS MUSICALES -->
+  <!-- FONDO CON HUELLITAS Y NOTAS FLOTANTES -->
   <div class="floating-bg-container" id="floating-bg">
-    <div class="float-elem" style="left: 4%; animation-duration: 8s; animation-delay: 0s;">🐾</div>
-    <div class="float-elem" style="left: 14%; animation-duration: 11s; animation-delay: 1.5s;">♫</div>
-    <div class="float-elem" style="left: 26%; animation-duration: 9s; animation-delay: 0.5s;">🐾</div>
-    <div class="float-elem" style="left: 38%; animation-duration: 10s; animation-delay: 2.5s;">♪</div>
-    <div class="float-elem" style="left: 50%; animation-duration: 7s; animation-delay: 1s;">🐾</div>
-    <div class="float-elem" style="left: 62%; animation-duration: 12s; animation-delay: 2s;">♫</div>
-    <div class="float-elem" style="left: 74%; animation-duration: 9s; animation-delay: 0.8s;">🐾</div>
-    <div class="float-elem" style="left: 86%; animation-duration: 8s; animation-delay: 3s;">♪</div>
-    <div class="float-elem" style="left: 94%; animation-duration: 10s; animation-delay: 1.2s;">🐾</div>
+    <div class="float-elem" style="left: 5%; animation-duration: 8s; animation-delay: 0s;">🐾</div>
+    <div class="float-elem" style="left: 15%; animation-duration: 11s; animation-delay: 1.5s;">♫</div>
+    <div class="float-elem" style="left: 28%; animation-duration: 9s; animation-delay: 0.5s;">🐾</div>
+    <div class="float-elem" style="left: 42%; animation-duration: 10s; animation-delay: 2.5s;">♪</div>
+    <div class="float-elem" style="left: 55%; animation-duration: 7s; animation-delay: 1s;">🐾</div>
+    <div class="float-elem" style="left: 68%; animation-duration: 12s; animation-delay: 2s;">♫</div>
+    <div class="float-elem" style="left: 80%; animation-duration: 9s; animation-delay: 0.8s;">🐾</div>
+    <div class="float-elem" style="left: 92%; animation-duration: 8s; animation-delay: 3s;">♪</div>
   </div>
 
   <div class="main-container" id="main-container">
     <div class="book-binding"></div>
 
-    <!-- VISTA INICIAL: OSCURO AESTHETIC CON FOTO DE PERFIL Y AMIGOS CIRCULARES -->
+    <!-- VISTA INICIAL (ESTILO ARCHIVE / PERFIL) -->
     <div class="book-view-left">
       <div>
-        <div class="chapter-tag">CAPÍTULO I — IDENTIDAD</div>
+        <div class="chapter-tag">ARCHIVE &bull; PROFILE</div>
         <div style="margin-top: 15px;">
-          <div class="top-profile-area">
-            <!-- Círculo superior para la foto de perfil -->
-            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="profile-avatar-main" alt="Avatar">
-            <div class="page-title">ALLIE</div>
-          </div>
-
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Name</span><strong style="color:#ffffff;">Allie</strong></div>
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Username</span><strong style="color:#ffffff;">Addictedtoyouu</strong></div>
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Altura</span><strong style="color:#ffffff;">Mido menos que Bob Esponja</strong></div>
+          <div class="page-title">ALLIE</div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Name</span><strong style="color:#ffffff;">Allie</strong></div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Username</span><strong style="color:#ffffff;">Addictedtoyouu</strong></div>
+          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff;">Mido menos que Bob Esponja</strong></div>
         </div>
       </div>
-
-      <!-- Círculos inferiores para los 3 amigos -->
-      <div class="friends-footer-section">
-        <div class="chapter-tag">AMIGOS</div>
-        <div class="friends-circles-row">
-          <div class="friend-circle-item">
-            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="friend-mini-avatar">
-            <span style="font-size:11px; font-weight:700; color:#ffffff;">Rexor</span>
-          </div>
-          <div class="friend-circle-item">
-            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="friend-mini-avatar">
-            <span style="font-size:11px; font-weight:700; color:#ffffff;">Friend 2</span>
-          </div>
-          <div class="friend-circle-item">
-            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="friend-mini-avatar">
-            <span style="font-size:11px; font-weight:700; color:#ffffff;">Friend 3</span>
-          </div>
-        </div>
-      </div>
+      <div></div>
     </div>
 
     <div class="book-view-right">
       <div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-          <div class="chapter-tag">CAPÍTULO II — SONIDOS Y PLAYLIST</div>
+          <div class="chapter-tag">PLAYING FROM ARTIST</div>
         </div>
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; margin-bottom: 12px;">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:45px; height:45px; border-radius:8px; object-fit:cover; border: 1px solid #f472b6;">
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 12px; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:45px; height:45px; border-radius:8px; object-fit:cover; border: 1px solid #ffffff;">
             <div>
               <div id="book-title" style="font-size:12px; font-weight:800; color:#ffffff;">SUPERESTRELLA</div>
-              <div id="book-artist" style="font-size:10px; color:#f7a8d8;">Aitana</div>
+              <div id="book-artist" style="font-size:10px; color:#94a3b8;">Aitana</div>
             </div>
-            <button onclick="togglePlay()" style="margin-left:auto; background:#f472b6; color:#ffffff; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-weight:bold; box-shadow: 0 0 10px rgba(244,114,182,0.4);" id="book-play-btn">▶</button>
+            <button onclick="togglePlay()" style="margin-left:auto; background:#ffffff; color:#0f1117; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-weight:bold;" id="book-play-btn">▶</button>
           </div>
         </div>
 
@@ -670,7 +566,7 @@
     </div>
 
 
-    <!-- VISTA ACTIVA / RADIO FUTURISTA -->
+    <!-- VISTA ACTIVA / REPRODUCTOR PRINCIPAL -->
     <div class="active-view">
       <div class="header-row">
         <div class="corner-profile">
@@ -706,30 +602,30 @@
           </div>
         </div>
 
-        <!-- Pizarra -->
+        <!-- Pizarra grande con fondo blanco -->
         <div class="drawing-panel" id="view-drawing-board">
           <canvas id="draw-canvas" width="620" height="300"></canvas>
           <div class="drawing-tools">
             <button class="draw-btn" onclick="clearCanvas()">🧹 Limpiar Pizarra</button>
-            <span style="font-size: 11px; color: var(--sub-text);">Dibuja o escribe libremente en la hoja blanca</span>
+            <span style="font-size: 11px; color: #94a3b8;">Dibuja o escribe libremente en la hoja blanca</span>
           </div>
         </div>
 
         <!-- Sección Amigos -->
         <div class="friends-panel" id="view-friends">
-          <div style="font-size:14px; font-weight:bold; color:var(--panel-text); margin-bottom:5px;">Comunidad & Amigos</div>
+          <div style="font-size:14px; font-weight:bold; color:#ffffff; margin-bottom:5px;">Comunidad & Amigos</div>
           <div class="friend-card">
             <div class="friend-avatar">R</div>
             <div>
-              <div style="font-weight:bold; font-size:13px; color:var(--panel-text);">Rexor</div>
-              <div style="font-size:11px; color:var(--sub-text);">Comunidad activa</div>
+              <div style="font-weight:bold; font-size:13px; color:#ffffff;">Rexor</div>
+              <div style="font-size:11px; color:#94a3b8;">Comunidad activa</div>
             </div>
           </div>
           <div class="friend-card">
-            <div class="friend-avatar" style="background:var(--accent-color);">A</div>
+            <div class="friend-avatar">A</div>
             <div>
-              <div style="font-weight:bold; font-size:13px; color:var(--panel-text);">Allie</div>
-              <div style="font-size:11px; color:var(--sub-text);">Propietaria del espacio</div>
+              <div style="font-weight:bold; font-size:13px; color:#ffffff;">Allie</div>
+              <div style="font-size:11px; color:#94a3b8;">Propietaria del espacio</div>
             </div>
           </div>
         </div>
@@ -737,9 +633,9 @@
 
       <div class="footer-row">
         <div class="corner-playlist" id="cyber-playlist"></div>
-        <div style="background: rgba(255,255,255,0.04); border:1px solid var(--panel-border); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:var(--sub-text);">
+        <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#94a3b8;">
           <span>🔊</span>
-          <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="accent-color: var(--accent-color); cursor:pointer;">
+          <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="accent-color: #ffffff; cursor:pointer;">
         </div>
       </div>
     </div>
@@ -760,19 +656,14 @@
     const audio = document.getElementById('audio-player');
     const introOverlay = document.getElementById('intro-overlay');
 
-    function updateTheme(index) {
-      document.body.classList.remove('theme-0', 'theme-1', 'theme-2');
-      document.body.classList.add(`theme-${index}`);
-    }
-
     function renderPlaylists() {
       const bookContainer = document.getElementById('book-playlist-container');
       bookContainer.innerHTML = playlist.map((song, i) => `
         <div class="track-item-book" onclick="playSong(${i})">
-          <img src="${song.cover}" style="width:30px; height:30px; border-radius:6px; object-fit:cover; border:1px solid #f472b6;">
+          <img src="${song.cover}" style="width:30px; height:30px; border-radius:6px; object-fit:cover;">
           <div style="flex:1;">
             <div style="font-size:11px; font-weight:700; color:#ffffff;">${song.title}</div>
-            <div style="font-size:9px; color:#f7a8d8;">${song.artist}</div>
+            <div style="font-size:9px; color:#94a3b8;">${song.artist}</div>
           </div>
         </div>
       `).join('');
@@ -782,8 +673,8 @@
         <div class="mini-track ${i === currentIdx ? 'active' : ''}" onclick="playSong(${i})">
           <img src="${song.cover}" class="mini-thumb">
           <div style="font-size:11px;">
-            <div style="font-weight:700; color:var(--panel-text);">${song.title}</div>
-            <div style="font-size:9px; color:var(--sub-text);">${song.artist}</div>
+            <div style="font-weight:700; color:#ffffff;">${song.title}</div>
+            <div style="font-size:9px; color:#94a3b8;">${song.artist}</div>
           </div>
         </div>
       `).join('');
@@ -817,7 +708,6 @@
 
     function playSong(index) {
       currentIdx = index;
-      updateTheme(currentIdx);
       audio.src = playlist[currentIdx].file;
       audio.play();
 
