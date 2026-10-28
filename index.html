@@ -56,7 +56,7 @@
       pointer-events: all;
     }
 
-    /* HUELLITAS FLOTANDO SUAVEMENTE EN EL FONDO OSCURO */
+    /* HUELLITAS FLOTANDO EN AMBOS LADOS DEL FONDO OSCURO */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -76,19 +76,19 @@
     .float-paw {
       position: absolute;
       color: #ffffff;
-      opacity: 0.35;
-      font-size: 22px;
-      animation: floatBgPaw 8s linear infinite;
+      opacity: 0.4;
+      font-size: 24px;
+      animation: floatBgPaw 6s linear infinite;
     }
 
     @keyframes floatBgPaw {
-      0% { transform: translateY(105vh) rotate(0deg) scale(0.7); opacity: 0; }
-      20% { opacity: 0.4; }
-      80% { opacity: 0.4; }
-      100% { transform: translateY(-10vh) rotate(35deg) scale(1.2); opacity: 0; }
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.6); opacity: 0; }
+      20% { opacity: 0.5; }
+      80% { opacity: 0.5; }
+      100% { transform: translateY(-10vh) rotate(45deg) scale(1.3); opacity: 0; }
     }
 
-    /* NOTAS MUSICALES SALIENDO DE LOS COSTADOS DEL REPRODUCTOR */
+    /* NOTAS MUSICALES RÁPIDAS Y HACIA ARRIBA DESDE LOS COSTADOS */
     .notes-around-player {
       position: absolute;
       top: 0;
@@ -107,17 +107,17 @@
     .float-note {
       position: absolute;
       color: var(--accent-main);
-      font-size: 24px;
-      opacity: 0.9;
-      text-shadow: 0 0 12px var(--glow-color);
-      animation: floatNotesSideways 4s linear infinite;
+      font-size: 28px;
+      opacity: 0.95;
+      text-shadow: 0 0 15px var(--glow-color);
+      animation: floatNotesFastUp 2.5s linear infinite;
     }
 
-    @keyframes floatNotesSideways {
-      0% { transform: scale(0.5) translateY(20px); opacity: 0; }
+    @keyframes floatNotesFastUp {
+      0% { transform: scale(0.7) translateY(10px); opacity: 0; }
       20% { opacity: 1; }
       80% { opacity: 1; }
-      100% { transform: scale(1.3) translateY(-120px) translateX(var(--rand-x)); opacity: 0; }
+      100% { transform: scale(1.4) translateY(-160px) translateX(var(--rand-x)); opacity: 0; }
     }
 
     /* CONTENEDOR PRINCIPAL */
@@ -570,15 +570,18 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- HUELLITAS FLOTANDO EN EL FONDO OSCURO -->
+  <!-- HUELLITAS FLOTANDO EN AMBOS LADOS DEL FONDO OSCURO -->
   <div class="floating-bg-container" id="floating-bg">
-    <div class="float-paw" style="left: 6%; animation-duration: 9s; animation-delay: 0s;">🐾</div>
-    <div class="float-paw" style="left: 18%; animation-duration: 11s; animation-delay: 2s;">🐾</div>
-    <div class="float-paw" style="left: 32%; animation-duration: 8s; animation-delay: 1s;">🐾</div>
-    <div class="float-paw" style="left: 50%; animation-duration: 10s; animation-delay: 3s;">🐾</div>
-    <div class="float-paw" style="left: 68%; animation-duration: 7s; animation-delay: 0.5s;">🐾</div>
-    <div class="float-paw" style="left: 84%; animation-duration: 12s; animation-delay: 1.5s;">🐾</div>
-    <div class="float-paw" style="left: 94%; animation-duration: 9s; animation-delay: 2.5s;">🐾</div>
+    <!-- Lado Izquierdo -->
+    <div class="float-paw" style="left: 5%; animation-duration: 7s; animation-delay: 0s;">🐾</div>
+    <div class="float-paw" style="left: 12%; animation-duration: 9s; animation-delay: 1.5s;">🐾</div>
+    <div class="float-paw" style="left: 20%; animation-duration: 6s; animation-delay: 0.8s;">🐾</div>
+    <div class="float-paw" style="left: 28%; animation-duration: 8s; animation-delay: 2.2s;">🐾</div>
+    <!-- Lado Derecho -->
+    <div class="float-paw" style="left: 72%; animation-duration: 7.5s; animation-delay: 0.4s;">🐾</div>
+    <div class="float-paw" style="left: 80%; animation-duration: 8.5s; animation-delay: 1.8s;">🐾</div>
+    <div class="float-paw" style="left: 88%; animation-duration: 6.5s; animation-delay: 1.1s;">🐾</div>
+    <div class="float-paw" style="left: 95%; animation-duration: 9.5s; animation-delay: 2.7s;">🐾</div>
   </div>
 
   <div class="main-container" id="main-container">
@@ -648,7 +651,7 @@
       <div></div>
     </div>
 
-    <!-- COLUMNA 3: OPCIONES Y WIDGETS LATERALES CON TU NUEVA FOTO -->
+    <!-- COLUMNA 3: OPCIONES Y WIDGETS LATERALES -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVIGATION &bull; EXTRAS</div>
@@ -656,7 +659,7 @@
         <div class="side-widget-card" style="text-align: center;">
           <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">GALLERY</div>
           <div style="font-size: 9px; color: #94a3b8; margin-bottom: 8px;">Backstage Photos</div>
-          <!-- FOTO NUEVA INTEGRADA AQUÍ -->
+          <!-- FOTO ACTUALIZADA -->
           <div style="height: 65px; border-radius: 8px; background: url('https://i.postimg.cc/xTd8pWqj/aitana-98.webp') center/cover; border: 1px solid rgba(255,255,255,0.2);"></div>
         </div>
 
@@ -678,14 +681,16 @@
     <!-- VISTA ACTIVA / REPRODUCTOR PRINCIPAL -->
     <div class="active-view">
       
-      <!-- NOTAS MUSICALES SALIENDO DE AMBOS LADOS DEL REPRODUCTOR -->
+      <!-- NOTAS MUSICALES RÁPIDAS Y HACIA ARRIBA (IZQUIERDA Y DERECHA) -->
       <div class="notes-around-player">
-        <div class="float-note" style="left: 28%; bottom: 20%; --rand-x: -40px; animation-duration: 3.8s; animation-delay: 0s;">♫</div>
-        <div class="float-note" style="left: 68%; bottom: 20%; --rand-x: 40px; animation-duration: 4.2s; animation-delay: 0.5s;">♪</div>
-        <div class="float-note" style="left: 32%; bottom: 25%; --rand-x: -60px; animation-duration: 4.5s; animation-delay: 1.2s;">🎵</div>
-        <div class="float-note" style="left: 64%; bottom: 25%; --rand-x: 60px; animation-duration: 3.9s; animation-delay: 1.8s;">♫</div>
-        <div class="float-note" style="left: 30%; bottom: 18%; --rand-x: -30px; animation-duration: 4.1s; animation-delay: 2.3s;">♪</div>
-        <div class="float-note" style="left: 66%; bottom: 18%; --rand-x: 30px; animation-duration: 4.6s; animation-delay: 2.8s;">🎵</div>
+        <!-- Lado Izquierdo -->
+        <div class="float-note" style="left: 28%; bottom: 20%; --rand-x: -50px; animation-duration: 2.2s; animation-delay: 0s;">♫</div>
+        <div class="float-note" style="left: 32%; bottom: 22%; --rand-x: -35px; animation-duration: 2.0s; animation-delay: 0.7s;">♪</div>
+        <div class="float-note" style="left: 30%; bottom: 18%; --rand-x: -65px; animation-duration: 2.4s; animation-delay: 1.4s;">🎵</div>
+        <!-- Lado Derecho -->
+        <div class="float-note" style="left: 68%; bottom: 20%; --rand-x: 50px; animation-duration: 2.1s; animation-delay: 0.3s;">♪</div>
+        <div class="float-note" style="left: 64%; bottom: 22%; --rand-x: 35px; animation-duration: 2.3s; animation-delay: 1.0s;">♫</div>
+        <div class="float-note" style="left: 66%; bottom: 18%; --rand-x: 65px; animation-duration: 1.9s; animation-delay: 1.7s;">🎵</div>
       </div>
 
       <div class="header-row">
