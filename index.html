@@ -61,7 +61,7 @@
       pointer-events: all;
     }
 
-    /* FIGURAS DINÁMICAS AMPLIADAS A AMBOS EXTREMOS DE LA PANTALLA */
+    /* FIGURAS DINÁMICAS BIEN A LOS EXTREMOS DE LA PANTALLA */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -81,15 +81,15 @@
     .float-shape {
       position: absolute;
       color: #ffffff;
-      opacity: 0.65;
+      opacity: 0.7;
       font-size: 28px;
       animation: floatBgShape 10s linear infinite;
     }
 
     @keyframes floatBgShape {
       0% { transform: translateY(105vh) rotate(0deg) scale(0.7); opacity: 0; }
-      20% { opacity: 0.65; }
-      80% { opacity: 0.65; }
+      20% { opacity: 0.7; }
+      80% { opacity: 0.7; }
       100% { transform: translateY(-10vh) rotate(360deg) scale(1.3); opacity: 0; }
     }
 
@@ -256,9 +256,9 @@
       gap: 15px;
     }
 
-    /* LISTA VERTICAL DE CANCIONES (COMPARTEN EL MISMO ESTILO ELEGANTE Y SCROLL MINIMALISTA) */
+    /* LISTA VERTICAL DE CANCIONES ALARGADA Y CON SCROLL MINIMALISTA */
     .active-left-sidebar, .tracks-list-book {
-      max-height: 250px;
+      max-height: 420px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -266,10 +266,10 @@
       padding-right: 4px;
     }
 
-    .active-left-sidebar { width: 280px; max-height: 380px; z-index: 15; }
+    .active-left-sidebar { width: 280px; z-index: 15; }
     .tracks-list-book { margin-top: 5px; }
 
-    /* Scrollbar estilizado minimalista para ambas listas */
+    /* Scrollbar estilizado minimalista */
     .active-left-sidebar::-webkit-scrollbar,
     .tracks-list-book::-webkit-scrollbar {
       width: 5px;
@@ -656,38 +656,27 @@
       </div>
     </div>
 
-    <!-- COLUMNA 2: REPRODUCTOR Y LISTA PRINCIPAL (CON EL MISMO DISEÑO ELEGANTE Y SCROLL) -->
+    <!-- COLUMNA 2: TODA LA PLAYLIST ALARGADA Y LIMPIA -->
     <div class="book-view-center">
       <div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <div class="chapter-tag">PLAYING FROM ARTIST</div>
-        </div>
-        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 10px; margin-bottom: 12px;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:42px; height:42px; border-radius:8px; object-fit:cover;">
-            <div>
-              <div id="book-title" style="font-size:12px; font-weight:800; color:#ffffff;">SUPERESTRELLA</div>
-              <div id="book-artist" style="font-size:10px; color:#94a3b8;">Aitana</div>
-            </div>
-            <button onclick="togglePlay()" style="margin-left:auto; background:#ffffff; color:#0f1117; border:none; width:30px; height:30px; border-radius:50%; cursor:pointer; font-weight:bold;" id="book-play-btn">▶</button>
-          </div>
-        </div>
-
         <div class="chapter-tag" style="margin-bottom: 6px;">CANCIONES</div>
         <div class="tracks-list-book" id="book-playlist-container"></div>
       </div>
       <div></div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES -->
+    <!-- COLUMNA 3: WIDGETS LATERALES (CON LA PORTADA ACTUAL ARRIBA, ÁLBUM, ÚLTIMA CANCIÓN Y FRIENDS ABAJO) -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVIGATION &bull; EXTRAS</div>
         
-        <div class="side-widget-card" style="text-align: center;">
-          <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">GALLERY</div>
-          <div style="font-size: 9px; color: #94a3b8; margin-bottom: 8px;">Backstage Photos</div>
-          <div style="height: 55px; border-radius: 8px; background: url('https://i.postimg.cc/xTd8pWqj/aitana-98.webp') center/cover; border: 1px solid rgba(255,255,255,0.2);"></div>
+        <!-- CUADRO GRANDE CON LA CANCIÓN SELECCIONADA ACTUAL -->
+        <div class="side-widget-card" style="text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2);">
+          <div style="font-size: 10px; font-weight: bold; color: var(--accent-main); margin-bottom: 6px; letter-spacing: 1px;">SELECCIONADA</div>
+          <img id="side-preview-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width: 85px; height: 85px; border-radius: 14px; object-fit: cover; border: 2px solid var(--accent-main); box-shadow: 0 5px 15px rgba(0,0,0,0.4); margin: 0 auto 6px;">
+          <div id="side-preview-title" style="font-size: 12px; font-weight: 900; color: #ffffff; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">SUPERESTRELLA</div>
+          <div id="side-preview-artist" style="font-size: 10px; color: #94a3b8; margin-bottom: 8px;">Aitana</div>
+          <button onclick="togglePlay()" style="background: var(--accent-main); color: #0f1117; border: none; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; box-shadow: 0 0 10px var(--glow-color);" id="side-preview-btn">▶ Reproducir</button>
         </div>
 
         <div class="side-widget-card">
@@ -875,6 +864,14 @@
     }
 
     function renderPlaylists() {
+      const activeSong = playlist[currentIdx];
+
+      // Actualizar tarjeta de vista previa lateral derecha
+      document.getElementById('side-preview-cover').src = activeSong.cover;
+      document.getElementById('side-preview-title').textContent = activeSong.title;
+      document.getElementById('side-preview-artist').textContent = activeSong.artist;
+      document.getElementById('side-preview-btn').textContent = audio.paused ? '▶ Reproducir' : '❚❚ Pausa';
+
       const bookContainer = document.getElementById('book-playlist-container');
       bookContainer.innerHTML = playlist.map((song, i) => `
         <div class="track-item-book" onclick="playSong(${i})">
@@ -900,10 +897,6 @@
 
     function updateUI() {
       const song = playlist[currentIdx];
-      document.getElementById('book-cover').src = song.cover;
-      document.getElementById('book-title').textContent = song.title;
-      document.getElementById('book-artist').textContent = song.artist;
-
       document.getElementById('cyber-cover').src = song.cover;
       document.getElementById('cyber-title').textContent = song.title;
       document.getElementById('cyber-artist').textContent = song.artist;
@@ -931,7 +924,6 @@
       audio.play();
 
       triggerStartSequence();
-      document.getElementById('book-play-btn').textContent = '❚❚';
       document.getElementById('cyber-play-btn').textContent = '❚❚';
       updateUI();
     }
@@ -943,14 +935,14 @@
         } else {
           audio.play();
           triggerStartSequence();
-          document.getElementById('book-play-btn').textContent = '❚❚';
           document.getElementById('cyber-play-btn').textContent = '❚❚';
+          document.getElementById('side-preview-btn').textContent = '❚❚ Pausa';
         }
       } else {
         audio.pause();
         document.body.classList.remove('playing');
-        document.getElementById('book-play-btn').textContent = '▶';
         document.getElementById('cyber-play-btn').textContent = '▶';
+        document.getElementById('side-preview-btn').textContent = '▶ Reproducir';
       }
     }
 
