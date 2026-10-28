@@ -56,7 +56,7 @@
       pointer-events: all;
     }
 
-    /* HUELLITAS Y NOTAS RODEANDO EL REPRODUCTOR */
+    /* HUELLITAS FLOTANDO SUAVEMENTE EN EL FONDO OSCURO */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -64,7 +64,7 @@
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 10;
+      z-index: 1;
       overflow: hidden;
       display: none;
     }
@@ -73,20 +73,51 @@
       display: block;
     }
 
-    .float-elem {
+    .float-paw {
       position: absolute;
-      color: var(--accent-main);
-      opacity: 0.85;
-      font-size: 24px;
-      animation: floatAroundPlayer 5s linear infinite;
-      text-shadow: 0 0 15px var(--glow-color);
+      color: #ffffff;
+      opacity: 0.35;
+      font-size: 22px;
+      animation: floatBgPaw 8s linear infinite;
     }
 
-    @keyframes floatAroundPlayer {
-      0% { transform: scale(0.6) translateY(20vh); opacity: 0; }
+    @keyframes floatBgPaw {
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.7); opacity: 0; }
+      20% { opacity: 0.4; }
+      80% { opacity: 0.4; }
+      100% { transform: translateY(-10vh) rotate(35deg) scale(1.2); opacity: 0; }
+    }
+
+    /* NOTAS MUSICALES SALIENDO DE LOS COSTADOS DEL REPRODUCTOR */
+    .notes-around-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 20;
+      display: none;
+    }
+
+    body.playing .notes-around-player {
+      display: block;
+    }
+
+    .float-note {
+      position: absolute;
+      color: var(--accent-main);
+      font-size: 24px;
+      opacity: 0.9;
+      text-shadow: 0 0 12px var(--glow-color);
+      animation: floatNotesSideways 4s linear infinite;
+    }
+
+    @keyframes floatNotesSideways {
+      0% { transform: scale(0.5) translateY(20px); opacity: 0; }
       20% { opacity: 1; }
       80% { opacity: 1; }
-      100% { transform: scale(1.3) translateY(-40vh) translateX(20px); opacity: 0; }
+      100% { transform: scale(1.3) translateY(-120px) translateX(var(--rand-x)); opacity: 0; }
     }
 
     /* CONTENEDOR PRINCIPAL */
@@ -451,7 +482,7 @@
       object-fit: cover;
     }
 
-    /* FOTO COMPACTA Y CENTRADA */
+    /* PERFIL Y FOTO PRINCIPAL */
     .page-title {
       font-size: 22px;
       font-weight: 900;
@@ -539,14 +570,15 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- HUELLITAS Y NOTAS RODEANDO EL REPRODUCTOR -->
+  <!-- HUELLITAS FLOTANDO EN EL FONDO OSCURO -->
   <div class="floating-bg-container" id="floating-bg">
-    <div class="float-elem" style="left: 35%; top: 60%; animation-duration: 4.5s; animation-delay: 0s;">🐾</div>
-    <div class="float-elem" style="left: 55%; top: 55%; animation-duration: 5s; animation-delay: 1s;">♫</div>
-    <div class="float-elem" style="left: 45%; top: 65%; animation-duration: 4s; animation-delay: 0.5s;">🐾</div>
-    <div class="float-elem" style="left: 60%; top: 45%; animation-duration: 5.5s; animation-delay: 2s;">♪</div>
-    <div class="float-elem" style="left: 40%; top: 50%; animation-duration: 4.8s; animation-delay: 1.5s;">🐾</div>
-    <div class="float-elem" style="left: 50%; top: 40%; animation-duration: 5.2s; animation-delay: 0.8s;">♫</div>
+    <div class="float-paw" style="left: 6%; animation-duration: 9s; animation-delay: 0s;">🐾</div>
+    <div class="float-paw" style="left: 18%; animation-duration: 11s; animation-delay: 2s;">🐾</div>
+    <div class="float-paw" style="left: 32%; animation-duration: 8s; animation-delay: 1s;">🐾</div>
+    <div class="float-paw" style="left: 50%; animation-duration: 10s; animation-delay: 3s;">🐾</div>
+    <div class="float-paw" style="left: 68%; animation-duration: 7s; animation-delay: 0.5s;">🐾</div>
+    <div class="float-paw" style="left: 84%; animation-duration: 12s; animation-delay: 1.5s;">🐾</div>
+    <div class="float-paw" style="left: 94%; animation-duration: 9s; animation-delay: 2.5s;">🐾</div>
   </div>
 
   <div class="main-container" id="main-container">
@@ -616,7 +648,7 @@
       <div></div>
     </div>
 
-    <!-- COLUMNA 3: OPCIONES Y WIDGETS LATERALES -->
+    <!-- COLUMNA 3: OPCIONES Y WIDGETS LATERALES CON TU NUEVA FOTO -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVIGATION &bull; EXTRAS</div>
@@ -624,7 +656,8 @@
         <div class="side-widget-card" style="text-align: center;">
           <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">GALLERY</div>
           <div style="font-size: 9px; color: #94a3b8; margin-bottom: 8px;">Backstage Photos</div>
-          <div style="height: 65px; border-radius: 8px; background: url('https://i.postimg.cc/X71Gn2dB/images.jpg') center/cover; border: 1px solid rgba(255,255,255,0.2);"></div>
+          <!-- FOTO NUEVA INTEGRADA AQUÍ -->
+          <div style="height: 65px; border-radius: 8px; background: url('https://i.postimg.cc/xTd8pWqj/aitana-98.webp') center/cover; border: 1px solid rgba(255,255,255,0.2);"></div>
         </div>
 
         <div class="side-widget-card">
@@ -637,10 +670,6 @@
             </div>
           </div>
         </div>
-
-        <div class="side-widget-card" style="padding: 10px; text-align: center;">
-          <div style="font-size: 10px; color: #94a3b8;">Status: <span style="color: #38bdf8; font-weight: bold;">Listening to music 🎧</span></div>
-        </div>
       </div>
       <div></div>
     </div>
@@ -648,6 +677,17 @@
 
     <!-- VISTA ACTIVA / REPRODUCTOR PRINCIPAL -->
     <div class="active-view">
+      
+      <!-- NOTAS MUSICALES SALIENDO DE AMBOS LADOS DEL REPRODUCTOR -->
+      <div class="notes-around-player">
+        <div class="float-note" style="left: 28%; bottom: 20%; --rand-x: -40px; animation-duration: 3.8s; animation-delay: 0s;">♫</div>
+        <div class="float-note" style="left: 68%; bottom: 20%; --rand-x: 40px; animation-duration: 4.2s; animation-delay: 0.5s;">♪</div>
+        <div class="float-note" style="left: 32%; bottom: 25%; --rand-x: -60px; animation-duration: 4.5s; animation-delay: 1.2s;">🎵</div>
+        <div class="float-note" style="left: 64%; bottom: 25%; --rand-x: 60px; animation-duration: 3.9s; animation-delay: 1.8s;">♫</div>
+        <div class="float-note" style="left: 30%; bottom: 18%; --rand-x: -30px; animation-duration: 4.1s; animation-delay: 2.3s;">♪</div>
+        <div class="float-note" style="left: 66%; bottom: 18%; --rand-x: 30px; animation-duration: 4.6s; animation-delay: 2.8s;">🎵</div>
+      </div>
+
       <div class="header-row">
         <div class="corner-profile">
           <div class="corner-title">ALLIE</div>
