@@ -88,13 +88,13 @@
       100% { transform: translateY(-10vh) rotate(40deg) scale(1.2); opacity: 0; }
     }
 
-    /* NOTAS MUSICALES MÁS LENTAS Y SUAVES HASTA ARRIBA (IZQUIERDA Y DERECHA) */
+    /* NOTAS MUSICALES SUBIENDO COMPLETAMENTE HASTA ARRIBA DE LA PANTALLA */
     .notes-around-player {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
       z-index: 20;
       display: none;
@@ -107,17 +107,17 @@
     .float-note {
       position: absolute;
       color: var(--accent-main);
-      font-size: 26px;
-      opacity: 0.9;
+      font-size: 28px;
+      opacity: 0.95;
       text-shadow: 0 0 15px var(--glow-color);
-      animation: floatNotesSmoothUp 5.5s linear infinite;
+      animation: floatNotesToTop 4s linear infinite;
     }
 
-    @keyframes floatNotesSmoothUp {
-      0% { transform: scale(0.6) translateY(20px); opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { transform: scale(1.3) translateY(-220px) translateX(var(--rand-x)); opacity: 0; }
+    @keyframes floatNotesToTop {
+      0% { transform: scale(0.6) translateY(0px); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: scale(1.4) translateY(-100vh) translateX(var(--rand-x)); opacity: 0; }
     }
 
     /* CONTENEDOR PRINCIPAL */
@@ -239,25 +239,62 @@
       box-shadow: 0 0 12px var(--glow-color);
     }
 
-    /* CENTRO DINÁMICO */
+    /* CENTRO DINÁMICO CON LAYOUT DE 3 COLUMNAS ACTIVAS */
     .center-content-area {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       width: 100%;
       margin: 10px 0;
       flex: 1;
       position: relative;
+      gap: 15px;
     }
 
-    /* REPRODUCTOR CON AURA DE COLOR */
+    /* LISTA VERTICAL DE CANCIONES A LA IZQUIERDA EN VISTA ACTIVA */
+    .active-left-sidebar {
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 380px;
+      overflow-y: auto;
+      z-index: 15;
+    }
+
+    .active-track-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .active-track-item:hover, .active-track-item.active {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-main);
+      box-shadow: 0 0 12px var(--glow-color);
+    }
+
+    .active-track-thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* REPRODUCTOR AL CENTRO */
     .massive-player {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 24px;
       padding: 24px;
       width: 100%;
-      max-width: 460px;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -268,17 +305,17 @@
     }
 
     .massive-cover {
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       border-radius: 20px;
       object-fit: cover;
       border: 3px solid var(--accent-main);
       box-shadow: 0 8px 25px var(--glow-color);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .massive-song-title {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 900;
       color: #ffffff;
       margin-bottom: 2px;
@@ -286,17 +323,17 @@
     }
 
     .massive-song-artist {
-      font-size: 12px;
+      font-size: 11px;
       color: #94a3b8;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
     .massive-controls {
       display: flex;
       align-items: center;
-      gap: 22px;
-      margin-bottom: 14px;
+      gap: 20px;
+      margin-bottom: 12px;
     }
 
     .m-ctrl-btn {
@@ -314,8 +351,8 @@
       background: var(--accent-main);
       color: #0f1117;
       border: none;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -352,6 +389,53 @@
       box-shadow: 0 0 10px var(--glow-color);
     }
 
+    /* WIDGET DERECHO DE VIBE / ECUALIZADOR ANIMADO */
+    .active-right-sidebar {
+      width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 15;
+    }
+
+    .vibe-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .equalizer-bars {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 4px;
+      height: 30px;
+      margin: 10px 0 6px;
+    }
+
+    .eq-bar {
+      width: 5px;
+      background: var(--accent-main);
+      border-radius: 3px;
+      animation: eqBounce 1.2s ease-in-out infinite alternate;
+      box-shadow: 0 0 8px var(--glow-color);
+    }
+
+    .eq-bar:nth-child(1) { animation-delay: 0.1s; height: 40%; }
+    .eq-bar:nth-child(2) { animation-delay: 0.4s; height: 80%; }
+    .eq-bar:nth-child(3) { animation-delay: 0.2s; height: 60%; }
+    .eq-bar:nth-child(4) { animation-delay: 0.6s; height: 100%; }
+    .eq-bar:nth-child(5) { animation-delay: 0.3s; height: 50%; }
+
+    @keyframes eqBounce {
+      0% { transform: scaleY(0.3); }
+      100% { transform: scaleY(1); }
+    }
+
     /* PIZARRA */
     .drawing-panel {
       display: none;
@@ -365,6 +449,7 @@
       padding: 15px;
       backdrop-filter: blur(10px);
       z-index: 15;
+      margin: 0 auto;
     }
 
     .drawing-panel.active { display: flex; }
@@ -397,7 +482,7 @@
     }
     .draw-btn:hover { background: var(--accent-main); color: #0f1117; }
 
-    /* AMIGOS (FRIEND 1 AL 5) EN TARJETA LATERAL */
+    /* AMIGOS (FRIEND 1 AL 5) EN PESTAÑA ACTIVA */
     .friends-panel {
       display: none;
       flex-direction: column;
@@ -410,6 +495,7 @@
       gap: 10px;
       backdrop-filter: blur(10px);
       z-index: 15;
+      margin: 0 auto;
     }
     .friends-panel.active { display: flex; }
     .friend-card {
@@ -437,49 +523,10 @@
     /* FOOTER */
     .footer-row {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       width: 100%;
       gap: 15px;
-    }
-
-    .corner-playlist {
-      display: flex;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 10px 15px;
-      border-radius: 14px;
-      align-items: center;
-      flex: 1;
-      overflow-x: auto;
-      backdrop-filter: blur(10px);
-    }
-
-    .mini-track {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 6px 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .mini-track:hover, .mini-track.active {
-      border-color: var(--accent-main);
-      box-shadow: 0 0 10px var(--glow-color);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .mini-thumb {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      object-fit: cover;
     }
 
     /* PERFIL Y FOTO PRINCIPAL */
@@ -584,7 +631,7 @@
 
   <div class="main-container" id="main-container">
 
-    <!-- COLUMNA 1: PERFIL Y FOTO + FRASE ESPECIAL -->
+    <!-- COLUMNA 1: PERFIL, FOTO Y FRASE MÁS GRANDE Y ARRIBA -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">ARCHIVE &bull; PROFILE</div>
@@ -598,10 +645,10 @@
         <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff; font-size:11px;">Mido menos que Bob Esponja</strong></div>
       </div>
 
-      <!-- Frase especial añadida -->
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px; margin-top: 10px;">
-        <div style="font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 4px;">Quote</div>
-        <div style="font-size: 10px; color: #f1f5f9; font-style: italic; line-height: 1.4;">"Echo de menos tú y yo aquí en mi cuarto, pero te lo confieso, lo veía venir"</div>
+      <!-- Frase destacada, más grande y alta -->
+      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 12px; margin-top: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; margin-bottom: 6px;">Quote</div>
+        <div style="font-size: 13px; color: #ffffff; font-style: italic; line-height: 1.4; font-weight: 600;">"Echo de menos tú y yo aquí en mi cuarto, pero te lo confieso, lo veía venir"</div>
       </div>
     </div>
 
@@ -699,14 +746,14 @@
     <!-- VISTA ACTIVA / REPRODUCTOR PRINCIPAL -->
     <div class="active-view">
       
-      <!-- NOTAS MUSICALES MÁS LENTAS Y SUAVES HASTA ARRIBA (IZQUIERDA Y DERECHA) -->
+      <!-- NOTAS MUSICALES SUBIENDO HASTA EL TOPE DE LA PANTALLA -->
       <div class="notes-around-player">
-        <div class="float-note" style="left: 28%; bottom: 20%; --rand-x: -55px; animation-duration: 4.8s; animation-delay: 0s;">♫</div>
-        <div class="float-note" style="left: 32%; bottom: 22%; --rand-x: -35px; animation-duration: 5.2s; animation-delay: 1.5s;">♪</div>
-        <div class="float-note" style="left: 30%; bottom: 18%; --rand-x: -70px; animation-duration: 4.5s; animation-delay: 3.0s;">🎵</div>
-        <div class="float-note" style="left: 68%; bottom: 20%; --rand-x: 55px; animation-duration: 5.0s; animation-delay: 0.8s;">♪</div>
-        <div class="float-note" style="left: 64%; bottom: 22%; --rand-x: 35px; animation-duration: 4.6s; animation-delay: 2.2s;">♫</div>
-        <div class="float-note" style="left: 66%; bottom: 18%; --rand-x: 70px; animation-duration: 5.4s; animation-delay: 3.6s;">🎵</div>
+        <div class="float-note" style="left: 28%; bottom: 10%; --rand-x: -50px; animation-duration: 3.8s; animation-delay: 0s;">♫</div>
+        <div class="float-note" style="left: 35%; bottom: 10%; --rand-x: -30px; animation-duration: 4.2s; animation-delay: 1.2s;">♪</div>
+        <div class="float-note" style="left: 32%; bottom: 10%; --rand-x: -70px; animation-duration: 3.5s; animation-delay: 2.5s;">🎵</div>
+        <div class="float-note" style="left: 68%; bottom: 10%; --rand-x: 50px; animation-duration: 4.0s; animation-delay: 0.6s;">♪</div>
+        <div class="float-note" style="left: 62%; bottom: 10%; --rand-x: 30px; animation-duration: 3.7s; animation-delay: 1.8s;">♫</div>
+        <div class="float-note" style="left: 65%; bottom: 10%; --rand-x: 70px; animation-duration: 4.4s; animation-delay: 3.1s;">🎵</div>
       </div>
 
       <div class="header-row">
@@ -722,7 +769,11 @@
       </div>
 
       <div class="center-content-area">
-        <!-- Reproductor -->
+        
+        <!-- 1. LISTA VERTICAL DE CANCIONES A LA IZQUIERDA -->
+        <div class="active-left-sidebar" id="cyber-playlist"></div>
+
+        <!-- 2. REPRODUCTOR AL CENTRO -->
         <div class="massive-player" id="view-massive-player">
           <img id="cyber-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="massive-cover" alt="Cover">
           <div class="massive-song-title" id="cyber-title">SUPERESTRELLA</div>
@@ -761,13 +812,29 @@
           <div class="friend-card"><div class="friend-avatar">4</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 4</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
           <div class="friend-card"><div class="friend-avatar">5</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 5</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
         </div>
+
+        <!-- 3. WIDGET DERECHO: VIBE & ECUALIZADOR ANIMADO -->
+        <div class="active-right-sidebar">
+          <div class="vibe-card">
+            <div style="font-size: 11px; font-weight: bold; color: #ffffff; letter-spacing: 1px; margin-bottom: 2px;">CURRENT VIBE</div>
+            <div style="font-size: 9px; color: #94a3b8; margin-bottom: 6px;">Pop &bull; Late Night Sessions</div>
+            <div class="equalizer-bars">
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+              <div class="eq-bar"></div>
+            </div>
+            <div style="font-size: 10px; color: var(--accent-main); font-weight: bold; margin-top: 4px;">♪ Now Playing Live ♪</div>
+          </div>
+        </div>
+
       </div>
 
       <div class="footer-row">
-        <div class="corner-playlist" id="cyber-playlist"></div>
-        <div style="background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#94a3b8;">
+        <div style="background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); padding:8px 14px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#94a3b8;">
           <span>🔊</span>
-          <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="cursor:pointer;">
+          <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="cursor:pointer; width:100px;">
         </div>
       </div>
     </div>
@@ -807,11 +874,11 @@
 
       const cyberContainer = document.getElementById('cyber-playlist');
       cyberContainer.innerHTML = playlist.map((song, i) => `
-        <div class="mini-track ${i === currentIdx ? 'active' : ''}" onclick="playSong(${i})">
-          <img src="${song.cover}" class="mini-thumb">
-          <div style="font-size:11px;">
-            <div style="font-weight:700; color:#ffffff;">${song.title}</div>
-            <div style="font-size:9px; color:#94a3b8;">${song.artist}</div>
+        <div class="active-track-item ${i === currentIdx ? 'active' : ''}" onclick="playSong(${i})">
+          <img src="${song.cover}" class="active-track-thumb">
+          <div style="flex:1; overflow:hidden;">
+            <div style="font-size:11px; font-weight:700; color:#ffffff; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">${song.title}</div>
+            <div style="font-size:9px; color:#94a3b8; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">${song.artist}</div>
           </div>
         </div>
       `).join('');
@@ -887,6 +954,8 @@
       const playerView = document.getElementById('view-massive-player');
       const canvasView = document.getElementById('view-drawing-board');
       const friendsView = document.getElementById('view-friends');
+      const leftPlaylist = document.getElementById('cyber-playlist');
+      const rightVibe = document.querySelector('.active-right-sidebar');
 
       const btnPlayer = document.getElementById('tab-player');
       const btnCanvas = document.getElementById('tab-canvas');
@@ -895,12 +964,17 @@
       playerView.style.display = 'none';
       canvasView.classList.remove('active');
       friendsView.classList.remove('active');
+      if (leftPlaylist) leftPlaylist.style.display = 'none';
+      if (rightVibe) rightVibe.style.display = 'none';
+
       btnPlayer.classList.remove('active');
       btnCanvas.classList.remove('active');
       btnFriends.classList.remove('active');
 
       if (tab === 'player') {
         playerView.style.display = 'flex';
+        if (leftPlaylist) leftPlaylist.style.display = 'flex';
+        if (rightVibe) rightVibe.style.display = 'flex';
         btnPlayer.classList.add('active');
       } else if (tab === 'canvas') {
         canvasView.classList.add('active');
