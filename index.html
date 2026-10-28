@@ -61,7 +61,7 @@
       pointer-events: all;
     }
 
-    /* FIGURAS DINÁMICAS BIEN A LOS EXTREMOS DE LA PANTALLA */
+    /* FIGURAS DINÁMICAS BIEN EXTREMAS A AMBOS LADOS (IZQ Y DER) */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -665,7 +665,7 @@
       <div></div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES (CON LA PORTADA ACTUAL ARRIBA, ÁLBUM, ÚLTIMA CANCIÓN Y FRIENDS ABAJO) -->
+    <!-- COLUMNA 3: WIDGETS LATERALES CON LA PORTADA ACTUAL ARRIBA -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVIGATION &bull; EXTRAS</div>
@@ -842,211 +842,12 @@
       { file: 'Aitana - Los Ángeles.mp3', title: 'Los Ángeles', artist: 'Aitana', cover: 'https://i.postimg.cc/dV5Gh8Xp/250x250-000000-80-0-0-(2).jpg', bgIcons: ['🌆', '✨', '🌃', '⭐', '🌆', '✨', '🌃'] },
       { file: 'Aitana - 6 DE FEBRERO.mp3', title: '6 DE FEBRERO', artist: 'Aitana', cover: 'https://i.postimg.cc/d3cybnkk/1000x1000-000000-80-0-0.jpg', bgIcons: ['💙', '❄️', '🧊', '❄️', '💙', '❄️', '🧊'] },
       { file: 'Quevedo - GRAN VÍA.mp3', title: 'GRAN VÍA', artist: 'Quevedo', cover: 'https://i.postimg.cc/DzW4mR1W/artworks-xg-Jx-AMw-MDHHPbjps-Fdya-Ow-t500x500.jpg', bgIcons: ['🔥', '⚡', '🕶️', '⚡', '🔥', '⚡', '🕶️'] },
-      { file: 'Morat - Presiento.mp3', title: 'Presiento', artist: 'Morat', cover: 'https://i.postimg.cc/jj9NXRR6/250x250-000000-80-0-0.jpg', bgIcons: ['🌿', '🍃', '🌸', '🍃', '🌿', '🍃', '🌸'] }
-    ];
-
-    let currentIdx = 0;
-    let hasPlayedIntro = false;
-    const audio = document.getElementById('audio-player');
-    const introOverlay = document.getElementById('intro-overlay');
-
-    function updateAuraTheme(index) {
-      document.body.classList.remove('aura-0', 'aura-1', 'aura-2', 'aura-3', 'aura-4', 'aura-5', 'aura-6', 'aura-7');
-      document.body.classList.add(`aura-${index}`);
-
-      const icons = playlist[index].bgIcons;
-      for (let i = 1; i <= 7; i++) {
-        const iconElem = document.getElementById(`bg-icon-${i}`);
-        if (iconElem) {
-          iconElem.textContent = icons[i - 1];
-        }
-      }
-    }
-
-    function renderPlaylists() {
-      const activeSong = playlist[currentIdx];
-
-      // Actualizar tarjeta de vista previa lateral derecha
-      document.getElementById('side-preview-cover').src = activeSong.cover;
-      document.getElementById('side-preview-title').textContent = activeSong.title;
-      document.getElementById('side-preview-artist').textContent = activeSong.artist;
-      document.getElementById('side-preview-btn').textContent = audio.paused ? '▶ Reproducir' : '❚❚ Pausa';
-
-      const bookContainer = document.getElementById('book-playlist-container');
-      bookContainer.innerHTML = playlist.map((song, i) => `
-        <div class="track-item-book" onclick="playSong(${i})">
-          <img src="${song.cover}" style="width:36px; height:36px; border-radius:8px; object-fit:cover; border:1px solid rgba(255,255,255,0.2);">
-          <div style="flex:1;">
-            <div style="font-size:11px; font-weight:700; color:#ffffff;">${song.title}</div>
-            <div style="font-size:9px; color:#94a3b8;">${song.artist}</div>
-          </div>
-        </div>
-      `).join('');
-
-      const cyberContainer = document.getElementById('cyber-playlist');
-      cyberContainer.innerHTML = playlist.map((song, i) => `
-        <div class="active-track-item ${i === currentIdx ? 'active' : ''}" onclick="playSong(${i})">
-          <img src="${song.cover}" class="active-track-thumb">
-          <div style="flex:1; overflow:hidden;">
-            <div style="font-size:11px; font-weight:700; color:#ffffff; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">${song.title}</div>
-            <div style="font-size:9px; color:#94a3b8; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">${song.artist}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function updateUI() {
-      const song = playlist[currentIdx];
-      document.getElementById('cyber-cover').src = song.cover;
-      document.getElementById('cyber-title').textContent = song.title;
-      document.getElementById('cyber-artist').textContent = song.artist;
-      renderPlaylists();
-    }
-
-    function triggerStartSequence() {
-      if (!hasPlayedIntro) {
-        hasPlayedIntro = true;
-        introOverlay.classList.add('active');
-
-        setTimeout(() => {
-          introOverlay.classList.remove('active');
-          document.body.classList.add('playing');
-        }, 3500);
-      } else {
-        document.body.classList.add('playing');
-      }
-    }
-
-    function playSong(index) {
-      currentIdx = index;
-      updateAuraTheme(currentIdx);
-      audio.src = playlist[currentIdx].file;
-      audio.play();
-
-      triggerStartSequence();
-      document.getElementById('cyber-play-btn').textContent = '❚❚';
-      updateUI();
-    }
-
-    function togglePlay() {
-      if (audio.paused) {
-        if (!audio.currentTime) {
-          playSong(0);
-        } else {
-          audio.play();
-          triggerStartSequence();
-          document.getElementById('cyber-play-btn').textContent = '❚❚';
-          document.getElementById('side-preview-btn').textContent = '❚❚ Pausa';
-        }
-      } else {
-        audio.pause();
-        document.body.classList.remove('playing');
-        document.getElementById('cyber-play-btn').textContent = '▶';
-        document.getElementById('side-preview-btn').textContent = '▶ Reproducir';
-      }
-    }
-
-    function nextSong() {
-      currentIdx = (currentIdx + 1) % playlist.length;
-      playSong(currentIdx);
-    }
-
-    function prevSong() {
-      currentIdx = (currentIdx - 1 + playlist.length) % playlist.length;
-      playSong(currentIdx);
-    }
-
-    function switchTab(tab) {
-      const playerView = document.getElementById('view-massive-player');
-      const canvasView = document.getElementById('view-drawing-board');
-      const friendsView = document.getElementById('view-friends');
-      const leftPlaylist = document.getElementById('cyber-playlist');
-      const rightVibe = document.querySelector('.active-right-sidebar');
-
-      const btnPlayer = document.getElementById('tab-player');
-      const btnCanvas = document.getElementById('tab-canvas');
-      const btnFriends = document.getElementById('tab-friends');
-
-      playerView.style.display = 'none';
-      canvasView.classList.remove('active');
-      friendsView.classList.remove('active');
-      if (leftPlaylist) leftPlaylist.style.display = 'none';
-      if (rightVibe) rightVibe.style.display = 'none';
-
-      btnPlayer.classList.remove('active');
-      btnCanvas.classList.remove('active');
-      btnFriends.classList.remove('active');
-
-      if (tab === 'player') {
-        playerView.style.display = 'flex';
-        if (leftPlaylist) leftPlaylist.style.display = 'flex';
-        if (rightVibe) rightVibe.style.display = 'flex';
-        btnPlayer.classList.add('active');
-      } else if (tab === 'canvas') {
-        canvasView.classList.add('active');
-        btnCanvas.classList.add('active');
-      } else if (tab === 'friends') {
-        friendsView.classList.add('active');
-        btnFriends.classList.add('active');
-      }
-    }
-
-    const canvas = document.getElementById('draw-canvas');
-    const ctx = canvas.getContext('2d');
-    let painting = false;
-
-    function startPosition(e) { painting = true; draw(e); }
-    function endedPosition() { painting = false; ctx.beginPath(); }
-    function draw(e) {
-      if (!painting) return;
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
-      ctx.strokeStyle = '#1e1b18';
-
-      const rect = canvas.getBoundingClientRect();
-      const x = (e.clientX || e.touches[0].clientX) - rect.left;
-      const y = (e.clientY || e.touches[0].clientY) - rect.top;
-
-      ctx.lineTo(x, y);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-    }
-
-    canvas.addEventListener('mousedown', startPosition);
-    canvas.addEventListener('mouseup', endedPosition);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('touchstart', startPosition);
-    canvas.addEventListener('touchend', endedPosition);
-    canvas.addEventListener('touchmove', draw);
-
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    audio.addEventListener('timeupdate', () => {
-      const fill = document.getElementById('c-progress');
-      const cTime = document.getElementById('c-time');
-      const tDur = document.getElementById('t-duration');
-      if (audio.duration && fill) {
-        fill.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
-        cTime.textContent = formatTime(audio.currentTime);
-        tDur.textContent = formatTime(audio.duration);
-      }
-    });
-
-    audio.addEventListener('loadedmetadata', () => {
-      document.getElementById('t-duration').textContent = formatTime(audio.duration);
-    });
-
-    function setProgress(e) {
-      const bar = e.currentTarget;
-      audio.currentTime = (e.offsetX / bar.clientWidth) * audio.duration;
-    }
-
-    audio.addEventListener('ended', nextSong);
-    renderPlaylists();
-  </script>
-
-</body>
-</html>
+      { file: 'Morat - Presiento.mp3', title: 'Presiento', artist: 'Morat', cover: 'https://i.postimg.cc/jj9NXRR6/250x250-000000-80-0-0.jpg', bgIcons: ['🌿', '🍃', '🌸', '🍃', '🌿', '🍃', '🌸'] },
+      { file: 'Aitana - TRANKIS.mp3', title: 'TRANKIS', artist: 'Aitana', cover: 'https://i.postimg.cc/rpKdP7mc/250x250-000000-80-0-0.jpg', bgIcons: ['💜', '✨', '🌌', '✨', '💜', '✨', '🌌'] },
+      { file: 'Aitana - SEGUNDO INTENTO.mp3', title: 'SEGUNDO INTENTO', artist: 'Aitana', cover: 'https://i.postimg.cc/rpKdP7mc/250x250-000000-80-0-0.jpg', bgIcons: ['💫', '⭐', '💫', '⭐', '💫', '⭐', '💫'] },
+      { file: 'Aitana - AQYNE.mp3', title: 'AQYNE', artist: 'Aitana', cover: 'https://i.postimg.cc/rpKdP7mc/250x250-000000-80-0-0.jpg', bgIcons: ['⚡', '🔮', '⚡', '🔮', '⚡', '🔮', '⚡'] },
+      { file: 'Aitana - Formentera.mp3', title: 'Formentera', artist: 'Aitana', cover: 'https://i.postimg.cc/gjvLKR0D/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🌊', '☀️', '🏖️', '☀️', '🌊', '☀️', '🏖️'] },
+      { file: 'Aitana - EN EL CENTRO DE LA CAMA.mp3', title: 'EN EL CENTRO DE LA CAMA', artist: 'Aitana', cover: 'https://i.postimg.cc/rpKdP7mc/250x250-000000-80-0-0.jpg', bgIcons: ['🛏️', '🌙', '💤', '🌙', '🛏️', '🌙', '💤'] },
+      { file: 'Aitana - Más De Lo Que Aposté.mp3', title: 'Más De Lo Que Aposté', artist: 'Aitana', cover: 'https://i.postimg.cc/rpKdP7mc/250x250-000000-80-0-0.jpg', bgIcons: ['🎲', '✨', '💖', '✨', '🎲', '✨', '💖'] },
+      { file: 'Aitana - CUARTO AZUL.mp3', title: 'CUARTO AZUL', artist: 'Aitana', cover: 'https://i.postimg.cc/rpKdP7mc/250x250-000000-80-0-0.jpg', bgIcons: ['💙', '🏙️', '🧊', '🏙️', '💙', '🏙️', '🧊'] },
+      { file: 'Aitana - Quieres.mp3', title: 'Quieres', artist: 'Aitana', cover: '
