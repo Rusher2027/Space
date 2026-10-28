@@ -21,6 +21,11 @@
     body.playing.aura-0 { --glow-color: rgba(56, 189, 248, 0.6); --accent-main: #38bdf8; }
     body.playing.aura-1 { --glow-color: rgba(244, 114, 182, 0.6); --accent-main: #f472b6; }
     body.playing.aura-2 { --glow-color: rgba(192, 132, 252, 0.6); --accent-main: #c084fc; }
+    body.playing.aura-3 { --glow-color: rgba(52, 211, 153, 0.6); --accent-main: #34d399; }
+    body.playing.aura-4 { --glow-color: rgba(251, 191, 36, 0.6); --accent-main: #fbbf24; }
+    body.playing.aura-5 { --glow-color: rgba(248, 113, 113, 0.6); --accent-main: #f87171; }
+    body.playing.aura-6 { --glow-color: rgba(129, 140, 248, 0.6); --accent-main: #818cf8; }
+    body.playing.aura-7 { --glow-color: rgba(236, 72, 153, 0.6); --accent-main: #ec4899; }
 
     body {
       background: #0f1117;
@@ -88,7 +93,7 @@
       100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
     }
 
-    /* NOTAS MUSICALES SALIENDO ALREDEDOR DEL REPRODUCTOR (COMO EL CÓDIGO ANTERIOR) */
+    /* NOTAS MUSICALES SALIENDO ALREDEDOR DEL REPRODUCTOR */
     .notes-around-player {
       position: absolute;
       top: 0;
@@ -617,7 +622,7 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- FIGURAS DINÁMICAS EN EL FONDO (ESTRELLAS, CORAZONES, LUNAS) -->
+  <!-- FIGURAS DINÁMICAS EN EL FONDO -->
   <div class="floating-bg-container" id="floating-bg">
     <div class="float-shape" style="left: 6%; animation-duration: 9s; animation-delay: 0s;" id="bg-icon-1">✨</div>
     <div class="float-shape" style="left: 18%; animation-duration: 11s; animation-delay: 2s;" id="bg-icon-2">⭐</div>
@@ -674,7 +679,7 @@
       <div></div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES (CON EL TÍTULO COMPLETO DE LA CANCIÓN) -->
+    <!-- COLUMNA 3: WIDGETS LATERALES -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVIGATION &bull; EXTRAS</div>
@@ -696,7 +701,6 @@
           </div>
         </div>
 
-        <!-- TÍTULO COMPLETO CORREGIDO -->
         <div class="side-widget-card">
           <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">ÚLTIMA CANCIÓN</div>
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -742,11 +746,13 @@
     <!-- VISTA ACTIVA / REPRODUCTOR PRINCIPAL -->
     <div class="active-view">
       
-      <!-- NOTAS MUSICALES SALIENDO ALREDEDOR DEL CUADRO GRANDE (COMO ANTES) -->
+      <!-- NOTAS MUSICALES SALIENDO ALREDEDOR DEL CUADRO GRANDE -->
       <div class="notes-around-player">
+        <!-- Lado Izquierdo -->
         <div class="float-note" style="left: 28%; bottom: 20%; --rand-x: -55px; animation-duration: 4.8s; animation-delay: 0s;">♫</div>
         <div class="float-note" style="left: 32%; bottom: 22%; --rand-x: -35px; animation-duration: 5.2s; animation-delay: 1.5s;">♪</div>
         <div class="float-note" style="left: 30%; bottom: 18%; --rand-x: -70px; animation-duration: 4.5s; animation-delay: 3.0s;">🎵</div>
+        <!-- Lado Derecho -->
         <div class="float-note" style="left: 68%; bottom: 20%; --rand-x: 55px; animation-duration: 5.0s; animation-delay: 0.8s;">♪</div>
         <div class="float-note" style="left: 64%; bottom: 22%; --rand-x: 35px; animation-duration: 4.6s; animation-delay: 2.2s;">♫</div>
         <div class="float-note" style="left: 66%; bottom: 18%; --rand-x: 70px; animation-duration: 5.4s; animation-delay: 3.6s;">🎵</div>
@@ -843,7 +849,12 @@
     const playlist = [
       { file: 'Aitana - SUPERESTRELLA.mp3', title: 'SUPERESTRELLA', artist: 'Aitana', cover: 'https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg', bgIcons: ['✨', '⭐', '✨', '⭐', '✨', '⭐', '✨'] },
       { file: 'zzoilo - Mon Amour (Remix).mp3', title: 'Mon Amour (Remix)', artist: 'Zzoilo x Aitana', cover: 'https://i.postimg.cc/50wYKF10/artworks-z-GXe-TIC6Z17nhvx-J-1v9QKQ-t500x500.jpg', bgIcons: ['💖', '💕', '💗', '💓', '💖', '💕', '💗'] },
-      { file: 'Sabrina Carpenter - Juno.mp3', title: 'Juno', artist: 'Sabrina Carpenter', cover: 'https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🌙', '⭐', '🌙', '⭐', '🌙', '⭐', '🌙'] }
+      { file: 'Sabrina Carpenter - Juno.mp3', title: 'Juno', artist: 'Sabrina Carpenter', cover: 'https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🌙', '⭐', '🌙', '⭐', '🌙', '⭐', '🌙'] },
+      { file: 'Aitana - CONEXIÓN PSÍQUICA.mp3', title: 'CONEXIÓN PSÍQUICA', artist: 'Aitana', cover: 'https://i.postimg.cc/L6T1Wtmw/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🔮', '✨', '💜', '✨', '🔮', '✨', '💜'] },
+      { file: 'Aitana - Los Ángeles.mp3', title: 'Los Ángeles', artist: 'Aitana', cover: 'https://i.postimg.cc/dV5Gh8Xp/250x250-000000-80-0-0-(2).jpg', bgIcons: ['🌆', '✨', '🌃', '⭐', '🌆', '✨', '🌃'] },
+      { file: 'Aitana - 6 DE FEBRERO.mp3', title: '6 DE FEBRERO', artist: 'Aitana', cover: 'https://i.postimg.cc/d3cybnkk/1000x1000-000000-80-0-0.jpg', bgIcons: ['💙', '❄️', '🧊', '❄️', '💙', '❄️', '🧊'] },
+      { file: 'Quevedo - GRAN VÍA.mp3', title: 'GRAN VÍA', artist: 'Quevedo', cover: 'https://i.postimg.cc/DzW4mR1W/artworks-xg-Jx-AMw-MDHHPbjps-Fdya-Ow-t500x500.jpg', bgIcons: ['🔥', '⚡', '🕶️', '⚡', '🔥', '⚡', '🕶️'] },
+      { file: 'Morat - Presiento.mp3', title: 'Presiento', artist: 'Morat', cover: 'https://i.postimg.cc/jj9NXRR6/250x250-000000-80-0-0.jpg', bgIcons: ['🌿', '🍃', '🌸', '🍃', '🌿', '🍃', '🌸'] }
     ];
 
     let currentIdx = 0;
@@ -852,7 +863,7 @@
     const introOverlay = document.getElementById('intro-overlay');
 
     function updateAuraTheme(index) {
-      document.body.classList.remove('aura-0', 'aura-1', 'aura-2');
+      document.body.classList.remove('aura-0', 'aura-1', 'aura-2', 'aura-3', 'aura-4', 'aura-5', 'aura-6', 'aura-7');
       document.body.classList.add(`aura-${index}`);
 
       // Cambiar los íconos del fondo dinámicamente según la canción
@@ -1041,13 +1052,6 @@
     function setProgress(e) {
       const bar = e.currentTarget;
       audio.currentTime = (e.offsetX / bar.clientWidth) * audio.duration;
-    }
-
-    function setVolume(val) { audio.volume = val; }
-    function formatTime(s) {
-      const m = Math.floor(s / 60);
-      const sec = Math.floor(s % 60);
-      return `${m}:${sec < 10 ? '0' : ''}${sec}`;
     }
 
     audio.addEventListener('ended', nextSong);
