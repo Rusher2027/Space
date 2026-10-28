@@ -61,7 +61,7 @@
       pointer-events: all;
     }
 
-    /* FIGURAS DINÁMICAS REPARTIDAS POR TODA LA PANTALLA (IZQ, CENTRO Y DER) */
+    /* FIGURAS DINÁMICAS REPARTIDAS BIEN A LOS LADOS DEL FONDO */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -81,16 +81,16 @@
     .float-shape {
       position: absolute;
       color: #ffffff;
-      opacity: 0.45;
-      font-size: 26px;
+      opacity: 0.6;
+      font-size: 28px;
       animation: floatBgShape 10s linear infinite;
     }
 
     @keyframes floatBgShape {
-      0% { transform: translateY(105vh) rotate(0deg) scale(0.6); opacity: 0; }
-      20% { opacity: 0.5; }
-      80% { opacity: 0.5; }
-      100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.7); opacity: 0; }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) rotate(360deg) scale(1.3); opacity: 0; }
     }
 
     /* NOTAS MUSICALES ALREDEDOR DEL REPRODUCTOR */
@@ -256,22 +256,41 @@
       gap: 15px;
     }
 
-    /* LISTA VERTICAL DE CANCIONES FUTURISTA Y EXTENDIDA (SIN SCROLL FEO) */
+    /* LISTA VERTICAL DE CANCIONES ESTILO MINIMALISTA MODERNO (CON SCROLL ELEGANTE) */
     .active-left-sidebar {
-      width: 270px;
+      width: 280px;
+      max-height: 380px;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 8px;
       z-index: 15;
+      padding-right: 4px;
+    }
+
+    /* Scrollbar estilizado estilo minimalista */
+    .active-left-sidebar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .active-left-sidebar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 10px;
+    }
+    .active-left-sidebar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+    .active-left-sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
     }
 
     .active-track-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 7px 10px;
+      padding: 9px 12px;
       border-radius: 14px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -286,8 +305,8 @@
     }
 
     .active-track-thumb {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 8px;
       object-fit: cover;
       border: 1px solid rgba(255,255,255,0.2);
@@ -623,15 +642,15 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- FIGURAS DINÁMICAS REPARTIDAS POR TODA LA PANTALLA -->
+  <!-- FIGURAS DINÁMICAS REPARTIDAS BIEN A LOS EXTREMOS DE LA PANTALLA -->
   <div class="floating-bg-container" id="floating-bg">
-    <div class="float-shape" style="left: 4%; animation-duration: 9s; animation-delay: 0s;" id="bg-icon-1">✨</div>
-    <div class="float-shape" style="left: 15%; animation-duration: 11s; animation-delay: 2s;" id="bg-icon-2">⭐</div>
-    <div class="float-shape" style="left: 30%; animation-duration: 8s; animation-delay: 1s;" id="bg-icon-3">✨</div>
-    <div class="float-shape" style="left: 48%; animation-duration: 10s; animation-delay: 3s;" id="bg-icon-4">⭐</div>
-    <div class="float-shape" style="left: 65%; animation-duration: 7s; animation-delay: 0.5s;" id="bg-icon-5">✨</div>
-    <div class="float-shape" style="left: 80%; animation-duration: 12s; animation-delay: 1.5s;" id="bg-icon-6">⭐</div>
-    <div class="float-shape" style="left: 92%; animation-duration: 9s; animation-delay: 2.5s;" id="bg-icon-7">✨</div>
+    <div class="float-shape" style="left: 2%; animation-duration: 9s; animation-delay: 0s;" id="bg-icon-1">✨</div>
+    <div class="float-shape" style="left: 8%; animation-duration: 11s; animation-delay: 2s;" id="bg-icon-2">⭐</div>
+    <div class="float-shape" style="left: 14%; animation-duration: 8s; animation-delay: 1s;" id="bg-icon-3">✨</div>
+    <div class="float-shape" style="left: 86%; animation-duration: 10s; animation-delay: 3s;" id="bg-icon-4">⭐</div>
+    <div class="float-shape" style="left: 92%; animation-duration: 7s; animation-delay: 0.5s;" id="bg-icon-5">✨</div>
+    <div class="float-shape" style="left: 97%; animation-duration: 12s; animation-delay: 1.5s;" id="bg-icon-6">⭐</div>
+    <div class="float-shape" style="left: 50%; animation-duration: 9.5s; animation-delay: 2.2s;" id="bg-icon-7">✨</div>
   </div>
 
   <div class="main-container" id="main-container">
@@ -680,7 +699,7 @@
       <div></div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES (ÚLTIMA CANCIÓN CONFIGURADA PARA REPRODUCIR SUPERESTRELLA) -->
+    <!-- COLUMNA 3: WIDGETS LATERALES -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVIGATION &bull; EXTRAS</div>
@@ -866,7 +885,7 @@
       document.body.classList.remove('aura-0', 'aura-1', 'aura-2', 'aura-3', 'aura-4', 'aura-5', 'aura-6', 'aura-7');
       document.body.classList.add(`aura-${index}`);
 
-      // Cambiar los íconos del fondo dinámicamente por toda la pantalla según la canción
+      // Cambiar los íconos del fondo dinámicamente bien distribuidos a los lados
       const icons = playlist[index].bgIcons;
       for (let i = 1; i <= 7; i++) {
         const iconElem = document.getElementById(`bg-icon-${i}`);
