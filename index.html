@@ -12,46 +12,47 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, sans-serif;
     }
 
+    /* Colores estéticos oscuros y auras dinámicas */
     :root {
-      --theme-bg: #1c1424;
+      --theme-bg: #0b0b0f;
       --accent-color: #f472b6;
       --accent-glow: rgba(244, 114, 182, 0.4);
-      --panel-bg: rgba(45, 20, 38, 0.88);
-      --panel-border: rgba(244, 114, 182, 0.4);
+      --panel-bg: rgba(15, 15, 20, 0.92);
+      --panel-border: rgba(244, 114, 182, 0.3);
       --panel-text: #fdf2f8;
       --sub-text: #f7a8d8;
     }
 
     body.theme-0 {
-      --theme-bg: linear-gradient(135deg, #23122c, #31183c, #160c1d);
+      --theme-bg: linear-gradient(135deg, #0d0d12, #14141c, #08080a);
       --accent-color: #f472b6;
-      --accent-glow: rgba(244, 114, 182, 0.5);
-      --panel-bg: rgba(42, 18, 40, 0.9);
-      --panel-border: rgba(244, 114, 182, 0.4);
+      --accent-glow: rgba(244, 114, 182, 0.45);
+      --panel-bg: rgba(16, 16, 22, 0.94);
+      --panel-border: rgba(244, 114, 182, 0.35);
       --panel-text: #fdf2f8;
       --sub-text: #f7a8d8;
     }
     body.theme-1 {
-      --theme-bg: linear-gradient(135deg, #0f1d30, #172d4c, #0a121f);
+      --theme-bg: linear-gradient(135deg, #081018, #0f1824, #050a0f);
       --accent-color: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.5);
-      --panel-bg: rgba(16, 35, 56, 0.9);
-      --panel-border: rgba(56, 189, 248, 0.4);
+      --accent-glow: rgba(56, 189, 248, 0.45);
+      --panel-bg: rgba(12, 20, 30, 0.94);
+      --panel-border: rgba(56, 189, 248, 0.35);
       --panel-text: #f0f9ff;
       --sub-text: #7dd3fc;
     }
     body.theme-2 {
-      --theme-bg: linear-gradient(135deg, #201336, #321c54, #120a1f);
+      --theme-bg: linear-gradient(135deg, #100b18, #181124, #08060d);
       --accent-color: #c084fc;
-      --accent-glow: rgba(192, 132, 252, 0.5);
-      --panel-bg: rgba(35, 20, 61, 0.9);
-      --panel-border: rgba(192, 132, 252, 0.4);
+      --accent-glow: rgba(192, 132, 252, 0.45);
+      --panel-bg: rgba(18, 12, 28, 0.94);
+      --panel-border: rgba(192, 132, 252, 0.35);
       --panel-text: #fdf4ff;
       --sub-text: #e879f9;
     }
 
     body {
-      background: linear-gradient(135deg, #23122c, #1b1226, #140d1a);
+      background: #0b0b0f;
       color: #f1f5f9;
       min-height: 100vh;
       display: flex;
@@ -85,7 +86,7 @@
       pointer-events: all;
     }
 
-    /* FONDO CON MÚLTIPLES HUELLITAS Y NOTAS MUSICALES */
+    /* FONDO CON HUELLITAS Y NOTAS FLOTANTES */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -118,16 +119,16 @@
       100% { transform: translateY(-10vh) rotate(35deg) scale(1.3); opacity: 0; }
     }
 
-    /* CONTENEDOR PRINCIPAL - NUEVO ESTILO HOLOGRÁFICO / CRISTAL ESPACIAL */
+    /* CONTENEDOR PRINCIPAL ESTÉTICO OSCURO */
     .main-container {
-      background: rgba(35, 20, 48, 0.75);
+      background: rgba(14, 14, 18, 0.85);
       backdrop-filter: blur(25px);
-      border: 2px solid rgba(244, 114, 182, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.08);
       border-radius: 24px;
       width: 100%;
       max-width: 1000px;
       min-height: 580px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.03);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
       display: flex;
       position: relative;
       overflow: hidden;
@@ -139,7 +140,7 @@
       background: var(--panel-bg);
       backdrop-filter: blur(25px);
       border: 2px solid var(--accent-color);
-      box-shadow: 0 0 55px var(--accent-glow), 0 30px 70px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 55px var(--accent-glow), 0 30px 70px rgba(0, 0, 0, 0.8);
       color: var(--panel-text);
       flex-direction: column;
       padding: 25px;
@@ -148,7 +149,7 @@
 
     .book-binding {
       width: 26px;
-      background: linear-gradient(90deg, rgba(20,10,30,0.6) 0%, rgba(244,114,182,0.15) 50%, rgba(20,10,30,0.6) 100%);
+      background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(255,255,255,0.04) 50%, rgba(0,0,0,0.8) 100%);
       position: absolute;
       top: 0;
       bottom: 0;
@@ -164,18 +165,18 @@
       pointer-events: none;
     }
 
-    /* VISTA INICIAL: DISEÑO FUTURISTA ARMADO (ESTILO TARJETAS DE CRISTAL) */
+    /* VISTA INICIAL */
     .book-view-left, .book-view-right {
       flex: 1;
-      padding: 40px;
+      padding: 35px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.5s ease;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(0, 0, 0, 0.15);
     }
 
-    .book-view-left { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+    .book-view-left { border-right: 1px solid rgba(255, 255, 255, 0.06); }
 
     body.playing .book-view-left, 
     body.playing .book-view-right {
@@ -205,7 +206,7 @@
     }
 
     .corner-profile {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--panel-border);
       border-radius: 14px;
       padding: 12px 18px;
@@ -228,7 +229,7 @@
     .nav-tabs {
       display: flex;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--panel-border);
       padding: 5px;
       border-radius: 14px;
@@ -264,7 +265,7 @@
 
     /* REPRODUCTOR */
     .massive-player {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--panel-border);
       border-radius: 24px;
       padding: 24px;
@@ -273,7 +274,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
     .massive-cover {
@@ -368,7 +369,7 @@
       align-items: center;
       width: 100%;
       max-width: 680px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--panel-border);
       border-radius: 20px;
       padding: 15px;
@@ -393,7 +394,7 @@
     }
 
     .draw-btn {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--panel-border);
       color: var(--panel-text);
       padding: 6px 14px;
@@ -410,7 +411,7 @@
       flex-direction: column;
       width: 100%;
       max-width: 550px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--panel-border);
       border-radius: 20px;
       padding: 20px;
@@ -421,7 +422,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
       padding: 10px 15px;
       border-radius: 12px;
       border: 1px solid var(--panel-border);
@@ -450,7 +451,7 @@
     .corner-playlist {
       display: flex;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--panel-border);
       padding: 10px 15px;
       border-radius: 14px;
@@ -463,7 +464,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--panel-border);
       padding: 6px 10px;
       border-radius: 10px;
@@ -475,7 +476,7 @@
     .mini-track:hover, .mini-track.active {
       border-color: var(--accent-color);
       box-shadow: 0 0 12px var(--accent-glow);
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .mini-thumb {
@@ -485,26 +486,71 @@
       object-fit: cover;
     }
 
-    /* ESTILOS INICIALES (FUTURISTAS ARMADOS EN CRISTAL) */
-    .page-title {
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #ffffff;
+    /* ESTILOS INICIALES OSCUROS AESTHETIC */
+    .top-profile-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
       margin-bottom: 15px;
-      text-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
+    }
+
+    .profile-avatar-main {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #f472b6;
+      box-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffffff;
     }
 
     .cyber-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      backdrop-filter: blur(10px);
+      margin-bottom: 8px;
+    }
+
+    /* Sección de los 3 amigos circulares abajo en identidad */
+    .friends-footer-section {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .friends-circles-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .friend-circle-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+
+    .friend-mini-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #f472b6;
     }
 
     .chapter-tag {
@@ -528,8 +574,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 8px 12px;
       border-radius: 10px;
       cursor: pointer;
@@ -537,7 +583,7 @@
     }
 
     .track-item-book:hover {
-      background: rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.08);
       border-color: #f472b6;
       box-shadow: 0 0 10px rgba(244, 114, 182, 0.3);
     }
@@ -548,7 +594,7 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- FONDO CON MÚLTIPLES HUELLITAS Y NOTAS MUSICALES -->
+  <!-- FONDO CON HUELLITAS Y NOTAS MUSICALES -->
   <div class="floating-bg-container" id="floating-bg">
     <div class="float-elem" style="left: 4%; animation-duration: 8s; animation-delay: 0s;">🐾</div>
     <div class="float-elem" style="left: 14%; animation-duration: 11s; animation-delay: 1.5s;">♫</div>
@@ -564,19 +610,41 @@
   <div class="main-container" id="main-container">
     <div class="book-binding"></div>
 
-    <!-- VISTA INICIAL: DISEÑO FUTURISTA ARMADO (CRISTAL) -->
+    <!-- VISTA INICIAL: OSCURO AESTHETIC CON FOTO DE PERFIL Y AMIGOS CIRCULARES -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">CAPÍTULO I — IDENTIDAD</div>
-        <div style="margin-top: 20px;">
-          <div class="page-title">ALLIE</div>
+        <div style="margin-top: 15px;">
+          <div class="top-profile-area">
+            <!-- Círculo superior para la foto de perfil -->
+            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="profile-avatar-main" alt="Avatar">
+            <div class="page-title">ALLIE</div>
+          </div>
+
           <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Name</span><strong style="color:#ffffff;">Allie</strong></div>
-          <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">País</span><strong style="color:#ffffff;">Perú</strong></div>
           <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Username</span><strong style="color:#ffffff;">Addictedtoyouu</strong></div>
           <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#f7a8d8;">Altura</span><strong style="color:#ffffff;">Mido menos que Bob Esponja</strong></div>
         </div>
       </div>
-      <div></div>
+
+      <!-- Círculos inferiores para los 3 amigos -->
+      <div class="friends-footer-section">
+        <div class="chapter-tag">AMIGOS</div>
+        <div class="friends-circles-row">
+          <div class="friend-circle-item">
+            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="friend-mini-avatar">
+            <span style="font-size:11px; font-weight:700; color:#ffffff;">Rexor</span>
+          </div>
+          <div class="friend-circle-item">
+            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="friend-mini-avatar">
+            <span style="font-size:11px; font-weight:700; color:#ffffff;">Friend 2</span>
+          </div>
+          <div class="friend-circle-item">
+            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="friend-mini-avatar">
+            <span style="font-size:11px; font-weight:700; color:#ffffff;">Friend 3</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="book-view-right">
@@ -584,7 +652,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
           <div class="chapter-tag">CAPÍTULO II — SONIDOS Y PLAYLIST</div>
         </div>
-        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 14px; margin-bottom: 12px; backdrop-filter: blur(10px);">
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px; margin-bottom: 12px;">
           <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
             <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:45px; height:45px; border-radius:8px; object-fit:cover; border: 1px solid #f472b6;">
             <div>
@@ -638,7 +706,7 @@
           </div>
         </div>
 
-        <!-- Pizarra grande con fondo blanco -->
+        <!-- Pizarra -->
         <div class="drawing-panel" id="view-drawing-board">
           <canvas id="draw-canvas" width="620" height="300"></canvas>
           <div class="drawing-tools">
@@ -669,7 +737,7 @@
 
       <div class="footer-row">
         <div class="corner-playlist" id="cyber-playlist"></div>
-        <div style="background: rgba(255,255,255,0.06); border:1px solid var(--panel-border); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:var(--sub-text);">
+        <div style="background: rgba(255,255,255,0.04); border:1px solid var(--panel-border); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:var(--sub-text);">
           <span>🔊</span>
           <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="accent-color: var(--accent-color); cursor:pointer;">
         </div>
