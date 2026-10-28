@@ -12,6 +12,16 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, sans-serif;
     }
 
+    :root {
+      --glow-color: rgba(255, 255, 255, 0.4);
+      --accent-main: #ffffff;
+    }
+
+    /* AURA DINÁMICA DE COLORES AL REPRODUCIR */
+    body.playing.aura-0 { --glow-color: rgba(56, 189, 248, 0.6); --accent-main: #38bdf8; }
+    body.playing.aura-1 { --glow-color: rgba(244, 114, 182, 0.6); --accent-main: #f472b6; }
+    body.playing.aura-2 { --glow-color: rgba(192, 132, 252, 0.6); --accent-main: #c084fc; }
+
     body {
       background: #0f1117;
       color: #f1f5f9;
@@ -46,7 +56,7 @@
       pointer-events: all;
     }
 
-    /* FONDO CON MUCHAS HUELLITAS Y NOTAS MUSICALES BLANCAS */
+    /* HUELLITAS Y NOTAS FLOTANTES MASIVAS */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -65,30 +75,30 @@
 
     .float-elem {
       position: absolute;
-      color: #ffffff;
-      opacity: 0.6;
-      font-size: 24px;
-      animation: floatUpElem 7s linear infinite;
-      text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+      color: var(--accent-main);
+      opacity: 0.75;
+      font-size: 26px;
+      animation: floatUpElem 6s linear infinite;
+      text-shadow: 0 0 15px var(--glow-color);
     }
 
     @keyframes floatUpElem {
-      0% { transform: translateY(105vh) rotate(0deg) scale(0.7); opacity: 0; }
-      15% { opacity: 0.8; }
-      85% { opacity: 0.8; }
-      100% { transform: translateY(-10vh) rotate(35deg) scale(1.3); opacity: 0; }
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.6); opacity: 0; }
+      20% { opacity: 0.9; }
+      80% { opacity: 0.9; }
+      100% { transform: translateY(-10vh) rotate(45deg) scale(1.4); opacity: 0; }
     }
 
-    /* CONTENEDOR PRINCIPAL - DISEÑO FUTURISTA DE CRISTAL */
+    /* CONTENEDOR PRINCIPAL */
     .main-container {
-      background: rgba(24, 27, 36, 0.85);
+      background: rgba(24, 27, 36, 0.88);
       backdrop-filter: blur(25px);
-      border: 2px solid rgba(255, 255, 255, 0.18);
+      border: 2px solid rgba(255, 255, 255, 0.15);
       border-radius: 24px;
       width: 100%;
       max-width: 1020px;
       min-height: 600px;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.03);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
       display: flex;
       position: relative;
       overflow: hidden;
@@ -97,10 +107,9 @@
     }
 
     body.playing .main-container {
-      background: rgba(18, 20, 28, 0.94);
-      backdrop-filter: blur(25px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 60px rgba(255, 255, 255, 0.2), 0 30px 70px rgba(0, 0, 0, 0.8);
+      background: rgba(18, 20, 28, 0.95);
+      border: 2px solid var(--accent-main);
+      box-shadow: 0 0 65px var(--glow-color), 0 30px 70px rgba(0, 0, 0, 0.8);
       color: #ffffff;
       flex-direction: column;
       padding: 25px;
@@ -125,7 +134,7 @@
       pointer-events: none;
     }
 
-    /* VISTA PRINCIPAL (INICIAL) */
+    /* VISTA INICIAL */
     .book-view-left, .book-view-right {
       flex: 1;
       padding: 35px;
@@ -210,9 +219,9 @@
     }
 
     .tab-btn.active, .tab-btn:hover {
-      background: #ffffff;
+      background: var(--accent-main);
       color: #0f1117;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 12px var(--glow-color);
     }
 
     /* CENTRO DINÁMICO */
@@ -225,7 +234,7 @@
       flex: 1;
     }
 
-    /* REPRODUCTOR */
+    /* REPRODUCTOR CON AURA DE COLOR */
     .massive-player {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -236,8 +245,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 30px var(--glow-color);
       backdrop-filter: blur(10px);
+      transition: box-shadow 0.5s ease;
     }
 
     .massive-cover {
@@ -245,8 +255,8 @@
       height: 150px;
       border-radius: 20px;
       object-fit: cover;
-      border: 3px solid #ffffff;
-      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+      border: 3px solid var(--accent-main);
+      box-shadow: 0 8px 25px var(--glow-color);
       margin-bottom: 14px;
     }
 
@@ -284,7 +294,7 @@
     .m-ctrl-btn:hover { color: #ffffff; }
 
     .m-play-btn {
-      background: #ffffff;
+      background: var(--accent-main);
       color: #0f1117;
       border: none;
       width: 44px;
@@ -296,7 +306,7 @@
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 15px var(--glow-color);
     }
 
     .massive-progress {
@@ -321,8 +331,8 @@
     .progress-bar-fill {
       width: 0%;
       height: 100%;
-      background: #ffffff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      background: var(--accent-main);
+      box-shadow: 0 0 10px var(--glow-color);
     }
 
     /* PIZARRA */
@@ -367,9 +377,9 @@
       font-weight: 700;
       cursor: pointer;
     }
-    .draw-btn:hover { background: #ffffff; color: #0f1117; }
+    .draw-btn:hover { background: var(--accent-main); color: #0f1117; }
 
-    /* AMIGOS (5 AMIGOS ESTILO REFERENCIA) */
+    /* AMIGOS (FRIEND 1 AL 5) */
     .friends-panel {
       display: none;
       flex-direction: column;
@@ -396,7 +406,7 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: #ffffff;
+      background: var(--accent-main);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -441,8 +451,8 @@
     }
 
     .mini-track:hover, .mini-track.active {
-      border-color: #ffffff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      border-color: var(--accent-main);
+      box-shadow: 0 0 10px var(--glow-color);
       background: rgba(255, 255, 255, 0.15);
     }
 
@@ -453,34 +463,43 @@
       object-fit: cover;
     }
 
-    /* ESTILOS INICIALES (ESTÉTICA ARCHIVE / SPOTIFY CON FOTO DE REFERENCIA) */
+    /* FOTO COMPACTA Y ELEGANTE */
     .page-title {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 900;
       letter-spacing: 2px;
       color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .profile-banner-container {
+      width: 100%;
+      height: 90px; /* Cuadro más compacto como pediste */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
       margin-bottom: 12px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .profile-banner-img {
       width: 100%;
-      height: 120px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      margin-bottom: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      height: 100%;
+      object-fit: cover; /* Ajustado para que encaje perfectamente */
     }
 
     .cyber-card {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 10px 14px;
+      border-radius: 10px;
+      padding: 8px 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .chapter-tag {
@@ -489,15 +508,15 @@
       text-transform: uppercase;
       color: #94a3b8;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .tracks-list-book {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       margin-top: 5px;
-      max-height: 170px;
+      max-height: 160px;
       overflow-y: auto;
     }
 
@@ -507,45 +526,47 @@
       gap: 10px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .track-item-book:hover {
       background: rgba(255, 255, 255, 0.1);
-      border-color: #ffffff;
+      border-color: var(--accent-main);
     }
   </style>
 </head>
-<body class="theme-0">
+<body class="aura-0">
 
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- FONDO CON HUELLITAS Y NOTAS FLOTANTES -->
+  <!-- HUELLITAS Y NOTAS FLOTANTES MASIVAS -->
   <div class="floating-bg-container" id="floating-bg">
-    <div class="float-elem" style="left: 4%; animation-duration: 8s; animation-delay: 0s;">🐾</div>
-    <div class="float-elem" style="left: 14%; animation-duration: 11s; animation-delay: 1.5s;">♫</div>
-    <div class="float-elem" style="left: 26%; animation-duration: 9s; animation-delay: 0.5s;">🐾</div>
-    <div class="float-elem" style="left: 38%; animation-duration: 10s; animation-delay: 2.5s;">♪</div>
-    <div class="float-elem" style="left: 50%; animation-duration: 7s; animation-delay: 1s;">🐾</div>
-    <div class="float-elem" style="left: 62%; animation-duration: 12s; animation-delay: 2s;">♫</div>
-    <div class="float-elem" style="left: 74%; animation-duration: 9s; animation-delay: 0.8s;">🐾</div>
-    <div class="float-elem" style="left: 86%; animation-duration: 8s; animation-delay: 3s;">♪</div>
-    <div class="float-elem" style="left: 94%; animation-duration: 10s; animation-delay: 1.2s;">🐾</div>
+    <div class="float-elem" style="left: 3%; animation-duration: 7s; animation-delay: 0s;">🐾</div>
+    <div class="float-elem" style="left: 12%; animation-duration: 9s; animation-delay: 1.2s;">♫</div>
+    <div class="float-elem" style="left: 22%; animation-duration: 8s; animation-delay: 0.4s;">🐾</div>
+    <div class="float-elem" style="left: 34%; animation-duration: 10s; animation-delay: 2s;">♪</div>
+    <div class="float-elem" style="left: 46%; animation-duration: 6s; animation-delay: 0.8s;">🐾</div>
+    <div class="float-elem" style="left: 58%; animation-duration: 11s; animation-delay: 1.5s;">♫</div>
+    <div class="float-elem" style="left: 70%; animation-duration: 8s; animation-delay: 0.2s;">🐾</div>
+    <div class="float-elem" style="left: 82%; animation-duration: 9s; animation-delay: 2.5s;">♪</div>
+    <div class="float-elem" style="left: 92%; animation-duration: 7s; animation-delay: 1s;">🐾</div>
   </div>
 
   <div class="main-container" id="main-container">
     <div class="book-binding"></div>
 
-    <!-- VISTA INICIAL (ESTILO ARCHIVE / SPOTIFY CON TU FOTO Y AMIGOS) -->
+    <!-- VISTA INICIAL (PERFIL COMPACTO Y AMIGOS FRIEND 1-5) -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">ARCHIVE &bull; PROFILE</div>
-        <!-- FOTO DE REFERENCIA INTEGRADA -->
-        <img src="https://i.postimg.cc/X71Gn2dB/images.jpg" class="profile-banner-img" alt="Allie Space">
+        <!-- FOTO COMPACTA -->
+        <div class="profile-banner-container">
+          <img src="https://i.postimg.cc/X71Gn2dB/images.jpg" class="profile-banner-img" alt="Allie Space">
+        </div>
         
         <div class="page-title">ALLIE</div>
         <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Name</span><strong style="color:#ffffff;">Allie</strong></div>
@@ -553,28 +574,28 @@
         <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff;">Mido menos que Bob Esponja</strong></div>
       </div>
 
-      <!-- SECCIÓN AMIGOS EN LA PANTALLA PRINCIPAL -->
+      <!-- SECCIÓN AMIGOS: FRIEND 1 AL 5 -->
       <div>
-        <div class="chapter-tag" style="margin-bottom: 6px;">FRIENDS</div>
+        <div class="chapter-tag" style="margin-bottom: 4px;">FRIENDS</div>
         <div style="display: flex; gap: 6px; overflow-x: auto;">
-          <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 10px; font-size: 10px; text-align: center; min-width: 60px;">
-            <div style="width: 24px; height: 24px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: bold;">R</div>
-            Rexor
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
+            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">1</div>
+            Friend 1
           </div>
-          <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 10px; font-size: 10px; text-align: center; min-width: 60px;">
-            <div style="width: 24px; height: 24px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: bold;">2</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
+            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">2</div>
             Friend 2
           </div>
-          <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 10px; font-size: 10px; text-align: center; min-width: 60px;">
-            <div style="width: 24px; height: 24px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: bold;">3</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
+            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">3</div>
             Friend 3
           </div>
-          <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 10px; font-size: 10px; text-align: center; min-width: 60px;">
-            <div style="width: 24px; height: 24px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: bold;">4</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
+            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">4</div>
             Friend 4
           </div>
-          <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 10px; font-size: 10px; text-align: center; min-width: 60px;">
-            <div style="width: 24px; height: 24px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: bold;">5</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
+            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">5</div>
             Friend 5
           </div>
         </div>
@@ -586,14 +607,14 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
           <div class="chapter-tag">PLAYING FROM ARTIST</div>
         </div>
-        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 12px; margin-bottom: 12px;">
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 10px; margin-bottom: 12px;">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:45px; height:45px; border-radius:8px; object-fit:cover; border: 1px solid #ffffff;">
+            <img id="book-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width:42px; height:42px; border-radius:8px; object-fit:cover;">
             <div>
               <div id="book-title" style="font-size:12px; font-weight:800; color:#ffffff;">SUPERESTRELLA</div>
               <div id="book-artist" style="font-size:10px; color:#94a3b8;">Aitana</div>
             </div>
-            <button onclick="togglePlay()" style="margin-left:auto; background:#ffffff; color:#0f1117; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-weight:bold;" id="book-play-btn">▶</button>
+            <button onclick="togglePlay()" style="margin-left:auto; background:#ffffff; color:#0f1117; border:none; width:30px; height:30px; border-radius:50%; cursor:pointer; font-weight:bold;" id="book-play-btn">▶</button>
           </div>
         </div>
 
@@ -649,52 +670,22 @@
           </div>
         </div>
 
-        <!-- Sección Amigos Interactiva (5 Amigos) -->
+        <!-- Sección Amigos (Friend 1 al 5) -->
         <div class="friends-panel" id="view-friends">
           <div style="font-size:14px; font-weight:bold; color:#ffffff; margin-bottom:5px;">Comunidad & Amigos</div>
-          <div class="friend-card">
-            <div class="friend-avatar">R</div>
-            <div>
-              <div style="font-weight:bold; font-size:13px; color:#ffffff;">Rexor</div>
-              <div style="font-size:11px; color:#94a3b8;">Comunidad activa</div>
-            </div>
-          </div>
-          <div class="friend-card">
-            <div class="friend-avatar">2</div>
-            <div>
-              <div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 2</div>
-              <div style="font-size:11px; color:#94a3b8;">Miembro del espacio</div>
-            </div>
-          </div>
-          <div class="friend-card">
-            <div class="friend-avatar">3</div>
-            <div>
-              <div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 3</div>
-              <div style="font-size:11px; color:#94a3b8;">Miembro del espacio</div>
-            </div>
-          </div>
-          <div class="friend-card">
-            <div class="friend-avatar">4</div>
-            <div>
-              <div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 4</div>
-              <div style="font-size:11px; color:#94a3b8;">Miembro del espacio</div>
-            </div>
-          </div>
-          <div class="friend-card">
-            <div class="friend-avatar">5</div>
-            <div>
-              <div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 5</div>
-              <div style="font-size:11px; color:#94a3b8;">Miembro del espacio</div>
-            </div>
-          </div>
+          <div class="friend-card"><div class="friend-avatar">1</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 1</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
+          <div class="friend-card"><div class="friend-avatar">2</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 2</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
+          <div class="friend-card"><div class="friend-avatar">3</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 3</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
+          <div class="friend-card"><div class="friend-avatar">4</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 4</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
+          <div class="friend-card"><div class="friend-avatar">5</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Friend 5</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
         </div>
       </div>
 
       <div class="footer-row">
         <div class="corner-playlist" id="cyber-playlist"></div>
-        <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#94a3b8;">
+        <div style="background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); padding:10px 15px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#94a3b8;">
           <span>🔊</span>
-          <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="accent-color: #ffffff; cursor:pointer;">
+          <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="cursor:pointer;">
         </div>
       </div>
     </div>
@@ -715,11 +706,16 @@
     const audio = document.getElementById('audio-player');
     const introOverlay = document.getElementById('intro-overlay');
 
+    function updateAuraTheme(index) {
+      document.body.classList.remove('aura-0', 'aura-1', 'aura-2');
+      document.body.classList.add(`aura-${index}`);
+    }
+
     function renderPlaylists() {
       const bookContainer = document.getElementById('book-playlist-container');
       bookContainer.innerHTML = playlist.map((song, i) => `
         <div class="track-item-book" onclick="playSong(${i})">
-          <img src="${song.cover}" style="width:30px; height:30px; border-radius:6px; object-fit:cover;">
+          <img src="${song.cover}" style="width:28px; height:28px; border-radius:6px; object-fit:cover;">
           <div style="flex:1;">
             <div style="font-size:11px; font-weight:700; color:#ffffff;">${song.title}</div>
             <div style="font-size:9px; color:#94a3b8;">${song.artist}</div>
@@ -767,6 +763,7 @@
 
     function playSong(index) {
       currentIdx = index;
+      updateAuraTheme(currentIdx);
       audio.src = playlist[currentIdx].file;
       audio.play();
 
