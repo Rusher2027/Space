@@ -89,14 +89,14 @@
       100% { transform: translateY(-10vh) rotate(45deg) scale(1.4); opacity: 0; }
     }
 
-    /* CONTENEDOR PRINCIPAL */
+    /* CONTENEDOR PRINCIPAL AMPLIADO PARA OPCIONES LATERALES */
     .main-container {
       background: rgba(24, 27, 36, 0.88);
       backdrop-filter: blur(25px);
       border: 2px solid rgba(255, 255, 255, 0.15);
       border-radius: 24px;
       width: 100%;
-      max-width: 1020px;
+      max-width: 1200px; /* Ampliado para dejar espacio a los paneles laterales */
       min-height: 600px;
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
       display: flex;
@@ -122,7 +122,7 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 50%;
+      left: calc(33% + 40px);
       transform: translateX(-50%);
       z-index: 20;
       pointer-events: none;
@@ -134,10 +134,9 @@
       pointer-events: none;
     }
 
-    /* VISTA INICIAL */
-    .book-view-left, .book-view-right {
-      flex: 1;
-      padding: 35px;
+    /* VISTA INICIAL DE 3 COLUMNAS (IZQUIERDA: PERFIL, CENTRO: LIBRERÍA, DERECHA: OPCIONES LATERALES) */
+    .book-view-left, .book-view-center, .book-view-right {
+      padding: 25px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -145,9 +144,12 @@
       background: rgba(24, 27, 36, 0.6);
     }
 
-    .book-view-left { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+    .book-view-left { width: 32%; border-right: 1px solid rgba(255, 255, 255, 0.08); }
+    .book-view-center { width: 38%; border-right: 1px solid rgba(255, 255, 255, 0.08); }
+    .book-view-right { width: 30%; }
 
     body.playing .book-view-left, 
+    body.playing .book-view-center,
     body.playing .book-view-right {
       display: none;
     }
@@ -463,43 +465,42 @@
       object-fit: cover;
     }
 
-    /* FOTO COMPACTA Y ELEGANTE */
+    /* ELEMENTOS DE PERFIL Y TARJETAS LATERALES */
     .page-title {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 900;
       letter-spacing: 2px;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .profile-banner-container {
-      width: 100%;
-      height: 90px; /* Cuadro más compacto como pediste */
-      border-radius: 12px;
+      width: 110px;
+      height: 110px;
+      border-radius: 14px;
       overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      margin-bottom: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      margin-bottom: 10px;
       background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     }
 
     .profile-banner-img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ajustado para que encaje perfectamente */
+      object-fit: cover;
+      object-position: center top;
     }
 
     .cyber-card {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
-      padding: 8px 12px;
+      padding: 6px 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .chapter-tag {
@@ -508,7 +509,16 @@
       text-transform: uppercase;
       color: #94a3b8;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
+    }
+
+    .side-widget-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(8px);
     }
 
     .tracks-list-book {
@@ -516,7 +526,7 @@
       flex-direction: column;
       gap: 6px;
       margin-top: 5px;
-      max-height: 160px;
+      max-height: 150px;
       overflow-y: auto;
     }
 
@@ -559,52 +569,54 @@
   <div class="main-container" id="main-container">
     <div class="book-binding"></div>
 
-    <!-- VISTA INICIAL (PERFIL COMPACTO Y AMIGOS FRIEND 1-5) -->
+    <!-- VISTA INICIAL DE 3 COLUMNAS (ESTILO REFERENCIA CON OPCIONES LATERALES) -->
+    
+    <!-- COLUMNA 1: PERFIL Y FOTO -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">ARCHIVE &bull; PROFILE</div>
-        <!-- FOTO COMPACTA -->
         <div class="profile-banner-container">
           <img src="https://i.postimg.cc/X71Gn2dB/images.jpg" class="profile-banner-img" alt="Allie Space">
         </div>
         
         <div class="page-title">ALLIE</div>
-        <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Name</span><strong style="color:#ffffff;">Allie</strong></div>
-        <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Username</span><strong style="color:#ffffff;">Addictedtoyouu</strong></div>
-        <div class="cyber-card"><span style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff;">Mido menos que Bob Esponja</strong></div>
+        <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Name</span><strong style="color:#ffffff; font-size:12px;">Allie</strong></div>
+        <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Username</span><strong style="color:#ffffff; font-size:12px;">Addictedtoyouu</strong></div>
+        <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff; font-size:11px;">Mido menos que Bob Esponja</strong></div>
       </div>
 
       <!-- SECCIÓN AMIGOS: FRIEND 1 AL 5 -->
       <div>
         <div class="chapter-tag" style="margin-bottom: 4px;">FRIENDS</div>
-        <div style="display: flex; gap: 6px; overflow-x: auto;">
-          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
-            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">1</div>
+        <div style="display: flex; gap: 4px; overflow-x: auto;">
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 6px; font-size: 9px; text-align: center; min-width: 48px;">
+            <div style="width: 18px; height: 18px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 9px;">1</div>
             Friend 1
           </div>
-          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
-            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">2</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 6px; font-size: 9px; text-align: center; min-width: 48px;">
+            <div style="width: 18px; height: 18px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 9px;">2</div>
             Friend 2
           </div>
-          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
-            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">3</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 6px; font-size: 9px; text-align: center; min-width: 48px;">
+            <div style="width: 18px; height: 18px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 9px;">3</div>
             Friend 3
           </div>
-          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
-            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">4</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 6px; font-size: 9px; text-align: center; min-width: 48px;">
+            <div style="width: 18px; height: 18px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 9px;">4</div>
             Friend 4
           </div>
-          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 5px 8px; font-size: 10px; text-align: center; min-width: 55px;">
-            <div style="width: 22px; height: 22px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: bold; font-size: 10px;">5</div>
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 6px; font-size: 9px; text-align: center; min-width: 48px;">
+            <div style="width: 18px; height: 18px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 9px;">5</div>
             Friend 5
           </div>
         </div>
       </div>
     </div>
 
-    <div class="book-view-right">
+    <!-- COLUMNA 2: REPRODUCTOR Y CANCIONES -->
+    <div class="book-view-center">
       <div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <div class="chapter-tag">PLAYING FROM ARTIST</div>
         </div>
         <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 10px; margin-bottom: 12px;">
@@ -620,6 +632,35 @@
 
         <div class="chapter-tag" style="margin-bottom: 6px;">CANCIONES</div>
         <div class="tracks-list-book" id="book-playlist-container"></div>
+      </div>
+      <div></div>
+    </div>
+
+    <!-- COLUMNA 3: OPCIONES Y WIDGETS LATERALES (GALERÍA Y MÁS) -->
+    <div class="book-view-right">
+      <div>
+        <div class="chapter-tag">NAVIGATION &bull; EXTRAS</div>
+        
+        <div class="side-widget-card" style="text-align: center;">
+          <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">GALLERY</div>
+          <div style="font-size: 9px; color: #94a3b8; margin-bottom: 8px;">Backstage Photos</div>
+          <div style="height: 65px; border-radius: 8px; background: url('https://i.postimg.cc/X71Gn2dB/images.jpg') center/cover; border: 1px solid rgba(255,255,255,0.2);"></div>
+        </div>
+
+        <div class="side-widget-card">
+          <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">LATEST ALBUM</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 32px; height: 32px; background: #38bdf8; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 10px; color:#0f1117;">AZ</div>
+            <div>
+              <div style="font-size: 10px; font-weight: bold; color: #ffffff;">CUARTO AZUL</div>
+              <div style="font-size: 8px; color: #94a3b8;">2025 &bull; Album</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-widget-card" style="padding: 10px; text-align: center;">
+          <div style="font-size: 10px; color: #94a3b8;">Status: <span style="color: #38bdf8; font-weight: bold;">Listening to music 🎧</span></div>
+        </div>
       </div>
       <div></div>
     </div>
