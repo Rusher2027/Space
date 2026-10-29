@@ -55,28 +55,6 @@
       position: relative;
     }
 
-    /* OVERLAY GIF DE INTRO */
-    .intro-gif-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #000;
-      background-image: url('https://i.postimg.cc/Nfq1QBLP/f87ea7ba7524072a16622a83b588f48e-(1).gif');
-      background-size: cover;
-      background-position: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.8s ease;
-    }
-
-    .intro-gif-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
     /* FIGURAS DINÁMICAS DE FONDO */
     .floating-bg-container {
       position: fixed;
@@ -475,7 +453,7 @@
       100% { transform: scaleY(1); }
     }
 
-    /* BARRA DE VOLUMEN EN LA DERECHA (DEBAJO DE VIBE) */
+    /* BARRA DE VOLUMEN EN LA DERECHA */
     .sidebar-volume-box {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -633,9 +611,6 @@
 </head>
 <body class="aura-0">
 
-  <!-- OVERLAY GIF DE INTRO -->
-  <div class="intro-gif-overlay" id="intro-overlay"></div>
-
   <!-- FIGURAS DINÁMICAS DE FONDO -->
   <div class="floating-bg-container" id="floating-bg">
     <div class="float-shape" style="left: 1%; animation-duration: 9s; animation-delay: 0s;" id="bg-icon-1">🌙</div>
@@ -682,10 +657,10 @@
         </div>
       </div>
 
-      <!-- Frase destacada -->
+      <!-- Frase destacada (CON CLASE DINÁMICA) -->
       <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 12px; margin-top: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
         <div class="dynamic-accent-text" style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; margin-bottom: 6px;">Frase</div>
-        <div style="font-size: 13px; color: #ffffff; font-style: italic; line-height: 1.4; font-weight: 600;">"Echo de menos tú y yo aquí en mi cuarto, pero te lo confieso, lo veía venir"</div>
+        <div class="dynamic-accent-text" style="font-size: 13px; font-style: italic; line-height: 1.4; font-weight: 600;">"Echo de menos tú y yo aquí en mi cuarto, pero te lo confieso, lo veía venir"</div>
       </div>
     </div>
 
@@ -716,7 +691,7 @@
       <div>
         <div class="chapter-tag">NAVEGACIÓN &bull; EXTRAS</div>
         
-        <!-- CUADRO GRANDE CON LA CANCIÓN SELECCIONADA (JUNO POR DEFECTO) -->
+        <!-- CUADRO GRANDE CON LA CANCIÓN SELECCIONADA -->
         <div class="side-widget-card" style="text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2);">
           <div class="dynamic-accent-text" style="font-size: 10px; font-weight: bold; margin-bottom: 6px; letter-spacing: 1px;">SELECCIONADA</div>
           <img id="side-preview-cover" src="https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg" style="width: 85px; height: 85px; border-radius: 14px; object-fit: cover; border: 2px solid var(--accent-main); box-shadow: 0 5px 15px rgba(0,0,0,0.4); margin: 0 auto 6px;">
@@ -882,9 +857,7 @@
     ];
 
     let currentIdx = 0;
-    let hasPlayedIntro = false;
     const audio = document.getElementById('audio-player');
-    const introOverlay = document.getElementById('intro-overlay');
 
     function formatTime(seconds) {
       const minutes = Math.floor(seconds / 60);
@@ -909,7 +882,6 @@
       document.body.classList.remove('aura-0', 'aura-1', 'aura-2', 'aura-3', 'aura-4', 'aura-5', 'aura-6', 'aura-7');
       document.body.classList.add(`aura-${index % 8}`);
 
-      // Actualizar iconos de fondo
       const icons = playlist[index].bgIcons;
       for (let i = 1; i <= 7; i++) {
         const iconElem = document.getElementById(`bg-icon-${i}`);
@@ -918,7 +890,6 @@
         }
       }
 
-      // Actualizar notas flotantes del reproductor con los iconos de la canción
       for (let i = 1; i <= 6; i++) {
         const noteElem = document.getElementById(`note-${i}`);
         if (noteElem) {
@@ -1004,27 +975,13 @@
       renderPlaylists();
     }
 
-    function triggerStartSequence() {
-      if (!hasPlayedIntro) {
-        hasPlayedIntro = true;
-        introOverlay.classList.add('active');
-
-        setTimeout(() => {
-          introOverlay.classList.remove('active');
-          document.body.classList.add('playing');
-        }, 3500);
-      } else {
-        document.body.classList.add('playing');
-      }
-    }
-
     function playSong(index) {
       currentIdx = index;
       updateAuraTheme(currentIdx);
       audio.src = playlist[currentIdx].file;
       audio.play();
 
-      triggerStartSequence();
+      document.body.classList.add('playing');
       document.getElementById('cyber-play-btn').textContent = '❚❚';
       updateUI();
     }
@@ -1035,7 +992,7 @@
           playSong(0);
         } else {
           audio.play();
-          triggerStartSequence();
+          document.body.classList.add('playing');
           document.getElementById('cyber-play-btn').textContent = '❚❚';
           document.getElementById('side-preview-btn').textContent = '❚❚ Pausa';
         }
