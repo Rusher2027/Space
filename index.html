@@ -513,44 +513,6 @@
     }
     .draw-btn:hover { background: var(--accent-main); color: #0f1117; }
 
-    /* AMIGOS EN PESTAÑA ACTIVA */
-    .friends-panel {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      max-width: 550px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 20px;
-      gap: 10px;
-      backdrop-filter: blur(10px);
-      z-index: 15;
-      margin: 0 auto;
-    }
-    .friends-panel.active { display: flex; }
-    .friend-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 8px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .friend-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--accent-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #0f1117;
-      font-size: 12px;
-    }
-
     /* FOOTER */
     .footer-row {
       display: flex;
@@ -682,7 +644,7 @@
         <div class="side-widget-card">
           <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">ÚLTIMO ÁLBUM</div>
           <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="width: 28px; height: 28px; background: #38bdf8; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 9px; color:#0f1117;">AZ</div>
+            <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;">
             <div>
               <div style="font-size: 10px; font-weight: bold; color: #ffffff;">CUARTO AZUL</div>
               <div style="font-size: 8px; color: #94a3b8;">2025 &bull; Álbum</div>
@@ -698,32 +660,6 @@
             <div>
               <div style="font-size: 10px; font-weight: bold; color: #ffffff;">SUPERESTRELLA</div>
               <div style="font-size: 8px; color: #94a3b8;">Aitana &bull; Sencillo</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="side-widget-card" style="padding: 8px;">
-          <div style="font-size: 10px; font-weight: bold; color: #ffffff; margin-bottom: 4px;">AMIGOS</div>
-          <div style="display: flex; gap: 3px; justify-content: space-between;">
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 3px; font-size: 8px; text-align: center; flex: 1;">
-              <div style="width: 14px; height: 14px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 8px;">1</div>
-              F1
-            </div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 3px; font-size: 8px; text-align: center; flex: 1;">
-              <div style="width: 14px; height: 14px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 8px;">2</div>
-              F2
-            </div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 3px; font-size: 8px; text-align: center; flex: 1;">
-              <div style="width: 14px; height: 14px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 8px;">3</div>
-              F3
-            </div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 3px; font-size: 8px; text-align: center; flex: 1;">
-              <div style="width: 14px; height: 14px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 8px;">4</div>
-              F4
-            </div>
-            <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 3px; font-size: 8px; text-align: center; flex: 1;">
-              <div style="width: 14px; height: 14px; background: #fff; color: #0f1117; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2px; font-weight: bold; font-size: 8px;">5</div>
-              F5
             </div>
           </div>
         </div>
@@ -754,7 +690,6 @@
         <div class="nav-tabs">
           <button class="tab-btn active" id="tab-player" onclick="switchTab('player')">🎵 Reproductor</button>
           <button class="tab-btn" id="tab-canvas" onclick="switchTab('canvas')">✏️ Pizarra</button>
-          <button class="tab-btn" id="tab-friends" onclick="switchTab('friends')">💬 Amigos</button>
         </div>
       </div>
 
@@ -791,16 +726,6 @@
             <button class="draw-btn" onclick="clearCanvas()">🧹 Limpiar Pizarra</button>
             <span style="font-size: 11px; color: #94a3b8;">Dibuja o escribe libremente en la hoja blanca</span>
           </div>
-        </div>
-
-        <!-- Sección Amigos -->
-        <div class="friends-panel" id="view-friends">
-          <div style="font-size:14px; font-weight:bold; color:#ffffff; margin-bottom:5px;">Comunidad & Amigos</div>
-          <div class="friend-card"><div class="friend-avatar">1</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Amigo 1</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
-          <div class="friend-card"><div class="friend-avatar">2</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Amigo 2</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
-          <div class="friend-card"><div class="friend-avatar">3</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Amigo 3</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
-          <div class="friend-card"><div class="friend-avatar">4</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Amigo 4</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
-          <div class="friend-card"><div class="friend-avatar">5</div><div><div style="font-weight:bold; font-size:13px; color:#ffffff;">Amigo 5</div><div style="font-size:11px; color:#94a3b8;">Miembro activo</div></div></div>
         </div>
 
         <!-- 3. WIDGET DERECHO: VIBE & ECUALIZADOR -->
@@ -977,23 +902,19 @@
     function switchTab(tab) {
       const playerView = document.getElementById('view-massive-player');
       const canvasView = document.getElementById('view-drawing-board');
-      const friendsView = document.getElementById('view-friends');
       const leftPlaylist = document.getElementById('cyber-playlist');
       const rightVibe = document.querySelector('.active-right-sidebar');
 
       const btnPlayer = document.getElementById('tab-player');
       const btnCanvas = document.getElementById('tab-canvas');
-      const btnFriends = document.getElementById('tab-friends');
 
       playerView.style.display = 'none';
       canvasView.classList.remove('active');
-      friendsView.classList.remove('active');
       if (leftPlaylist) leftPlaylist.style.display = 'none';
       if (rightVibe) rightVibe.style.display = 'none';
 
       btnPlayer.classList.remove('active');
       btnCanvas.classList.remove('active');
-      btnFriends.classList.remove('active');
 
       if (tab === 'player') {
         playerView.style.display = 'flex';
@@ -1003,9 +924,6 @@
       } else if (tab === 'canvas') {
         canvasView.classList.add('active');
         btnCanvas.classList.add('active');
-      } else if (tab === 'friends') {
-        friendsView.classList.add('active');
-        btnFriends.classList.add('active');
       }
     }
 
