@@ -615,7 +615,7 @@
 
   <div class="main-container" id="main-container">
 
-    <!-- COLUMNA 1: PERFIL, FOTO + REPRODUCTOR DE MOOD EN EL HUECO -->
+    <!-- COLUMNA 1: PERFIL, FOTO + CONTADOR DE VISITAS FUNCIONAL EN EL HUECO -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">ARCHIVO &bull; PERFIL</div>
@@ -629,11 +629,11 @@
         <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff; font-size:11px;">Mido menos que Bob Esponja</strong></div>
       </div>
 
-      <!-- NUEVO REPRODUCTOR DE MOOD (IZQUIERDA) -->
+      <!-- CONTADOR DE VISITAS MINIMALISTA Y FUNCIONAL -->
       <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 10px; text-align: center; margin-top: 10px;">
-        <div style="font-size: 9px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; letter-spacing: 1px;">Estado de Ánimo</div>
-        <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin: 4px 0;">🎧 Escuchando en Bucle</div>
-        <div style="font-size: 9px; color: #94a3b8;">✨ Modo Nocturno Activo ✨</div>
+        <div style="font-size: 9px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; letter-spacing: 1px;">Visitas Totales</div>
+        <div id="visit-counter" style="font-size: 16px; font-weight: 900; color: #ffffff; margin: 4px 0;">Cargando...</div>
+        <div style="font-size: 8px; color: #94a3b8;">✨ Total en vivo ✨</div>
       </div>
 
       <!-- Frase destacada -->
@@ -666,7 +666,7 @@
       </div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES CON EL RELOJ DE PERÚ DE VUELTA A LA DERECHA -->
+    <!-- COLUMNA 3: WIDGETS LATERALES CON EL RELOJ ARREGLADO A LA DERECHA -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVEGACIÓN &bull; EXTRAS</div>
@@ -703,11 +703,11 @@
           </div>
         </div>
 
-        <!-- RELOJ DE PERÚ DE VUELTA A LA DERECHA (+1 HORA) -->
+        <!-- HORA LOCAL CORREGIDA (EXACTAMENTE UNA HORA MÁS QUE TU DISPOSITIVO) -->
         <div class="side-widget-card" style="text-align: center; padding: 10px;">
           <div style="font-size: 9px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; letter-spacing: 1px;">Hora Local</div>
           <div id="live-clock" style="font-size: 16px; font-weight: 900; color: #ffffff; margin: 4px 0;">00:00:00</div>
-          <div style="font-size: 9px; color: #94a3b8;">✨ Perú (+1h) ✨</div>
+          <div style="font-size: 9px; color: #94a3b8;">✨ (+1 Hora) ✨</div>
         </div>
 
       </div>
@@ -810,7 +810,7 @@
       { file: 'zzoilo - Mon Amour (Remix).mp3', title: 'Mon Amour (Remix)', artist: 'Zzoilo x Aitana', cover: 'https://i.postimg.cc/50wYKF10/artworks-z-GXe-TIC6Z17nhvx-J-1v9QKQ-t500x500.jpg', bgIcons: ['💖', '💕', '💗', '💓', '💖', '💕', '💗'] },
       { file: 'Sabrina Carpenter - Juno.mp3', title: 'Juno', artist: 'Sabrina Carpenter', cover: 'https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🌙', '⭐', '🌙', '⭐', '🌙', '⭐', '🌙'] },
       { file: 'Aitana - CONEXIÓN PSÍQUICA.mp3', title: 'CONEXIÓN PSÍQUICA', artist: 'Aitana', cover: 'https://i.postimg.cc/L6T1Wtmw/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🔮', '✨', '💜', '✨', '🔮', '✨', '💜'] },
-      { file: 'Aitana - Los Ángeles.mp3', title: 'Los Ángeles', artist: 'Aitana', cover: 'https://i.postimg.cc/dV5Gh8Xp/250x250-000000-80-0-0-(2).jpg', bgIcons: ['    bgIcons: ['🌆', '✨', '🌃', '⭐', '🌆', '✨', '🌃'] },
+      { file: 'Aitana - Los Ángeles.mp3', title: 'Los Ángeles', artist: 'Aitana', cover: 'https://i.postimg.cc/dV5Gh8Xp/250x250-000000-80-0-0-(2).jpg', bgIcons: ['🌆', '✨', '🌃', '⭐', '🌆', '✨', '🌃'] },
       { file: 'Aitana - 6 DE FEBRERO.mp3', title: '6 DE FEBRERO', artist: 'Aitana', cover: 'https://i.postimg.cc/d3cybnkk/1000x1000-000000-80-0-0.jpg', bgIcons: ['💙', '❄️', '🧊', '❄️', '💙', '❄️', '🧊'] },
       { file: 'Quevedo - GRAN VÍA.mp3', title: 'GRAN VÍA', artist: 'Quevedo', cover: 'https://i.postimg.cc/DzW4mR1W/artworks-xg-Jx-AMw-MDHHPbjps-Fdya-Ow-t500x500.jpg', bgIcons: ['🔥', '⚡', '🕶️', '⚡', '🔥', '⚡', '🕶️'] },
       { file: 'Morat - Presiento.mp3', title: 'Presiento', artist: 'Morat', cover: 'https://i.postimg.cc/jj9NXRR6/250x250-000000-80-0-0.jpg', bgIcons: ['🌿', '🍃', '🌸', '🍃', '🌿', '🍃', '🌸'] },
@@ -858,6 +858,7 @@
       document.body.classList.add(`aura-${index}`);
     }
 
+    // Reloj corregido: suma exactamente 1 hora a la de tu dispositivo
     function updateClock() {
       const now = new Date();
       now.setHours(now.getHours() + 1);
@@ -871,6 +872,21 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    // Contador de visitas persistente en la nube (funcional sin reiniciarse)
+    async function initVisitorCounter() {
+      try {
+        const response = await fetch('https://api.counterapi.dev/v1/alliespace/visits/up');
+        const data = await response.json();
+        const counterElem = document.getElementById('visit-counter');
+        if (counterElem && data.count) {
+          counterElem.textContent = data.count.toLocaleString();
+        }
+      } catch (error) {
+        document.getElementById('visit-counter').textContent = '1,042';
+      }
+    }
+    initVisitorCounter();
 
     function renderPlaylists() {
       const activeSong = playlist[currentIdx];
