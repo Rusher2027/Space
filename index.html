@@ -77,7 +77,7 @@
       pointer-events: all;
     }
 
-    /* FIGURAS DINÁMICAS */
+    /* FIGURAS DINÁMICAS DE FONDO */
     .floating-bg-container {
       position: fixed;
       top: 0;
@@ -109,7 +109,7 @@
       100% { transform: translateY(-10vh) rotate(360deg) scale(1.3); opacity: 0; }
     }
 
-    /* NOTAS MUSICALES */
+    /* NOTAS Y FIGURAS MUSICALES ALREDEDOR DEL REPRODUCTOR */
     .notes-around-player {
       position: absolute;
       top: 0;
@@ -272,7 +272,7 @@
     }
 
     .active-left-sidebar, .tracks-list-book {
-      max-height: 480px; /* Estirado hacia abajo hasta el borde del selector de colores */
+      max-height: 480px; /* Estirado hasta el selector de colores */
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -428,7 +428,7 @@
       box-shadow: 0 0 10px var(--glow-color);
     }
 
-    /* WIDGET DERECHO DE VIBE Y VOLUMEN ABAJO */
+    /* WIDGET DERECHO DE VIBE Y BARRA DE VOLUMEN */
     .active-right-sidebar {
       width: 260px;
       display: flex;
@@ -473,6 +473,26 @@
     @keyframes eqBounce {
       0% { transform: scaleY(0.3); }
       100% { transform: scaleY(1); }
+    }
+
+    /* BARRA DE VOLUMEN EN LA DERECHA (DEBAJO DE VIBE) */
+    .sidebar-volume-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 16px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      color: #94a3b8;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .sidebar-volume-box input[type="range"] {
+      flex: 1;
+      cursor: pointer;
     }
 
     /* PIZARRA */
@@ -520,28 +540,6 @@
       cursor: pointer;
     }
     .draw-btn:hover { background: var(--accent-main); color: #0f1117; }
-
-    /* FOOTER / BARRA DE VOLUMEN ABAJO A LA DERECHA */
-    .footer-row {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      width: 100%;
-      gap: 15px;
-    }
-
-    .volume-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 8px 14px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: #94a3b8;
-      backdrop-filter: blur(10px);
-    }
 
     /* PERFIL Y FOTO PRINCIPAL */
     .page-title {
@@ -638,15 +636,15 @@
   <!-- OVERLAY GIF DE INTRO -->
   <div class="intro-gif-overlay" id="intro-overlay"></div>
 
-  <!-- FIGURAS DINÁMICAS -->
+  <!-- FIGURAS DINÁMICAS DE FONDO -->
   <div class="floating-bg-container" id="floating-bg">
-    <div class="float-shape" style="left: 1%; animation-duration: 9s; animation-delay: 0s;" id="bg-icon-1">✨</div>
+    <div class="float-shape" style="left: 1%; animation-duration: 9s; animation-delay: 0s;" id="bg-icon-1">🌙</div>
     <div class="float-shape" style="left: 5%; animation-duration: 11s; animation-delay: 2s;" id="bg-icon-2">⭐</div>
-    <div class="float-shape" style="left: 9%; animation-duration: 8s; animation-delay: 1s;" id="bg-icon-3">✨</div>
+    <div class="float-shape" style="left: 9%; animation-duration: 8s; animation-delay: 1s;" id="bg-icon-3">🌙</div>
     <div class="float-shape" style="left: 91%; animation-duration: 10s; animation-delay: 3s;" id="bg-icon-4">⭐</div>
-    <div class="float-shape" style="left: 95%; animation-duration: 7s; animation-delay: 0.5s;" id="bg-icon-5">✨</div>
+    <div class="float-shape" style="left: 95%; animation-duration: 7s; animation-delay: 0.5s;" id="bg-icon-5">🌙</div>
     <div class="float-shape" style="left: 98%; animation-duration: 12s; animation-delay: 1.5s;" id="bg-icon-6">⭐</div>
-    <div class="float-shape" style="left: 50%; animation-duration: 9.5s; animation-delay: 2.2s;" id="bg-icon-7">✨</div>
+    <div class="float-shape" style="left: 50%; animation-duration: 9.5s; animation-delay: 2.2s;" id="bg-icon-7">🌙</div>
   </div>
 
   <div class="main-container" id="main-container">
@@ -713,12 +711,12 @@
       </div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES CON HORA Y PROGRESO DEL AÑO -->
+    <!-- COLUMNA 3: WIDGETS LATERALES -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVEGACIÓN &bull; EXTRAS</div>
         
-        <!-- CUADRO GRANDE CON LA CANCIÓN SELECCIONADA ACTUAL (JUNO POR DEFECTO) -->
+        <!-- CUADRO GRANDE CON LA CANCIÓN SELECCIONADA (JUNO POR DEFECTO) -->
         <div class="side-widget-card" style="text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2);">
           <div class="dynamic-accent-text" style="font-size: 10px; font-weight: bold; margin-bottom: 6px; letter-spacing: 1px;">SELECCIONADA</div>
           <img id="side-preview-cover" src="https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg" style="width: 85px; height: 85px; border-radius: 14px; object-fit: cover; border: 2px solid var(--accent-main); box-shadow: 0 5px 15px rgba(0,0,0,0.4); margin: 0 auto 6px;">
@@ -775,14 +773,14 @@
     <!-- VISTA ACTIVA / REPRODUCTOR PRINCIPAL -->
     <div class="active-view">
       
-      <!-- NOTAS MUSICALES ALREDEDOR DEL REPRODUCTOR -->
-      <div class="notes-around-player">
-        <div class="float-note" style="left: 28%; bottom: 20%; --rand-x: -55px; animation-duration: 4.8s; animation-delay: 0s;">♫</div>
-        <div class="float-note" style="left: 32%; bottom: 22%; --rand-x: -35px; animation-duration: 5.2s; animation-delay: 1.5s;">♪</div>
-        <div class="float-note" style="left: 30%; bottom: 18%; --rand-x: -70px; animation-duration: 4.5s; animation-delay: 3.0s;">🎵</div>
-        <div class="float-note" style="left: 68%; bottom: 20%; --rand-x: 55px; animation-duration: 5.0s; animation-delay: 0.8s;">♪</div>
-        <div class="float-note" style="left: 64%; bottom: 22%; --rand-x: 35px; animation-duration: 4.6s; animation-delay: 2.2s;">♫</div>
-        <div class="float-note" style="left: 66%; bottom: 18%; --rand-x: 70px; animation-duration: 5.4s; animation-delay: 3.6s;">🎵</div>
+      <!-- NOTAS Y FIGURAS MUSICALES ALREDEDOR DEL REPRODUCTOR (DINÁMICAS POR CANCIÓN) -->
+      <div class="notes-around-player" id="notes-container">
+        <div class="float-note" style="left: 28%; bottom: 20%; --rand-x: -55px; animation-duration: 4.8s; animation-delay: 0s;" id="note-1">🌙</div>
+        <div class="float-note" style="left: 32%; bottom: 22%; --rand-x: -35px; animation-duration: 5.2s; animation-delay: 1.5s;" id="note-2">⭐</div>
+        <div class="float-note" style="left: 30%; bottom: 18%; --rand-x: -70px; animation-duration: 4.5s; animation-delay: 3.0s;" id="note-3">🌙</div>
+        <div class="float-note" style="left: 68%; bottom: 20%; --rand-x: 55px; animation-duration: 5.0s; animation-delay: 0.8s;" id="note-4">⭐</div>
+        <div class="float-note" style="left: 64%; bottom: 22%; --rand-x: 35px; animation-duration: 4.6s; animation-delay: 2.2s;" id="note-5">🌙</div>
+        <div class="float-note" style="left: 66%; bottom: 18%; --rand-x: 70px; animation-duration: 5.4s; animation-delay: 3.6s;" id="note-6">⭐</div>
       </div>
 
       <div class="header-row">
@@ -815,7 +813,7 @@
 
           <div class="massive-progress">
             <span id="c-time">0:00</span>
-            <div class="progress-bar-bg" onclick="setProgress(event)">
+            <div class="progress-bar-bg" onclick="seekAudio(event)">
               <div class="progress-bar-fill" id="c-progress"></div>
             </div>
             <span id="t-duration">0:00</span>
@@ -831,7 +829,7 @@
           </div>
         </div>
 
-        <!-- 3. WIDGET DERECHO: VIBE & ECUALIZADOR -->
+        <!-- 3. WIDGET DERECHO: VIBE Y BARRA DE VOLUMEN ABAJO -->
         <div class="active-right-sidebar">
           <div class="vibe-card">
             <div style="font-size: 11px; font-weight: bold; color: #ffffff; letter-spacing: 1px; margin-bottom: 2px;">AMBIENTE ACTUAL</div>
@@ -845,17 +843,17 @@
             </div>
             <div style="font-size: 10px; color: var(--accent-main); font-weight: bold; margin-top: 4px;">♪ Reproduciendo en Vivo ♪</div>
           </div>
+
+          <!-- BARRA DE VOLUMEN EN LA DERECHA -->
+          <div class="sidebar-volume-box">
+            <span>🔊</span>
+            <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)">
+          </div>
         </div>
 
       </div>
 
-      <!-- FOOTER / BARRA DE VOLUMEN ABAJO A LA DERECHA -->
-      <div class="footer-row">
-        <div class="volume-box">
-          <span>🔊</span>
-          <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="cursor:pointer; width:100px;">
-        </div>
-      </div>
+      <div></div>
     </div>
 
   </div>
@@ -898,15 +896,33 @@
       audio.volume = val;
     }
 
+    function seekAudio(event) {
+      const bar = event.currentTarget;
+      const rect = bar.getBoundingClientRect();
+      const clickPosition = (event.clientX - rect.left) / bar.offsetWidth;
+      if (audio.duration) {
+        audio.currentTime = clickPosition * audio.duration;
+      }
+    }
+
     function updateAuraTheme(index) {
       document.body.classList.remove('aura-0', 'aura-1', 'aura-2', 'aura-3', 'aura-4', 'aura-5', 'aura-6', 'aura-7');
       document.body.classList.add(`aura-${index % 8}`);
 
+      // Actualizar iconos de fondo
       const icons = playlist[index].bgIcons;
       for (let i = 1; i <= 7; i++) {
         const iconElem = document.getElementById(`bg-icon-${i}`);
         if (iconElem) {
-          iconElem.textContent = icons[i - 1];
+          iconElem.textContent = icons[(i - 1) % icons.length];
+        }
+      }
+
+      // Actualizar notas flotantes del reproductor con los iconos de la canción
+      for (let i = 1; i <= 6; i++) {
+        const noteElem = document.getElementById(`note-${i}`);
+        if (noteElem) {
+          noteElem.textContent = icons[(i - 1) % icons.length];
         }
       }
     }
