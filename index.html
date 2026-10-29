@@ -17,15 +17,27 @@
       --accent-main: #ffffff;
     }
 
-    /* PALETA DE COLORES (LETRAS BLANCAS POR DEFECTO Y AZUL CELESTE) */
-    body.aura-0 { --glow-color: rgba(255, 255, 255, 0.8); --accent-main: #ffffff; } /* Blanco */
-    body.aura-1 { --glow-color: rgba(56, 189, 248, 0.8); --accent-main: #38bdf8; }  /* Azul Celeste */
-    body.aura-2 { --glow-color: rgba(251, 191, 36, 0.8); --accent-main: #fbbf24; }  /* Amarillo */
-    body.aura-3 { --glow-color: rgba(244, 114, 182, 0.8); --accent-main: #f472b6; } /* Rosa */
-    body.aura-4 { --glow-color: rgba(192, 132, 252, 0.8); --accent-main: #c084fc; } /* Morado */
-    body.aura-5 { --glow-color: rgba(52, 211, 153, 0.8); --accent-main: #34d399; }  /* Verde Menta */
-    body.aura-6 { --glow-color: rgba(248, 113, 113, 0.8); --accent-main: #f87171; } /* Coral */
-    body.aura-7 { --glow-color: rgba(148, 163, 184, 0.5); --accent-main: #94a3b8; } /* Gris Platino */
+    /* PALETA DE COLORES GLOBAL QUE AFECTA A TODO EL SPACE */
+    body.aura-0 { --glow-color: rgba(255, 255, 255, 0.6); --accent-main: #ffffff; } /* Blanco */
+    body.aura-1 { --glow-color: rgba(56, 189, 248, 0.6); --accent-main: #38bdf8; }  /* Azul Celeste */
+    body.aura-2 { --glow-color: rgba(251, 191, 36, 0.6); --accent-main: #fbbf24; }  /* Amarillo */
+    body.aura-3 { --glow-color: rgba(244, 114, 182, 0.6); --accent-main: #f472b6; } /* Rosa */
+    body.aura-4 { --glow-color: rgba(192, 132, 252, 0.6); --accent-main: #c084fc; } /* Morado */
+    body.aura-5 { --glow-color: rgba(52, 211, 153, 0.6); --accent-main: #34d399; }  /* Verde Menta */
+    body.aura-6 { --glow-color: rgba(248, 113, 113, 0.6); --accent-main: #f87171; } /* Coral */
+    body.aura-7 { --glow-color: rgba(148, 163, 184, 0.4); --accent-main: #94a3b8; } /* Platino */
+
+    /* APLICACIÓN GLOBAL DEL COLOR EN TÍTULOS, NOMBRES Y ELEMENTOS */
+    .chapter-tag, 
+    .page-title, 
+    .corner-title, 
+    .massive-song-title,
+    #side-preview-title,
+    #live-clock,
+    .mood-title {
+      color: var(--accent-main) !important;
+      transition: color 0.4s ease;
+    }
 
     body {
       background: #0f1117;
@@ -93,7 +105,7 @@
       100% { transform: translateY(-10vh) rotate(360deg) scale(1.3); opacity: 0; }
     }
 
-    /* NOTAS MUSICALES ALREDEDOR DEL REPRODUCTOR */
+    /* NOTAS MUSICALES */
     .notes-around-player {
       position: absolute;
       top: 0;
@@ -207,7 +219,6 @@
       font-size: 20px;
       font-weight: 900;
       letter-spacing: 2px;
-      color: #ffffff;
       margin-bottom: 2px;
     }
 
@@ -342,7 +353,6 @@
     .massive-song-title {
       font-size: 16px;
       font-weight: 900;
-      color: #ffffff;
       margin-bottom: 2px;
       text-align: center;
     }
@@ -414,7 +424,7 @@
       box-shadow: 0 0 10px var(--glow-color);
     }
 
-    /* WIDGET DERECHO DE VIBE / ECUALIZADOR ANIMADO */
+    /* WIDGET DERECHO DE VIBE */
     .active-right-sidebar {
       width: 260px;
       display: flex;
@@ -521,7 +531,6 @@
       font-size: 22px;
       font-weight: 900;
       letter-spacing: 2px;
-      color: #ffffff;
       margin-bottom: 6px;
     }
 
@@ -625,7 +634,7 @@
 
   <div class="main-container" id="main-container">
 
-    <!-- COLUMNA 1: PERFIL, FOTO + FLAG COUNTER / BANDERAS MINIMALISTA -->
+    <!-- COLUMNA 1: PERFIL, FOTO + TARJETA DE AESTHETIC MOOD -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">ARCHIVO &bull; PERFIL</div>
@@ -639,12 +648,10 @@
         <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff; font-size:11px;">Mido menos que Bob Esponja</strong></div>
       </div>
 
-      <!-- FLAG COUNTER MINIMALISTA -->
-      <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 10px; text-align: center; margin-top: 10px; overflow: hidden;">
-        <div style="font-size: 9px; text-transform: uppercase; color: #94a3b8; font-weight: 800; letter-spacing: 1px; margin-bottom: 6px;">VISITANTES</div>
-        <a href="https://info.flagcounter.com/S9sW" target="_blank" style="display: inline-block;">
-          <img src="https://s11.flagcounter.com/mini/S9sW/bg_0F1117/txt_FFFFFF/border_0F1117/flags_0/share_0/" alt="Flag Counter" border="0" style="max-width: 100%; height: auto; border-radius: 6px; opacity: 0.9;">
-        </a>
+      <!-- TARJETA AESTHETIC MOOD -->
+      <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 12px; text-align: center; margin-top: 10px;">
+        <div class="mood-title" style="font-size: 9px; text-transform: uppercase; font-weight: 800; letter-spacing: 2px; margin-bottom: 4px;">MOOD &bull; VIBE</div>
+        <div style="font-size: 13px; font-weight: 700; color: #ffffff;">✨ Nocturno & Inalcanzable 🌙</div>
       </div>
 
       <!-- Frase destacada -->
@@ -654,14 +661,14 @@
       </div>
     </div>
 
-    <!-- COLUMNA 2: PLAYLIST + COLOR DOTS SIN TEXTO -->
+    <!-- COLUMNA 2: PLAYLIST + COLOR DOTS LIMPIO -->
     <div class="book-view-center">
       <div>
         <div class="chapter-tag" style="margin-bottom: 6px;">CANCIONES</div>
         <div class="tracks-list-book" id="book-playlist-container"></div>
       </div>
       
-      <!-- CUADRO DE COLORES LIMPIO (SIN TEXTO) -->
+      <!-- CUADRO DE COLORES LIMPIO -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 10px; text-align: center; margin-top: 10px;">
         <div class="aura-selector-container">
           <div class="aura-dot" style="background: #ffffff; box-shadow: 0 0 6px #ffffff;" onclick="manualAura(0)" title="Blanco"></div>
@@ -676,7 +683,7 @@
       </div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES CON PROGRESO DEL AÑO -->
+    <!-- COLUMNA 3: WIDGETS LATERALES CON HORA Y PROGRESO DEL AÑO -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVEGACIÓN &bull; EXTRAS</div>
@@ -719,7 +726,7 @@
           <div id="live-clock" style="font-size: 16px; font-weight: 900; color: #ffffff; margin-top: 4px;">00:00:00</div>
         </div>
 
-        <!-- NUEVO CUADRITO DERECHO: BARRA DE PROGRESO DEL AÑO -->
+        <!-- BARRA DE PROGRESO DEL AÑO -->
         <div class="side-widget-card" style="padding: 10px; text-align: center;">
           <div style="display: flex; justify-content: space-between; font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">
             <span id="year-label">2026</span>
@@ -892,7 +899,6 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Cálculo dinámico de la barra de progreso del año
     function updateYearProgress() {
       const now = new Date();
       const startOfYear = new Date(now.getFullYear(), 0, 1);
