@@ -18,14 +18,14 @@
     }
 
     /* AURA DINÁMICA DE COLORES AL REPRODUCIR O SELECCIONAR */
-    body.aura-0 { --glow-color: rgba(56, 189, 248, 0.6); --accent-main: #38bdf8; }
-    body.aura-1 { --glow-color: rgba(244, 114, 182, 0.6); --accent-main: #f472b6; }
-    body.aura-2 { --glow-color: rgba(192, 132, 252, 0.6); --accent-main: #c084fc; }
-    body.aura-3 { --glow-color: rgba(52, 211, 153, 0.6); --accent-main: #34d399; }
-    body.aura-4 { --glow-color: rgba(251, 191, 36, 0.6); --accent-main: #fbbf24; }
-    body.aura-5 { --glow-color: rgba(248, 113, 113, 0.6); --accent-main: #f87171; }
-    body.aura-6 { --glow-color: rgba(129, 140, 248, 0.6); --accent-main: #818cf8; }
-    body.aura-7 { --glow-color: rgba(236, 72, 153, 0.6); --accent-main: #ec4899; }
+    body.aura-0 { --glow-color: rgba(0, 242, 254, 0.6); --accent-main: #00f2fe; }
+    body.aura-1 { --glow-color: rgba(255, 0, 127, 0.6); --accent-main: #ff007f; }
+    body.aura-2 { --glow-color: rgba(138, 43, 226, 0.6); --accent-main: #8a2be2; }
+    body.aura-3 { --glow-color: rgba(0, 255, 136, 0.6); --accent-main: #00ff88; }
+    body.aura-4 { --glow-color: rgba(255, 170, 0, 0.6); --accent-main: #ffaa00; }
+    body.aura-5 { --glow-color: rgba(255, 51, 51, 0.6); --accent-main: #ff3333; }
+    body.aura-6 { --glow-color: rgba(67, 97, 238, 0.6); --accent-main: #4361ee; }
+    body.aura-7 { --glow-color: rgba(255, 0, 255, 0.6); --accent-main: #ff00ff; }
 
     body {
       background: #0f1117;
@@ -578,16 +578,7 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ESTILOS PARA LOS NUEVOS WIDGETS DE LOS HUECOS */
-    .custom-box-left {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      padding: 10px;
-      margin-top: 10px;
-      text-align: center;
-    }
-
+    /* SELECTOR DE TEMA CON COLORES VIBRANTES Y NEÓN */
     .aura-selector-container {
       margin-top: 8px;
       display: flex;
@@ -600,10 +591,10 @@
       height: 20px;
       border-radius: 50%;
       cursor: pointer;
-      border: 2px solid rgba(255,255,255,0.4);
-      transition: transform 0.2s;
+      border: 2px solid rgba(255,255,255,0.6);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .aura-dot:hover { transform: scale(1.2); }
+    .aura-dot:hover { transform: scale(1.25); box-shadow: 0 0 10px #ffffff; }
   </style>
 </head>
 <body class="aura-0">
@@ -624,7 +615,7 @@
 
   <div class="main-container" id="main-container">
 
-    <!-- COLUMNA 1: PERFIL, FOTO Y FRASE -->
+    <!-- COLUMNA 1: PERFIL, FOTO + REPRODUCTOR DE MOOD EN EL HUECO -->
     <div class="book-view-left">
       <div>
         <div class="chapter-tag">ARCHIVO &bull; PERFIL</div>
@@ -638,10 +629,11 @@
         <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="color:#ffffff; font-size:11px;">Mido menos que Bob Esponja</strong></div>
       </div>
 
-      <!-- NUEVO WIDGET IZQUIERDA (HUECO 1): ENLACES O ESTADO -->
-      <div class="custom-box-left">
-        <div style="font-size: 10px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; margin-bottom: 4px;">Contacto & Redes</div>
-        <div style="font-size: 11px; color: #94a3b8; font-style: italic;">xat: Addictedtoyouu ✨</div>
+      <!-- NUEVO REPRODUCTOR DE MOOD (IZQUIERDA) -->
+      <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 10px; text-align: center; margin-top: 10px;">
+        <div style="font-size: 9px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; letter-spacing: 1px;">Estado de Ánimo</div>
+        <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin: 4px 0;">🎧 Escuchando en Bucle</div>
+        <div style="font-size: 9px; color: #94a3b8;">✨ Modo Nocturno Activo ✨</div>
       </div>
 
       <!-- Frase destacada -->
@@ -651,30 +643,30 @@
       </div>
     </div>
 
-    <!-- COLUMNA 2: TODA LA PLAYLIST ALARGADA Y LIMPIA + SELECTOR DE AURAS ABAJO (HUECO 2) -->
+    <!-- COLUMNA 2: TODA LA PLAYLIST ALARGADA Y LIMPIA + SELECTOR DE TEMA ABAJO -->
     <div class="book-view-center">
       <div>
         <div class="chapter-tag" style="margin-bottom: 6px;">CANCIONES</div>
         <div class="tracks-list-book" id="book-playlist-container"></div>
       </div>
       
-      <!-- NUEVO WIDGET CENTRO ABAJO (HUECO 2): SELECTOR RÁPIDO DE AURAS -->
+      <!-- SELECTOR DE TEMA CON COLORES VIBRANTES -->
       <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 10px; text-align: center; margin-top: 10px;">
-        <div style="font-size: 10px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; margin-bottom: 4px;">Selector de Aura / Tema</div>
+        <div style="font-size: 10px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; margin-bottom: 4px;">Selector de Tema</div>
         <div class="aura-selector-container">
-          <div class="aura-dot" style="background: #38bdf8;" onclick="manualAura(0)" title="Celeste"></div>
-          <div class="aura-dot" style="background: #f472b6;" onclick="manualAura(1)" title="Rosa"></div>
-          <div class="aura-dot" style="background: #c084fc;" onclick="manualAura(2)" title="Morado"></div>
-          <div class="aura-dot" style="background: #34d399;" onclick="manualAura(3)" title="Verde"></div>
-          <div class="aura-dot" style="background: #fbbf24;" onclick="manualAura(4)" title="Ámbar"></div>
-          <div class="aura-dot" style="background: #f87171;" onclick="manualAura(5)" title="Rojo"></div>
-          <div class="aura-dot" style="background: #818cf8;" onclick="manualAura(6)" title="Índigo"></div>
-          <div class="aura-dot" style="background: #ec4899;" onclick="manualAura(7)" title="Fucsia"></div>
+          <div class="aura-dot" style="background: #00f2fe; box-shadow: 0 0 8px #00f2fe;" onclick="manualAura(0)" title="Cian Neón"></div>
+          <div class="aura-dot" style="background: #ff007f; box-shadow: 0 0 8px #ff007f;" onclick="manualAura(1)" title="Fucsia Intenso"></div>
+          <div class="aura-dot" style="background: #8a2be2; box-shadow: 0 0 8px #8a2be2;" onclick="manualAura(2)" title="Violeta Eléctrico"></div>
+          <div class="aura-dot" style="background: #00ff88; box-shadow: 0 0 8px #00ff88;" onclick="manualAura(3)" title="Verde Esmeralda"></div>
+          <div class="aura-dot" style="background: #ffaa00; box-shadow: 0 0 8px #ffaa00;" onclick="manualAura(4)" title="Ámbar Fuego"></div>
+          <div class="aura-dot" style="background: #ff3333; box-shadow: 0 0 8px #ff3333;" onclick="manualAura(5)" title="Rojo Carmesí"></div>
+          <div class="aura-dot" style="background: #4361ee; box-shadow: 0 0 8px #4361ee;" onclick="manualAura(6)" title="Azul Royal"></div>
+          <div class="aura-dot" style="background: #ff00ff; box-shadow: 0 0 8px #ff00ff;" onclick="manualAura(7)" title="Magenta Puro"></div>
         </div>
       </div>
     </div>
 
-    <!-- COLUMNA 3: WIDGETS LATERALES CON LA PORTADA ACTUAL ARRIBA -->
+    <!-- COLUMNA 3: WIDGETS LATERALES CON EL RELOJ DE PERÚ DE VUELTA A LA DERECHA -->
     <div class="book-view-right">
       <div>
         <div class="chapter-tag">NAVEGACIÓN &bull; EXTRAS</div>
@@ -711,11 +703,11 @@
           </div>
         </div>
 
-        <!-- NUEVO WIDGET DERECHA ABAJO (HUECO 3): RELOJ DECORATIVO EN TIEMPO REAL -->
+        <!-- RELOJ DE PERÚ DE VUELTA A LA DERECHA (+1 HORA) -->
         <div class="side-widget-card" style="text-align: center; padding: 10px;">
           <div style="font-size: 9px; text-transform: uppercase; color: var(--accent-main); font-weight: 800; letter-spacing: 1px;">Hora Local</div>
           <div id="live-clock" style="font-size: 16px; font-weight: 900; color: #ffffff; margin: 4px 0;">00:00:00</div>
-          <div style="font-size: 9px; color: #94a3b8;">✨ All Day Vibes ✨</div>
+          <div style="font-size: 9px; color: #94a3b8;">✨ Perú (+1h) ✨</div>
         </div>
 
       </div>
@@ -818,7 +810,7 @@
       { file: 'zzoilo - Mon Amour (Remix).mp3', title: 'Mon Amour (Remix)', artist: 'Zzoilo x Aitana', cover: 'https://i.postimg.cc/50wYKF10/artworks-z-GXe-TIC6Z17nhvx-J-1v9QKQ-t500x500.jpg', bgIcons: ['💖', '💕', '💗', '💓', '💖', '💕', '💗'] },
       { file: 'Sabrina Carpenter - Juno.mp3', title: 'Juno', artist: 'Sabrina Carpenter', cover: 'https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🌙', '⭐', '🌙', '⭐', '🌙', '⭐', '🌙'] },
       { file: 'Aitana - CONEXIÓN PSÍQUICA.mp3', title: 'CONEXIÓN PSÍQUICA', artist: 'Aitana', cover: 'https://i.postimg.cc/L6T1Wtmw/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🔮', '✨', '💜', '✨', '🔮', '✨', '💜'] },
-      { file: 'Aitana - Los Ángeles.mp3', title: 'Los Ángeles', artist: 'Aitana', cover: 'https://i.postimg.cc/dV5Gh8Xp/250x250-000000-80-0-0-(2).jpg', bgIcons: ['🌆', '✨', '🌃', '⭐', '🌆', '✨', '🌃'] },
+      { file: 'Aitana - Los Ángeles.mp3', title: 'Los Ángeles', artist: 'Aitana', cover: 'https://i.postimg.cc/dV5Gh8Xp/250x250-000000-80-0-0-(2).jpg', bgIcons: ['    bgIcons: ['🌆', '✨', '🌃', '⭐', '🌆', '✨', '🌃'] },
       { file: 'Aitana - 6 DE FEBRERO.mp3', title: '6 DE FEBRERO', artist: 'Aitana', cover: 'https://i.postimg.cc/d3cybnkk/1000x1000-000000-80-0-0.jpg', bgIcons: ['💙', '❄️', '🧊', '❄️', '💙', '❄️', '🧊'] },
       { file: 'Quevedo - GRAN VÍA.mp3', title: 'GRAN VÍA', artist: 'Quevedo', cover: 'https://i.postimg.cc/DzW4mR1W/artworks-xg-Jx-AMw-MDHHPbjps-Fdya-Ow-t500x500.jpg', bgIcons: ['🔥', '⚡', '🕶️', '⚡', '🔥', '⚡', '🕶️'] },
       { file: 'Morat - Presiento.mp3', title: 'Presiento', artist: 'Morat', cover: 'https://i.postimg.cc/jj9NXRR6/250x250-000000-80-0-0.jpg', bgIcons: ['🌿', '🍃', '🌸', '🍃', '🌿', '🍃', '🌸'] },
@@ -861,15 +853,14 @@
       }
     }
 
-    // Selector manual de auras desde los botoncitos del centro
     function manualAura(index) {
       document.body.classList.remove('aura-0', 'aura-1', 'aura-2', 'aura-3', 'aura-4', 'aura-5', 'aura-6', 'aura-7');
       document.body.classList.add(`aura-${index}`);
     }
 
-    // Reloj digital en tiempo real
     function updateClock() {
       const now = new Date();
+      now.setHours(now.getHours() + 1);
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
