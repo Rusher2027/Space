@@ -428,7 +428,7 @@
       box-shadow: 0 0 10px var(--glow-color);
     }
 
-    /* WIDGET DERECHO DE VIBE */
+    /* WIDGET DERECHO DE VIBE Y VOLUMEN ABAJO */
     .active-right-sidebar {
       width: 260px;
       display: flex;
@@ -521,13 +521,26 @@
     }
     .draw-btn:hover { background: var(--accent-main); color: #0f1117; }
 
-    /* FOOTER */
+    /* FOOTER / BARRA DE VOLUMEN ABAJO A LA DERECHA */
     .footer-row {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       width: 100%;
       gap: 15px;
+    }
+
+    .volume-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 14px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #94a3b8;
+      backdrop-filter: blur(10px);
     }
 
     /* PERFIL Y FOTO PRINCIPAL */
@@ -652,7 +665,7 @@
         <div class="cyber-card"><span style="font-size:10px; text-transform:uppercase; color:#94a3b8;">Altura</span><strong style="font-size:11px;">Mido menos que Bob Esponja</strong></div>
       </div>
 
-      <!-- TARJETA SOUNDTRACK DE VIDA (IZQUIERDA) CON MODO AVIÓN -->
+      <!-- TARJETA SOUNDTRACK DE VIDA (IZQUIERDA) -->
       <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 12px; margin-top: 10px;">
         <div class="dynamic-accent-text" style="font-size: 9px; text-transform: uppercase; font-weight: 800; letter-spacing: 2px; margin-bottom: 6px; text-align: center;">SOUNDTRACK &bull; VIDA</div>
         <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
@@ -705,12 +718,12 @@
       <div>
         <div class="chapter-tag">NAVEGACIÓN &bull; EXTRAS</div>
         
-        <!-- CUADRO GRANDE CON LA CANCIÓN SELECCIONADA ACTUAL -->
+        <!-- CUADRO GRANDE CON LA CANCIÓN SELECCIONADA ACTUAL (JUNO POR DEFECTO) -->
         <div class="side-widget-card" style="text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2);">
           <div class="dynamic-accent-text" style="font-size: 10px; font-weight: bold; margin-bottom: 6px; letter-spacing: 1px;">SELECCIONADA</div>
-          <img id="side-preview-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width: 85px; height: 85px; border-radius: 14px; object-fit: cover; border: 2px solid var(--accent-main); box-shadow: 0 5px 15px rgba(0,0,0,0.4); margin: 0 auto 6px;">
-          <div id="side-preview-title" style="font-size: 12px; font-weight: 900; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">SUPERESTRELLA</div>
-          <div id="side-preview-artist" style="font-size: 10px; color: #94a3b8; margin-bottom: 8px;">Aitana</div>
+          <img id="side-preview-cover" src="https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg" style="width: 85px; height: 85px; border-radius: 14px; object-fit: cover; border: 2px solid var(--accent-main); box-shadow: 0 5px 15px rgba(0,0,0,0.4); margin: 0 auto 6px;">
+          <div id="side-preview-title" style="font-size: 12px; font-weight: 900; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Juno</div>
+          <div id="side-preview-artist" style="font-size: 10px; color: #94a3b8; margin-bottom: 8px;">Sabrina Carpenter</div>
           <button onclick="togglePlay()" style="background: var(--accent-main); color: #0f1117; border: none; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; box-shadow: 0 0 10px var(--glow-color);" id="side-preview-btn">▶ Reproducir</button>
         </div>
 
@@ -725,8 +738,8 @@
           </div>
         </div>
 
-        <!-- ÚLTIMA CANCIÓN CON CLIC PARA REPRODUCIR -->
-        <div class="side-widget-card" onclick="playSong(0)" style="cursor: pointer; transition: all 0.3s ease;" title="Reproducir Superestrella">
+        <!-- ÚLTIMA CANCIÓN -->
+        <div class="side-widget-card" onclick="playSong(1)" style="cursor: pointer; transition: all 0.3s ease;" title="Reproducir Superestrella">
           <div class="dynamic-accent-text" style="font-size: 11px; font-weight: bold; margin-bottom: 4px;">ÚLTIMA CANCIÓN</div>
           <div style="display: flex; align-items: center; gap: 8px;">
             <img src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;">
@@ -790,9 +803,9 @@
 
         <!-- 2. REPRODUCTOR AL CENTRO -->
         <div class="massive-player" id="view-massive-player">
-          <img id="cyber-cover" src="https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg" class="massive-cover" alt="Cover">
-          <div class="massive-song-title" id="cyber-title">SUPERESTRELLA</div>
-          <div class="massive-song-artist" id="cyber-artist">Aitana</div>
+          <img id="cyber-cover" src="https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg" class="massive-cover" alt="Cover">
+          <div class="massive-song-title" id="cyber-title">Juno</div>
+          <div class="massive-song-artist" id="cyber-artist">Sabrina Carpenter</div>
 
           <div class="massive-controls">
             <button class="m-ctrl-btn" onclick="prevSong()">⏮</button>
@@ -836,8 +849,9 @@
 
       </div>
 
+      <!-- FOOTER / BARRA DE VOLUMEN ABAJO A LA DERECHA -->
       <div class="footer-row">
-        <div style="background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); padding:8px 14px; border-radius:14px; display:flex; align-items:center; gap:8px; font-size:11px; color:#94a3b8;">
+        <div class="volume-box">
           <span>🔊</span>
           <input type="range" min="0" max="1" step="0.01" value="1" oninput="setVolume(this.value)" style="cursor:pointer; width:100px;">
         </div>
@@ -846,13 +860,13 @@
 
   </div>
 
-  <audio id="audio-player" src="Aitana - SUPERESTRELLA.mp3"></audio>
+  <audio id="audio-player" src="Sabrina Carpenter - Juno.mp3"></audio>
 
   <script>
     const playlist = [
+      { file: 'Sabrina Carpenter - Juno.mp3', title: 'Juno', artist: 'Sabrina Carpenter', cover: 'https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🌙', '⭐', '🌙', '⭐', '🌙', '⭐', '🌙'] },
       { file: 'Aitana - SUPERESTRELLA.mp3', title: 'SUPERESTRELLA', artist: 'Aitana', cover: 'https://i.postimg.cc/g0x3sJnZ/250x250-000000-80-0-0.jpg', bgIcons: ['✨', '⭐', '✨', '⭐', '✨', '⭐', '✨'] },
       { file: 'zzoilo - Mon Amour (Remix).mp3', title: 'Mon Amour (Remix)', artist: 'Zzoilo x Aitana', cover: 'https://i.postimg.cc/50wYKF10/artworks-z-GXe-TIC6Z17nhvx-J-1v9QKQ-t500x500.jpg', bgIcons: ['💖', '💕', '💗', '💓', '💖', '💕', '💗'] },
-      { file: 'Sabrina Carpenter - Juno.mp3', title: 'Juno', artist: 'Sabrina Carpenter', cover: 'https://i.postimg.cc/gk8nshzS/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🌙', '⭐', '🌙', '⭐', '🌙', '⭐', '🌙'] },
       { file: 'Aitana - CONEXIÓN PSÍQUICA.mp3', title: 'CONEXIÓN PSÍQUICA', artist: 'Aitana', cover: 'https://i.postimg.cc/L6T1Wtmw/250x250-000000-80-0-0-(1).jpg', bgIcons: ['🔮', '✨', '💜', '✨', '🔮', '✨', '💜'] },
       { file: 'Aitana - Los Ángeles.mp3', title: 'Los Ángeles', artist: 'Aitana', cover: 'https://i.postimg.cc/dV5Gh8Xp/250x250-000000-80-0-0-(2).jpg', bgIcons: ['🌆', '✨', '🌃', '⭐', '🌆', '✨', '🌃'] },
       { file: 'Aitana - 6 DE FEBRERO.mp3', title: '6 DE FEBRERO', artist: 'Aitana', cover: 'https://i.postimg.cc/d3cybnkk/1000x1000-000000-80-0-0.jpg', bgIcons: ['💙', '❄️', '🧊', '❄️', '💙', '❄️', '🧊'] },
